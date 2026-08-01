@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creedy Solutions — Salesforce Architecture & Consulting</title>
+<meta name="description" content="Creedy Solutions LLC — the Salesforce consultancy of Chris Reedy, Salesforce Architect. CPQ, Experience Cloud, architecture, org health, and Field Service.">
+<meta property="og:title" content="Creedy Solutions — Salesforce Architecture & Consulting">
+<meta property="og:description" content="CPQ, Experience Cloud, architecture, org health checks, and Field Service — by a Salesforce Architect who ships.">
+<meta property="og:url" content="https://creedysolutions.com">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  :root {
+    --bg: #05060e; --bg2: #0a0d1c; --panel: #10142a; --line: #232946;
+    --ink: #e8ebf5; --ink-soft: #9aa4bd; --dim: #6b7590;
+    --accent: #6d5ef2; --accent-2: #8b7bff; --brand: #4338ca;
+    --green: #7be3a3; --gold: #f0b95c; --cyan: #79d2e6; --lav: #a99df7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; gap: 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+
+  header { background: radial-gradient(85% 130% at 75% 10%, #121736 0%, var(--bg2) 55%, var(--bg) 100%); }
+  .hero { padding: 72px 0 76px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 46px; font-weight: 800; letter-spacing: -1px; line-height: 1.12; margin: 14px 0 18px; max-width: 720px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 640px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { display: inline-block; border-radius: 10px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #fff; box-shadow: 0 0 34px rgba(109,94,242,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 640px; margin-bottom: 34px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .5px;
+    border-radius: 5px; padding: 2px 8px; margin-bottom: 12px; }
+  .t-exp { background: rgba(240,185,92,.12); color: var(--gold); }
+  .t-cpq { background: rgba(169,157,247,.14); color: var(--lav); }
+  .t-arch { background: rgba(109,94,242,.16); color: var(--accent-2); }
+  .t-health { background: rgba(123,227,163,.12); color: var(--green); }
+  .t-fsl { background: rgba(121,210,230,.12); color: var(--cyan); }
+
+  .marco { background: linear-gradient(120deg, #10142a 0%, #151a38 100%);
+    border: 1px solid var(--line); border-radius: 18px; padding: 34px; display: flex;
+    gap: 26px; align-items: center; flex-wrap: wrap; }
+  .marco .mark { width: 58px; height: 58px; border-radius: 15px; background: var(--brand);
+    position: relative; flex: none; box-shadow: 0 0 40px rgba(109,94,242,.45); }
+  .marco .mark::before { content: ""; position: absolute; left: 14px; top: 15px; width: 30px; height: 9px; background: #fff; border-radius: 5px; }
+  .marco .mark::after { content: ""; position: absolute; left: 14px; top: 15px; width: 9px; height: 28px; background: #fff; border-radius: 5px; }
+  .marco .body { flex: 1; min-width: 260px; }
+  .marco h3 { font-size: 20px; font-weight: 800; }
+  .marco p { color: var(--ink-soft); font-size: 15px; margin-top: 6px; }
+
+  .about { display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap; }
+  .about .body { flex: 1; min-width: 280px; }
+  .about p { color: var(--ink-soft); margin-bottom: 12px; }
+  .about p b { color: var(--ink); }
+
+  .contact { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .contact .email { font-size: 22px; font-weight: 700; }
+
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+
+  @media (max-width: 640px) { h1 { font-size: 34px; } .sub { font-size: 17px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <span class="logo">Creedy <b>Solutions</b></span>
+      <span class="links">
+        <a href="#services">Services</a>
+        <a href="#marco">Marco</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </span>
+    </nav>
+    <div class="hero">
+      <div class="kicker">Salesforce Architecture &amp; Consulting</div>
+      <h1>Salesforce that's built to hold up — not just to go live.</h1>
+      <p class="sub">Creedy Solutions is the consultancy of <b>Chris Reedy, Salesforce
+        Architect</b>. CPQ and Experience Cloud, org architecture, and the unglamorous
+        work of making an org honest again.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Salesforce%20consulting%20inquiry">Start a conversation</a>
+        <a class="btn ghost" href="#services">What I do</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <h2>Services</h2>
+    <p class="lead">Engagements sized to the problem — from a one-week assessment to
+      owning the architecture of a multi-cloud build.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="tag t-cpq">CPQ</span>
+        <h3>Salesforce CPQ</h3>
+        <p>Complex quoting doesn't have to mean fragile quoting. I keep CPQ
+          orgs stable and performant — pricing logic, approvals, quote
+          templates, and the config debt nobody else wants to touch.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-exp">EXPERIENCE CLOUD</span>
+        <h3>Experience Cloud</h3>
+        <p>Customer and partner portals people actually use — LWR sites,
+          audience targeting, and the sharing-model work that makes external
+          access safe instead of scary.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-arch">ARCHITECTURE</span>
+        <h3>Architecture &amp; implementation</h3>
+        <p>Org design, integration patterns, data model decisions you won't
+          regret in three years — and hands-on delivery, not just diagrams.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-health">ORG HEALTH</span>
+        <h3>Health checks &amp; tech-debt audits</h3>
+        <p>A fixed-scope look at what your org is really doing: dependency
+          mapping, dead metadata, risky automation, and a prioritized plan to
+          pay the debt down.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-fsl">FIELD SERVICE</span>
+        <h3>Field Service (FSL)</h3>
+        <p>Scheduling, territories, mobile flows, and the dispatcher console —
+          Field Service implementations that technicians don't fight with.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="marco">
+  <div class="wrap">
+    <div class="marco">
+      <div class="mark"></div>
+      <div class="body">
+        <h3>Marco — Where Used for Salesforce</h3>
+        <p>Our product: a Chrome extension that shows everywhere any Salesforce
+          component is used — dependency graphs, impact reports, permission
+          tracing, and your org schema as a navigable 3D universe. Private by
+          design: your metadata never leaves your browser.</p>
+      </div>
+      <a class="btn primary" href="https://marco.creedysolutions.com">Meet Marco →</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <div class="about">
+      <div class="body">
+        <p><b>Chris Reedy</b> is a Salesforce Architect who has spent his career
+          in the deep end of the platform: revenue and quoting systems, field
+          service operations, and orgs that have grown faster than their
+          documentation.</p>
+        <p>Creedy Solutions LLC is his independent practice — and the company
+          behind <a href="https://marco.creedysolutions.com">Marco</a>, a tool
+          born from the same conviction that drives the consulting work:
+          <b>you can't safely change what you can't see.</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's talk about your org.</h2>
+    <p class="lead" style="margin:10px auto 22px">A short email is enough — what you're
+      running, what hurts, and where you want to be.</p>
+    <a class="btn primary email" href="mailto:chris@creedysolutions.com?subject=Salesforce%20consulting%20inquiry">chris@creedysolutions.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="https://marco.creedysolutions.com">Marco</a>
+    <a href="https://marco.creedysolutions.com/privacy.html">Marco privacy</a>
+    <span class="right"><a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
