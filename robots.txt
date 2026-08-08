@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://creedysolutions.com/sitemap.xml
