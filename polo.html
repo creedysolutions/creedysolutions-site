@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Polo — Org Compare for Salesforce | Creedy Solutions</title>
-<meta name="description" content="Polo is a Chrome extension that tells you whether a Salesforce component is identical, different, or missing in your other orgs — with change history, a pipeline matrix, and a 3D view of every difference. Read-only. Your metadata never leaves your browser.">
+<meta name="description" content="Polo is a Chrome side panel that tells you whether a Salesforce component is identical, different, or missing in your other orgs — with change history, a pipeline matrix, and a watchlist. No login or connected app; compare any two orgs. Read-only. Your metadata never leaves your browser.">
 <meta property="og:title" content="Polo — Org Compare for Salesforce">
 <meta property="og:description" content="Click a component in Setup. See if it's the same, different, or missing in every other org you're logged into. Read-only, private, from Creedy Solutions.">
 <meta property="og:url" content="https://creedysolutions.com/polo.html">
-<meta property="og:image" content="https://creedysolutions.com/assets/polo-explore.png">
+<meta property="og:image" content="https://creedysolutions.com/assets/polo-compare.png">
 <link rel="canonical" href="https://creedysolutions.com/polo.html">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <script type="application/ld+json">
@@ -67,6 +67,16 @@
     border: 5px solid #fff; border-radius: 50%; }
   .mark::after { content: ""; position: absolute; left: 25px; top: 25px; width: 8px; height: 8px;
     background: #fff; border-radius: 50%; }
+  .hero-shot { flex: 0 0 300px; max-width: 300px; margin: 0; }
+  .grid.three { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .shotcard { padding: 0; overflow: hidden; }
+  .shotcard figure { margin: 0; border-bottom: 1px solid var(--line); background: #0a0c16;
+    max-height: 300px; overflow: hidden; }
+  .shotcard figure img { display: block; width: 100%; height: auto; }
+  .shotcard .tag { margin: 18px 22px 0; }
+  .shotcard h3, .shotcard p { padding: 0 22px; }
+  .shotcard p { padding-bottom: 22px; }
+  .shotcard p i { color: var(--ink); font-style: italic; }
   .verdicts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
   .v { font-size: 12px; font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 5px 12px; }
   .v-same { background: rgba(123,227,163,.12); color: var(--green); }
@@ -123,7 +133,8 @@
   footer a { color: var(--dim); }
   footer .right { margin-left: auto; }
 
-  @media (max-width: 760px) { h1 { font-size: 34px; } .sub { font-size: 17px; } .two { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) { h1 { font-size: 34px; } .sub { font-size: 17px; } .two { grid-template-columns: 1fr; }
+    .hero-shot { flex-basis: 100%; max-width: 420px; } }
 </style>
 </head>
 <body>
@@ -145,29 +156,102 @@
         <div class="mark" aria-hidden="true"></div>
         <div class="kicker">Org Compare for Salesforce</div>
         <h1>Polo <small>Same, different, or missing — in every org, at a glance.</small></h1>
-        <p class="sub">Click a component in Setup and Polo tells you whether it's
-          <b>identical, different, or missing</b> in every other org you're logged into —
-          then shows you <b>who changed it, and when</b>. Read-only, and your
-          metadata never leaves your browser.</p>
+        <p class="sub">A Chrome side panel that lives next to Setup. Click a component and
+          Polo tells you whether it's <b>identical, different, or missing</b> in every
+          other org you're logged into — then shows you <b>who changed it, and when</b>.
+          No login, no connected app: <b>if you're signed into the org in Chrome, Polo
+          can see it.</b> Read-only, and your metadata never leaves your browser.</p>
         <div class="verdicts" aria-hidden="true">
           <span class="v v-same">SAME</span><span class="v v-diff">DIFFERS — 3 CHANGES</span>
           <span class="v v-miss">MISSING IN PROD</span><span class="v v-extra">ONLY IN UAT</span>
         </div>
         <div class="cta-row">
           <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Polo%20early%20access">Get early access</a>
-          <a class="btn ghost" href="#features">What it does</a>
+          <a class="btn ghost" href="#panel">See the side panel</a>
           <a class="btn ghost" href="#explore">Explore in 3D</a>
         </div>
       </div>
+      <figure class="shot hero-shot">
+        <img src="assets/polo-compare.png" alt="Polo side panel: Deal_Stage__c compared across three orgs — verdict chips per org, DIFFERS with 3 changes spelled out as sentences" width="1040" height="1960">
+        <figcaption>The Compare tab: verdict first, changes as sentences, who touched it last.</figcaption>
+      </figure>
     </div>
-    <figure class="shot">
-      <img src="assets/polo-explore.png" alt="Polo's Explore in 3D view: a spinnable disc of every difference between two orgs, cards grouped and glowing by metadata type" width="1400" height="840">
-      <figcaption>Explore in 3D — every difference on one disc. Glow is the metadata type; gold and red edges are the verdict.</figcaption>
-    </figure>
   </div>
 </header>
 
-<section id="features">
+<section id="panel">
+  <div class="wrap">
+    <h2>The side panel is the product.</h2>
+    <p class="lead">Three tabs do the everyday work. Open Polo next to Setup and it follows
+      whatever you click — no copy-pasting API names, no second window.</p>
+    <div class="grid three">
+      <div class="card shotcard">
+        <figure><img src="assets/polo-compare.png" alt="Compare tab" width="1040" height="1960" loading="lazy"></figure>
+        <span class="tag t-acc">COMPARE</span>
+        <h3>Same, different, or missing — per org</h3>
+        <p>Focus a field, flow, class, rule, layout, or page and Polo compares it against
+          <b>every org you're logged into</b>. One chip per org; tap it for the detail. Every
+          change reads as a plain sentence — <i>“required: false → true”</i>, <i>“picklist
+          value missing in target — Negotiating”</i> — with a full diff one click away.
+          The <b>History</b> tab merges audit trail, flow versions, and Polo's own snapshots
+          into a who-changed-what timeline for both orgs.</p>
+      </div>
+      <div class="card shotcard">
+        <figure><img src="assets/polo-pipeline.png" alt="Pipeline tab" width="1040" height="1960" loading="lazy"></figure>
+        <span class="tag t-lav">PIPELINE</span>
+        <h3>Your whole release path in one grid</h3>
+        <p>Dev → UAT → Prod (or whatever your path is): components down, orgs across,
+          each cell <b>same / differs / missing / extra</b> against a baseline you choose.
+          Feed it your watchlist for a release check, or point it at an object for a
+          full inventory sweep — fields, rules, layouts, triggers, actions. Click a
+          cell to land in Compare with that org selected.</p>
+      </div>
+      <div class="card shotcard">
+        <figure><img src="assets/polo-watch.png" alt="Watch tab" width="1040" height="1960" loading="lazy"></figure>
+        <span class="tag t-green">WATCH</span>
+        <h3>Pin what's in flight, know when it drifts</h3>
+        <p>Watch anything from Compare. Grouped by source org with a verdict badge per
+          row. <b>+ dependencies</b> pulls in everything a component needs (recursively).
+          <b>Re-check all</b> refreshes verdicts; turn on the daily re-check and Polo
+          badges its toolbar icon when something drifts. Export a <b>package.xml</b>
+          per org, a print-ready release report, or the whole list as JSON.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="anyorgs">
+  <div class="wrap">
+    <h2>No login. No connected app. Any two orgs.</h2>
+    <p class="lead">Polo rides on the Salesforce sessions you already have in Chrome. That
+      turns out to matter more than it sounds.</p>
+    <div class="grid three">
+      <div class="card">
+        <span class="tag t-cyan">SIGN IN LIKE ALWAYS</span>
+        <h3>Nothing to install in the org</h3>
+        <p>No connected app, no OAuth dance, no package, no API user to provision. Log into
+          Salesforce in Chrome the way you already do — every org you're signed into shows
+          up in Polo's org picker.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-gold">UNRELATED ORGS</span>
+        <h3>They don't have to be a sandbox and its prod</h3>
+        <p>Polo matches components by <b>API name</b>, never by ID, so the two orgs don't
+          need to be related at all. Two customers on different stacks, an old org and
+          the one replacing it, a client's prod against your reference org — if you can
+          log into both, you can compare them.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-green">READ-ONLY, LOCAL</span>
+        <h3>Look, don't touch</h3>
+        <p>Polo only ever reads. Metadata is fetched from your browser straight to your
+          orgs and stays there — no servers, no accounts, no telemetry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="features">
   <div class="wrap">
     <h2>The question it answers: “is this the same in prod?”</h2>
     <p class="lead">Polo is for admins, architects, and release managers who are tired of
@@ -225,15 +309,20 @@
   </div>
 </section>
 
-<section class="alt" id="explore">
+<section id="explore">
   <div class="wrap">
+    <h2>Explore in 3D</h2>
+    <p class="lead">When the list gets long, spin it. Every difference on one disc, grouped by type.</p>
+    <figure class="shot">
+      <img src="assets/polo-explore.png" alt="Polo's Explore in 3D view: a spinnable disc of every difference between two orgs, cards grouped and glowing by metadata type" width="1400" height="840" loading="lazy">
+      <figcaption>Every difference on one disc. Glow is the metadata type; gold and red edges are the verdict.</figcaption>
+    </figure>
     <div class="two">
       <figure class="shot">
         <img src="assets/polo-topdown.png" alt="Polo's 3D disc viewed from directly above, showing every component's metadata type as a colored glow" width="1400" height="840">
         <figcaption>Tilt to look straight down and the disc becomes a type map.</figcaption>
       </figure>
       <div class="copy">
-        <h2>Explore in 3D</h2>
         <p>Text first, 3D second: names and verdicts are always readable, the space is
           just how you move through them.</p>
         <ul>
@@ -249,7 +338,7 @@
   </div>
 </section>
 
-<section>
+<section class="alt">
   <div class="wrap">
     <h2>Read-only isn't a setting. It's the product.</h2>
     <div class="privacy-box">
