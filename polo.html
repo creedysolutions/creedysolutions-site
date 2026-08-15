@@ -99,6 +99,9 @@
   .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
   .card p { font-size: 14.5px; color: var(--ink-soft); }
   .card p b { color: var(--ink); }
+  .card code { font: 12.5px/1.5 ui-monospace, Menlo, monospace; color: var(--ink);
+    background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; }
+  .card p + p { margin-top: 10px; }
   .tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .5px;
     border-radius: 5px; padding: 2px 8px; margin-bottom: 12px; }
   .t-gold { background: rgba(240,185,92,.12); color: var(--gold); }
@@ -220,7 +223,48 @@
   </div>
 </section>
 
-<section class="alt" id="anyorgs">
+<section class="alt" id="handoff">
+  <div class="wrap">
+    <h2>From “it's different” to “here's the deploy.”</h2>
+    <p class="lead">Polo won't deploy for you — that's the point — but it hands you
+      everything the person who does will need.</p>
+    <div class="grid three">
+      <div class="card">
+        <span class="tag t-acc">PACKAGE.XML</span>
+        <h3>A manifest per source org, one click</h3>
+        <p>Every watchlist group has a <b>package.xml ↓</b> button. Polo writes a
+          Metadata API manifest for exactly those components — fields as
+          <code>Object.Field__c</code>, layouts as <code>Object-Layout</code>, Apex and
+          flows bare — and shows you the retrieve command to run:</p>
+        <p><code>sf project retrieve start -x acme-package.xml -o acme</code></p>
+        <p>Types the Metadata API can't round-trip cleanly get a note instead of a
+          silent gap. Retrieve from source, deploy to target, with your normal tooling
+          and your normal approvals.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-green">EXPORT / IMPORT</span>
+        <h3>Your watchlist is a file</h3>
+        <p><b>Export ↓</b> saves the whole watchlist — every component, its source and
+          target org, and the last verdict — as <code>polo-watchlist.json</code>.
+          <b>Import ↑</b> restores it on another machine, or hands it to a teammate:
+          same list, same org pairing, verdict badges intact, no re-check needed.
+          Imports merge, they don't overwrite.</p>
+        <p>Use it as the release manifest for a sprint, a shared checklist between
+          admin and dev, or just insurance against a fresh browser profile.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-gold">REPORTS</span>
+        <h3>Something to attach to the ticket</h3>
+        <p><b>Release report ↗</b> turns the watchlist into a print-ready go/no-go
+          table, action-needed rows first. On any single compare, <b>Report</b> opens a
+          paper-style page of the diff and history, and <b>Copy for ticket</b> puts a
+          Markdown summary on your clipboard for Jira, Slack, or the PR description.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="anyorgs">
   <div class="wrap">
     <h2>No login. No connected app. Any two orgs.</h2>
     <p class="lead">Polo rides on the Salesforce sessions you already have in Chrome. That
