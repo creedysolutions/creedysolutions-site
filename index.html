@@ -84,6 +84,9 @@
     position: relative; flex: none; box-shadow: 0 0 40px rgba(109,94,242,.45); }
   .marco .mark::before { content: ""; position: absolute; left: 14px; top: 15px; width: 30px; height: 9px; background: #fff; border-radius: 5px; }
   .marco .mark::after { content: ""; position: absolute; left: 14px; top: 15px; width: 9px; height: 28px; background: #fff; border-radius: 5px; }
+  .marco + .marco { margin-top: 18px; }
+  .marco.polo .mark::before { left: 15px; top: 15px; width: 28px; height: 28px; background: none; border: 5px solid #fff; border-radius: 50%; }
+  .marco.polo .mark::after { left: 25px; top: 25px; width: 8px; height: 8px; border-radius: 50%; }
   .marco .body { flex: 1; min-width: 260px; }
   .marco h3 { font-size: 20px; font-weight: 800; }
   .marco p { color: var(--ink-soft); font-size: 15px; margin-top: 6px; }
@@ -113,6 +116,7 @@
       <span class="links">
         <a href="#services">Services</a>
         <a href="#marco">Marco</a>
+        <a href="polo.html">Polo</a>
         <a href="https://chartless.creedysolutions.com">Chartless</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -195,6 +199,17 @@
       </div>
       <a class="btn primary" href="https://marco.creedysolutions.com">Meet Marco →</a>
     </div>
+    <div class="marco polo" id="polo">
+      <div class="mark"></div>
+      <div class="body">
+        <h3>Polo — Org Compare for Salesforce</h3>
+        <p>Marco's sibling: click a component in Setup and see whether it's the same,
+          different, or missing in every other org you're logged into — with who
+          changed it, a pipeline matrix, and every difference on a spinnable 3D disc.
+          Read-only. Metadata never leaves your browser.</p>
+      </div>
+      <a class="btn primary" href="polo.html">Meet Polo →</a>
+    </div>
   </div>
 </section>
 
@@ -208,8 +223,8 @@
           service operations, and orgs that have grown faster than their
           documentation.</p>
         <p>Creedy Solutions LLC is his independent practice — and the company
-          behind <a href="https://marco.creedysolutions.com">Marco</a>, a tool
-          born from the same conviction that drives the consulting work:
+          behind <a href="https://marco.creedysolutions.com">Marco</a> and
+          <a href="polo.html">Polo</a>, tools born from the same conviction that drives the consulting work:
           <b>you can't safely change what you can't see.</b></p>
       </div>
     </div>
@@ -230,6 +245,7 @@
     <span>© 2026 Creedy Solutions LLC</span>
     <a href="https://marco.creedysolutions.com">Marco</a>
     <a href="https://marco.creedysolutions.com/privacy.html">Marco privacy</a>
+    <a href="polo.html">Polo</a>
     <span class="right"><a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></span>
   </div>
 </footer>
