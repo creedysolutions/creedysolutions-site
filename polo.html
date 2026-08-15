@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Polo — Org Compare for Salesforce | Creedy Solutions</title>
+<title>Polo — Org Compare for Salesforce (coming soon) | Creedy Solutions</title>
 <meta name="description" content="Polo is a Chrome side panel that tells you whether a Salesforce component is identical, different, or missing in your other orgs — with change history, a pipeline matrix, and a watchlist. No login or connected app; compare any two orgs. Read-only. Your metadata never leaves your browser.">
 <meta property="og:title" content="Polo — Org Compare for Salesforce">
 <meta property="og:description" content="Click a component in Setup. See if it's the same, different, or missing in every other org you're logged into. Read-only, private, from Creedy Solutions.">
@@ -77,6 +77,8 @@
   .shotcard h3, .shotcard p { padding: 0 22px; }
   .shotcard p { padding-bottom: 22px; }
   .shotcard p i { color: var(--ink); font-style: italic; }
+  .kicker .soon { font-size: 10px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(123,227,163,.12); border-radius: 5px; padding: 3px 8px; margin-left: 10px; vertical-align: 2px; }
   .verdicts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
   .v { font-size: 12px; font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 5px 12px; }
   .v-same { background: rgba(123,227,163,.12); color: var(--green); }
@@ -157,7 +159,7 @@
     <div class="hero">
       <div class="copy">
         <div class="mark" aria-hidden="true"></div>
-        <div class="kicker">Org Compare for Salesforce</div>
+        <div class="kicker">Org Compare for Salesforce <span class="soon">Coming soon</span></div>
         <h1>Polo <small>Same, different, or missing — in every org, at a glance.</small></h1>
         <p class="sub">A Chrome side panel that lives next to Setup. Click a component and
           Polo tells you whether it's <b>identical, different, or missing</b> in every
@@ -169,7 +171,7 @@
           <span class="v v-miss">MISSING IN PROD</span><span class="v v-extra">ONLY IN UAT</span>
         </div>
         <div class="cta-row">
-          <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Polo%20early%20access">Get early access</a>
+          <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Polo%20early%20access">Tell me when it ships</a>
           <a class="btn ghost" href="#panel">See the side panel</a>
           <a class="btn ghost" href="#explore">Explore in 3D</a>
         </div>
@@ -402,8 +404,9 @@
 
 <section class="contact" id="contact">
   <div class="wrap">
-    <h2>Polo is in early access.</h2>
-    <p class="lead">A short email is enough — how many orgs, what your release process
+    <h2>Polo is coming soon.</h2>
+    <p class="lead">Chrome Web Store listing is on the way. Want in early, or a heads-up
+      when it lands? A short email is enough — how many orgs, what your release process
       looks like, and what you'd want to see side by side first.</p>
     <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Polo%20early%20access">chris@creedysolutions.com</a>
   </div>
