@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magellan — Best-Practices Analyzer for Salesforce (coming soon) | Creedy Solutions</title>
+<meta name="description" content="Magellan is a Chrome side panel that lints any Apex class, trigger, Flow, or LWC the moment you click it in Setup — 40+ PMD-grade rules, ranked by severity — then maps your whole org's code health as a 3D world. No CI pipeline, no login, no config. Read-only. Your code never leaves your browser.">
+<meta property="og:title" content="Magellan — Best-Practices Analyzer for Salesforce">
+<meta property="og:description" content="Click a component in Setup. Get a ranked list of best-practice findings — SOQL in loops, missing sharing, hardcoded IDs, empty catches — right there. Then see your org's health as a globe. Read-only, private, from Creedy Solutions.">
+<meta property="og:url" content="https://creedysolutions.com/magellan">
+<meta property="og:image" content="https://creedysolutions.com/assets/magellan-globe.png">
+<link rel="canonical" href="https://creedysolutions.com/magellan">
+<link rel="icon" type="image/png" href="assets/magellan-icon-128.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Magellan — Best-Practices Analyzer for Salesforce",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Chrome",
+  "url": "https://creedysolutions.com/magellan",
+  "description": "In-browser static analysis for Salesforce: click any Apex class, trigger, Flow, or LWC in Setup and get ranked best-practice findings in a side panel. Org-wide scan report, live failure tracking, and a 3D world map of code health. Read-only; code never leaves the browser.",
+  "author": { "@type": "Organization", "name": "Creedy Solutions LLC", "url": "https://creedysolutions.com" }
+}
+</script>
+<style>
+  :root {
+    --bg: #05060e; --bg2: #0a0d1c; --panel: #10142a; --line: #232946;
+    --ink: #e8ebf5; --ink-soft: #9aa4bd; --dim: #6b7590;
+    --accent: #6d5ef2; --accent-2: #8b7bff; --brand: #4338ca;
+    --green: #7be3a3; --gold: #f0b95c; --cyan: #79d2e6; --lav: #a99df7; --red: #ff8a80; --neon: #1ef0ff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; gap: 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  nav .links .soon { font-size: 9px; font-weight: 800; letter-spacing: .5px;
+    text-transform: uppercase; color: var(--green); background: rgba(123,227,163,.12);
+    border-radius: 4px; padding: 2px 5px; vertical-align: 2px; }
+
+  header { background: radial-gradient(85% 130% at 75% 10%, #121736 0%, var(--bg2) 55%, var(--bg) 100%); }
+  .hero { padding: 64px 0 40px; display: flex; gap: 34px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 46px; font-weight: 800; letter-spacing: -1px; line-height: 1.12; margin: 14px 0 18px; }
+  h1 small { display: block; font-size: 22px; font-weight: 700; color: var(--ink-soft); letter-spacing: -.3px; margin-top: 4px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 640px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { display: inline-block; border-radius: 10px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #fff; box-shadow: 0 0 34px rgba(109,94,242,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  /* Magellan mark: the voyage globe on the brand tile */
+  .mark { width: 58px; height: 58px; border-radius: 15px; background: #0e1120; border: 1px solid #2a2f45;
+    position: relative; flex: none; box-shadow: 0 0 40px rgba(30,240,255,.28); margin-bottom: 18px;
+    background-image: url(assets/magellan-icon-128.png); background-size: cover; }
+  .hero-shot { flex: 0 0 300px; max-width: 300px; margin: 0; }
+  .grid.three { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .shotcard { padding: 0; overflow: hidden; }
+  .shotcard figure { margin: 0; border-bottom: 1px solid var(--line); background: #0a0c16;
+    max-height: 300px; overflow: hidden; }
+  .shotcard figure img { display: block; width: 100%; height: auto; }
+  .shotcard .tag { margin: 18px 22px 0; }
+  .shotcard h3, .shotcard p { padding: 0 22px; }
+  .shotcard p { padding-bottom: 22px; }
+  .shotcard p i { color: var(--ink); font-style: italic; }
+  .kicker .soon { font-size: 10px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(123,227,163,.12); border-radius: 5px; padding: 3px 8px; margin-left: 10px; vertical-align: 2px; }
+  .verdicts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+  .v { font-size: 12px; font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 5px 12px; }
+  .v-crit { background: rgba(255,138,128,.14); color: var(--red); }
+  .v-warn { background: rgba(240,185,92,.14); color: var(--gold); }
+  .v-info { background: rgba(121,210,230,.12); color: var(--cyan); }
+  .v-clean { background: rgba(123,227,163,.12); color: var(--green); }
+
+  figure.shot { margin: 0 0 56px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+    background: var(--panel); box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+  figure.shot img { display: block; width: 100%; height: auto; }
+  figure.shot figcaption { font-size: 13px; color: var(--dim); padding: 10px 16px; border-top: 1px solid var(--line); }
+
+  section { padding: 64px 0; }
+  section.alt { background: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 640px; margin-bottom: 34px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card p b { color: var(--ink); }
+  .card code { font: 12.5px/1.5 ui-monospace, Menlo, monospace; color: var(--ink);
+    background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; }
+  .card p + p { margin-top: 10px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .5px;
+    border-radius: 5px; padding: 2px 8px; margin-bottom: 12px; }
+  .t-gold { background: rgba(240,185,92,.12); color: var(--gold); }
+  .t-lav { background: rgba(169,157,247,.14); color: var(--lav); }
+  .t-acc { background: rgba(109,94,242,.16); color: var(--accent-2); }
+  .t-green { background: rgba(123,227,163,.12); color: var(--green); }
+  .t-cyan { background: rgba(121,210,230,.12); color: var(--cyan); }
+  .t-red { background: rgba(255,138,128,.14); color: var(--red); }
+
+  .two { display: grid; grid-template-columns: 1.2fr 1fr; gap: 34px; align-items: center; }
+  .two figure.shot { margin: 0; }
+  .two .copy p { color: var(--ink-soft); margin-bottom: 12px; }
+  .two .copy p b { color: var(--ink); }
+  .two ul { color: var(--ink-soft); padding-left: 18px; }
+  .two li { margin-bottom: 8px; }
+  .two li b { color: var(--ink); }
+
+  .privacy-box { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 28px 30px; max-width: 760px; }
+  .privacy-box h3 { font-size: 19px; font-weight: 800; margin-bottom: 12px; }
+  .privacy-box ul { padding-left: 18px; color: var(--ink-soft); }
+  .privacy-box li { margin-bottom: 8px; }
+  .privacy-box li b { color: var(--ink); }
+
+  .types { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .types span { font-size: 12.5px; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
+
+  .contact { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .contact .lead { margin: 10px auto 22px; }
+
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+
+  @media (max-width: 760px) { h1 { font-size: 34px; } .sub { font-size: 17px; } .two { grid-template-columns: 1fr; }
+    .hero-shot { flex-basis: 100%; max-width: 420px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/#services">Services</a>
+        <a href="https://marco.creedysolutions.com">Marco</a>
+        <a href="/polo">Polo <span class="soon">Soon</span></a>
+        <a href="/magellan" style="color:var(--ink)">Magellan</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+        <a href="/#contact">Contact</a>
+      </span>
+    </nav>
+    <div class="hero">
+      <div class="copy">
+        <div class="mark" aria-hidden="true"></div>
+        <div class="kicker">Best-Practices Analyzer for Salesforce <span class="soon">Coming soon</span></div>
+        <h1>Magellan <small>PMD-grade code review, the moment you click a component.</small></h1>
+        <p class="sub">A Chrome side panel that lives next to Setup. Click any Apex class, trigger,
+          Flow, or LWC and Magellan hands you a <b>ranked list of best-practice findings</b> —
+          SOQL in loops, missing sharing, hardcoded IDs, empty catch blocks, unasserted tests,
+          40+ rules — with the line, the why, and the fix. <b>No CI pipeline, no login, no
+          config.</b> Read-only, and your code never leaves your browser.</p>
+        <div class="verdicts" aria-hidden="true">
+          <span class="v v-crit">CRITICAL · SOQL IN LOOP</span><span class="v v-warn">WARNING · NO SHARING</span>
+          <span class="v v-info">INFO · SYSTEM.DEBUG</span><span class="v v-clean">CLEAN</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Magellan%20early%20access">Tell me when it ships</a>
+          <a class="btn ghost" href="#panel">See the side panel</a>
+          <a class="btn ghost" href="#universe">Explore the globe</a>
+        </div>
+      </div>
+      <figure class="shot hero-shot">
+        <img src="assets/magellan-panel.png" alt="Magellan side panel: AccountBatchSvc analyzed — 2 critical, 4 warning findings ranked, each with a line number, an explanation and a fix" width="840" height="1720">
+        <figcaption>The side panel: findings ranked by severity, heuristics labelled honestly.</figcaption>
+      </figure>
+    </div>
+  </div>
+</header>
+
+<section id="panel">
+  <div class="wrap">
+    <h2>The side panel is the product.</h2>
+    <p class="lead">Open Magellan next to Setup and it analyzes whatever you click. Or search
+      any component by name and pull it up without leaving the panel.</p>
+    <div class="grid three">
+      <div class="card">
+        <span class="tag t-red">40+ RULES</span>
+        <h3>The PMD catalog, in the browser</h3>
+        <p>Apex: SOQL and DML in loops, async jobs in loops, missing <code>with sharing</code>,
+          CRUD/FLS gaps, SOQL injection, hardcoded IDs and credentials, insecure endpoints,
+          empty catches, tests with no assertions, <code>SeeAllData=true</code>, cyclomatic
+          complexity, deep nesting, long methods. Flow: DML and Get Records inside loops,
+          missing fault paths, System-Mode-Without-Sharing, hardcoded IDs and URLs. LWC:
+          <code>innerHTML</code>, global document queries, unhandled GraphQL errors, leftover
+          <code>console.log</code>.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-acc">A REAL TOKENIZER</span>
+        <h3>Not grep. A lexer and a structural pass.</h3>
+        <p>Magellan tokenizes Apex — comments, strings, and inline SOQL are tagged, so a query
+          quoted in a comment never trips a rule — then builds a loop and method model to ask
+          structural questions: <i>is this query inside any loop?</i> Every finding carries a
+          <b>confidence</b>; heuristics that would need a full parser are shipped honestly
+          labelled <code>heuristic</code>, never presented as certain.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-gold">RANKED, EXPLAINED, FIXABLE</span>
+        <h3>Line, why, and how to fix it</h3>
+        <p>Findings sort critical → warning → info, then by confidence, then by line. Each one
+          shows the offending snippet, a plain-English explanation of the risk, and a concrete
+          fix hint. Click through to that exact component in Setup. Search any class, trigger,
+          flow or LWC by name from the panel itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="atlas">
+  <div class="wrap">
+    <h2>Atlas: the whole org, ranked.</h2>
+    <p class="lead">One button scans every Apex class, trigger, active Flow, and LWC in the org
+      and hands you the tech-debt map a lead or an auditor actually wants.</p>
+    <figure class="shot">
+      <img src="assets/magellan-atlas.png" alt="Magellan Atlas: org-wide dashboard with severity counts, type and severity filters, a ranked cross-org findings list, a What's on fire card, worst offenders and top rules fired" width="1400" height="900" loading="lazy">
+      <figcaption>Every finding across the org, filterable — with worst offenders, top rules fired, and what's on fire right now.</figcaption>
+    </figure>
+    <div class="grid three">
+      <div class="card">
+        <span class="tag t-acc">ORG SCAN</span>
+        <h3>Same rules, whole org</h3>
+        <p>Atlas runs the exact same engine over the org inventory — no new logic, no server.
+          Filter by type or severity, search findings, sort by rule. <b>Worst offenders</b>
+          rank components by severity-weighted debt; <b>top rules fired</b> tells you which
+          anti-pattern dominates. Export CSV or JSON for the ticket.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-red">WHAT'S ON FIRE</span>
+        <h3>Risk vs. burning</h3>
+        <p>Static findings say a class <i>could</i> fail. Atlas also reads your recent
+          <b>failed and aborted Apex jobs</b> — batch, queueable, scheduled — and shows what's
+          <i>actually</i> failing in production. A risky-but-working class and a class that
+          aborted 169 times last week are very different problems; Magellan shows you both,
+          and flags the component that's on both lists first.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-green">WHICH ORG?</span>
+        <h3>Never scan the wrong org</h3>
+        <p>Signed into several orgs? Every surface names the org it's reading, with a loud
+          <b>PRODUCTION</b> or <b>Sandbox</b> badge, and Atlas has an org switcher. The scan
+          screen itself confirms the target while it runs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="universe">
+  <div class="wrap">
+    <h2>Explore your org as a world.</h2>
+    <p class="lead">Magellan circumnavigated the globe. So does this: your org's code health as a
+      3D world map you spin, zoom, and fly through.</p>
+    <figure class="shot">
+      <img src="assets/magellan-globe.png" alt="Magellan Universe: a 3D globe where continents are component types coloured by code health, hexagon tiles are components, flames mark failing jobs, and two satellites named Marco and Polo orbit" width="1400" height="840" loading="lazy">
+      <figcaption>Continents are your Apex, Triggers, Flows and LWC — coloured by weighted health. Flames are jobs failing right now.</figcaption>
+    </figure>
+    <div class="two">
+      <div class="copy">
+        <p>Text first, 3D second: the globe is how you <i>find</i> the problem; the side panel is
+          how you read it.</p>
+        <ul>
+          <li><b>Continents are component types</b>, sized by how much code lives there and
+            coloured by weighted overall health — lush green through arid tan to scorched rust.
+            One critical class can't paint five hundred clean ones red.</li>
+          <li><b>Hex tiles are components</b>, clustered into severity districts — the critical
+            city, the warning city — with the worst offenders at each city's centre. Tile size is
+            the finding count.</li>
+          <li><b>Managed packages are an archipelago</b>: one island per installed package,
+            neutral gray because vendor code isn't linted — until something in it burns.</li>
+          <li><b>Trade routes are dependencies.</b> Focus a component and its routes light up:
+            cyan for what it uses, ember for what depends on it. Load-bearing debt, visible.</li>
+          <li><b>Flames are live failures.</b> The terrain says <i>could burn</i>; the fire says
+            <i>is burning</i> — hotter and faster the more recent and frequent.</li>
+          <li><b>Voyage mode</b> sails port to port through your worst offenders. Marco and Polo
+            keep orbit overhead.</li>
+        </ul>
+      </div>
+      <figure class="shot">
+        <img src="assets/magellan-globe.png" alt="The Magellan globe from orbit" width="1400" height="840" loading="lazy">
+        <figcaption>Search any component and the camera pulls back, spins the planet, and dives onto its tile.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="anyorg">
+  <div class="wrap">
+    <h2>No pipeline. No login. No config.</h2>
+    <p class="lead">Every other analyzer wants a checkout, a scan job, or an upload. Magellan
+      runs on the session you already have, against the code already in your browser.</p>
+    <div class="grid three">
+      <div class="card">
+        <span class="tag t-cyan">CLICK, DON'T CONFIGURE</span>
+        <h3>Zero setup</h3>
+        <p>Nothing to install in the org — no connected app, no OAuth, no package, no CI step.
+          Sign into Salesforce in Chrome the way you already do. Open the panel. Click.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-gold">RIGHT NOW, NOT NEXT BUILD</span>
+        <h3>Feedback while you're looking at it</h3>
+        <p>PMD and Code Analyzer tell you in a pipeline, later. Magellan tells you in Setup,
+          now — the moment you open the class, before it's committed anywhere.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-green">READ-ONLY, LOCAL</span>
+        <h3>Look, don't touch</h3>
+        <p>Magellan only ever reads. Source and metadata come from your browser straight to your
+          org and stay there — analysis runs client-side, no servers, no accounts, no telemetry.</p>
+      </div>
+    </div>
+    <div class="types">
+      <span>Apex classes</span><span>Apex triggers</span><span>Flows</span><span>LWC</span>
+      <span>Failed &amp; aborted jobs</span><span>Dependencies</span><span>Managed packages</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Read-only isn't a setting. It's the product.</h2>
+    <div class="privacy-box">
+      <h3>Magellan never writes to an org, and your code never leaves your browser.</h3>
+      <ul>
+        <li><b>The rules run in the browser.</b> The engine is pure client-side code — it can't
+          make a network call even if it wanted to. The org-wide scan is exactly the moment other
+          tools upload your whole codebase to a cloud; Magellan doesn't.</li>
+        <li><b>No servers, no accounts.</b> The only calls are from your browser to your own
+          org's APIs, using the session you already have.</li>
+        <li><b>No telemetry.</b> We don't know when you install it, open it, or what orgs you point it at.</li>
+        <li><b>Nothing installed in your org.</b> No connected app, no OAuth, no package.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Magellan is coming soon.</h2>
+    <p class="lead">Chrome Web Store listing is on the way. Want in early, or a heads-up when it
+      lands? A short email is enough — how big your org is, what your review process looks
+      like today, and which rules you'd want to see first.</p>
+    <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Magellan%20early%20access">chris@creedysolutions.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="https://marco.creedysolutions.com">Marco</a>
+    <a href="/polo">Polo</a>
+    <a href="/magellan">Magellan</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

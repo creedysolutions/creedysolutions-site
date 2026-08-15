@@ -87,6 +87,8 @@
   .marco + .marco { margin-top: 18px; }
   .marco.polo .mark::before { left: 15px; top: 15px; width: 28px; height: 28px; background: none; border: 5px solid #fff; border-radius: 50%; }
   .marco.polo .mark::after { left: 25px; top: 25px; width: 8px; height: 8px; border-radius: 50%; }
+  .marco.magellan .mark { background: #0e1120 url(assets/magellan-icon-128.png) center/cover; border: 1px solid #2a2f45; box-shadow: 0 0 40px rgba(30,240,255,.28); }
+  .marco.magellan .mark::before, .marco.magellan .mark::after { display: none; }
   .marco .body { flex: 1; min-width: 260px; }
   .soonpill { font-size: 10px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
     background: rgba(123,227,163,.12); border-radius: 5px; padding: 3px 8px; margin-left: 8px; vertical-align: 3px; }
@@ -119,6 +121,7 @@
         <a href="#services">Services</a>
         <a href="#marco">Marco</a>
         <a href="/polo">Polo <span class="soon">Soon</span></a>
+        <a href="/magellan">Magellan <span class="soon">Soon</span></a>
         <a href="https://chartless.creedysolutions.com">Chartless</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
@@ -212,6 +215,17 @@
       </div>
       <a class="btn primary" href="/polo">Meet Polo →</a>
     </div>
+    <div class="marco magellan" id="magellan">
+      <div class="mark"></div>
+      <div class="body">
+        <h3>Magellan — Best-Practices Analyzer for Salesforce <span class="soonpill">Coming soon</span></h3>
+        <p>The third explorer: click any Apex class, trigger, Flow, or LWC in Setup and get a
+          ranked list of best-practice findings — 40+ PMD-grade rules, no CI pipeline, no
+          login. Scan the whole org, see what's actually failing in production, and explore
+          your code health as a 3D world map. Read-only. Your code never leaves your browser.</p>
+      </div>
+      <a class="btn primary" href="/magellan">Meet Magellan →</a>
+    </div>
   </div>
 </section>
 
@@ -225,8 +239,8 @@
           service operations, and orgs that have grown faster than their
           documentation.</p>
         <p>Creedy Solutions LLC is his independent practice — and the company
-          behind <a href="https://marco.creedysolutions.com">Marco</a> and
-          <a href="/polo">Polo</a>, tools born from the same conviction that drives the consulting work:
+          behind <a href="https://marco.creedysolutions.com">Marco</a>,
+          <a href="/polo">Polo</a>, and <a href="/magellan">Magellan</a> — tools born from the same conviction that drives the consulting work:
           <b>you can't safely change what you can't see.</b></p>
       </div>
     </div>
@@ -248,6 +262,7 @@
     <a href="https://marco.creedysolutions.com">Marco</a>
     <a href="https://marco.creedysolutions.com/privacy.html">Marco privacy</a>
     <a href="/polo">Polo</a>
+    <a href="/magellan">Magellan</a>
     <span class="right"><a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></span>
   </div>
 </footer>
