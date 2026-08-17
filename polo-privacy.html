@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Polo — Org Compare for Salesforce</title>
+<meta name="description" content="Polo collects no personal data and transmits no org metadata anywhere. All queries run from your browser to your own Salesforce orgs. Read-only, always.">
+<link rel="canonical" href="https://creedysolutions.com/polo-privacy">
+<link rel="icon" type="image/png" href="assets/polo-icon-128.png">
+<style>
+  :root { --bg: #05060e; --panel: #10142a; --line: #232946; --ink: #e8ebf5;
+    --ink-soft: #9aa4bd; --dim: #6b7590; --accent-2: #8b7bff; --green: #7be3a3; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+  .back { font-size: 14px; }
+  h1 { font-size: 34px; font-weight: 800; letter-spacing: -.5px; margin: 18px 0 4px; }
+  .meta { color: var(--dim); font-size: 14px; margin-bottom: 30px; }
+  .short { background: var(--panel); border: 1px solid #2c5a3f; border-radius: 14px;
+    padding: 22px 26px; margin: 26px 0 8px; }
+  .short b { color: var(--green); }
+  h2 { font-size: 21px; font-weight: 700; margin: 38px 0 10px; }
+  p, li { color: var(--ink-soft); }
+  p b, li b { color: var(--ink); }
+  ul, ol { padding-left: 22px; margin: 10px 0; }
+  li { margin: 7px 0; }
+  code { background: var(--panel); border: 1px solid var(--line); border-radius: 5px;
+    padding: 1px 6px; font-size: 14px; color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/polo">← Polo</a>
+  <h1>Privacy Policy</h1>
+  <div class="meta"><b>Polo — Org Compare for Salesforce</b> · Effective date: August 2026 ·
+    Contact: <a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></div>
+
+  <p>Polo is a Google Chrome extension that helps Salesforce administrators and
+  developers compare components (fields, flows, Apex classes, layouts, validation
+  rules, Lightning pages, permission sets, and others) across the Salesforce orgs they
+  are logged into, and see each component's change history.</p>
+
+  <div class="short"><b>Short version:</b> Polo does not collect any personal data.
+  Polo does not transmit your Salesforce orgs' metadata to any server operated by us,
+  or to any third party. All queries run inside your browser, from your browser
+  directly to your own Salesforce orgs' APIs. Polo only ever reads — it never writes
+  to any org. All caches are stored locally on your device.</div>
+
+  <h2>What Polo reads, and from where</h2>
+  <ul>
+    <li><b>Your Salesforce session cookies (<code>sid</code>)</b> — Polo compares one
+      component across every Salesforce org you are currently logged into, so it reads
+      the <code>sid</code> cookie for each logged-in Salesforce origin to discover those
+      orgs and to authenticate its API requests <b>as you</b>, against <b>your</b> orgs.
+      This is the same session-reuse pattern used by tools like Salesforce Inspector.
+      A cookie value is never transmitted anywhere except back to the same Salesforce
+      org it belongs to.</li>
+    <li><b>Salesforce metadata</b> — component names and definitions, page layouts,
+      validation-rule formulas, flow definitions, Apex bodies, field and object
+      permissions, and dependency relationships — read via the Salesforce Tooling API
+      and REST API. Polo also reads the <b>Setup Audit Trail</b> and flow version
+      history to build each component's change timeline. This metadata is displayed to
+      you in the Polo side panel, Pipeline matrix, and Explore view, and cached locally
+      for performance.</li>
+  </ul>
+
+  <h2>What Polo can change in your org</h2>
+  <p><b>Nothing.</b> Polo is read-only by construction. Its network layer issues only
+  HTTP <code>GET</code> requests — there is no code path in the extension that writes,
+  updates, or deletes anything in any org, sandbox or production. When you export a
+  <code>package.xml</code> manifest or a release report, Polo hands <b>you</b> a file
+  and the command to run; you perform any retrieve or deploy yourself, with your own
+  tools.</p>
+
+  <h2>What Polo stores, and where</h2>
+  <ul>
+    <li><b>IndexedDB (in your browser)</b> — cached component metadata, per-org
+      snapshots for change history, and verdict caches, so repeat comparisons are
+      instant. Stored per Salesforce org ID. Nothing here is synced across devices.</li>
+    <li><b><code>chrome.storage.local</code> (in your browser)</b> — your settings and
+      your watchlist, such as which components you are tracking, the compare target per
+      org, the theme, and whether you've seen the first-run tour.</li>
+    <li><b><code>chrome.storage.session</code> (in your browser)</b> — the temporary
+      payload handed to the Explore view when you open it; cleared when you close the
+      browser.</li>
+  </ul>
+  <p>Nothing Polo writes leaves your device.</p>
+
+  <h2>What Polo does NOT do</h2>
+  <ul>
+    <li>Polo has <b>no user accounts</b>. You never create an account with us and never
+      provide us with a username or password. Nothing is installed in your Salesforce
+      org — no connected app, no OAuth, no package.</li>
+    <li>Polo has <b>no analytics, telemetry, or tracking</b>. We do not know when you
+      install, open, or use the extension, or which orgs you point it at, and we do not
+      want to.</li>
+    <li>Polo has <b>no advertising</b>. We do not sell or transfer data to third
+      parties.</li>
+    <li>Polo does <b>not fetch or execute remote code</b>. All JavaScript ships with
+      the extension and is reviewed by the Chrome Web Store.</li>
+  </ul>
+
+  <h2>Third-party services</h2>
+  <p>Polo makes network requests to exactly one kind of destination: <b>your own
+  Salesforce orgs' domains</b> (<code>*.salesforce.com</code>, <code>*.force.com</code>,
+  <code>*.salesforce-setup.com</code>). It contacts no server operated by us, and no
+  other third party.</p>
+
+  <h2>Chrome permission usage</h2>
+  <ul>
+    <li><code>sidePanel</code> — draws Polo's UI as a side panel.</li>
+    <li><code>storage</code> — stores your settings and watchlist locally.</li>
+    <li><code>cookies</code> — reads the Salesforce session cookies, as described above,
+      to authenticate read-only API requests as you against your own orgs.</li>
+    <li><code>tabs</code> — knows which tab you are looking at, so it uses the right org
+      as the comparison source.</li>
+    <li><code>scripting</code> — re-injects Polo's small detection script into a
+      Salesforce tab that was already open before the extension loaded, so detection
+      works without a page reload.</li>
+    <li><code>alarms</code> — runs the optional daily re-check of your watchlist and
+      updates the toolbar badge when something has drifted.</li>
+    <li><b>Host permissions</b> — <code>*.salesforce.com</code>,
+      <code>*.force.com</code>, <code>*.salesforce-setup.com</code> — the only domains
+      Polo is allowed to talk to.</li>
+  </ul>
+
+  <h2>Changes</h2>
+  <p>If this policy materially changes, we will update the effective date at the top and
+  note the change in the Polo release notes.</p>
+
+  <h2>Contact</h2>
+  <p>Questions: <a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></p>
+</div>
+</body>
+</html>
