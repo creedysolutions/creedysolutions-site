@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Magellan — Best-Practices Analyzer for Salesforce</title>
+<meta name="description" content="Magellan collects no personal data and transmits no org code or metadata anywhere. The rules engine runs entirely in your browser; all queries go from your browser to your own Salesforce org. Read-only, always.">
+<link rel="canonical" href="https://creedysolutions.com/magellan-privacy">
+<link rel="icon" type="image/png" href="assets/magellan-icon-128.png">
+<style>
+  :root { --bg: #05060e; --panel: #10142a; --line: #232946; --ink: #e8ebf5;
+    --ink-soft: #9aa4bd; --dim: #6b7590; --accent-2: #8b7bff; --green: #7be3a3; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+  .back { font-size: 14px; }
+  h1 { font-size: 34px; font-weight: 800; letter-spacing: -.5px; margin: 18px 0 4px; }
+  .meta { color: var(--dim); font-size: 14px; margin-bottom: 30px; }
+  .short { background: var(--panel); border: 1px solid #2c5a3f; border-radius: 14px;
+    padding: 22px 26px; margin: 26px 0 8px; }
+  .short b { color: var(--green); }
+  h2 { font-size: 21px; font-weight: 700; margin: 38px 0 10px; }
+  p, li { color: var(--ink-soft); }
+  p b, li b { color: var(--ink); }
+  ul, ol { padding-left: 22px; margin: 10px 0; }
+  li { margin: 7px 0; }
+  code { background: var(--panel); border: 1px solid var(--line); border-radius: 5px;
+    padding: 1px 6px; font-size: 14px; color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/magellan">← Magellan</a>
+  <h1>Privacy Policy</h1>
+  <div class="meta"><b>Magellan — Best-Practices Analyzer for Salesforce</b> · Effective date: August 2026 ·
+    Contact: <a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></div>
+
+  <p>Magellan is a Google Chrome extension that helps Salesforce administrators and
+  developers review Apex classes, Apex triggers, Flows, and Lightning Web Components
+  against best-practice rules (SOQL in loops, missing sharing declarations, hardcoded
+  Ids, missing fault paths, and others), scan a whole org for the same findings, and
+  see which components are currently failing at runtime.</p>
+
+  <div class="short"><b>Short version:</b> Magellan does not collect any personal data.
+  Magellan does not transmit your Salesforce org's code or metadata to any server operated
+  by us, or to any third party. The rules engine runs entirely inside your browser; every
+  network request goes from your browser directly to your own Salesforce org's APIs.
+  Magellan only ever reads — it never writes to any org. All caches are stored locally
+  on your device.</div>
+
+  <h2>What Magellan reads, and from where</h2>
+  <ul>
+    <li><b>Your Salesforce session cookies (<code>sid</code>)</b> — Magellan reads the
+      <code>sid</code> cookie for the Salesforce org open in your tab (and, for the org
+      switcher, for other Salesforce orgs you are currently logged into) to authenticate
+      its API requests <b>as you</b>, against <b>your</b> org. This is the same
+      session-reuse pattern used by tools like Salesforce Inspector. A cookie value is
+      never transmitted anywhere except back to the same Salesforce org it belongs to.</li>
+    <li><b>Salesforce code and metadata</b> — Apex class and trigger bodies, Flow
+      definitions, Lightning Web Component source files, component names and Ids,
+      dependency relationships (<code>MetadataComponentDependency</code>), and installed
+      managed-package class names — read via the Salesforce Tooling API. This is what the
+      rules engine analyzes. It is analyzed in your browser and displayed to you in the
+      Magellan side panel, Atlas, and Universe views.</li>
+    <li><b>Runtime failure records</b> — recent failed or aborted asynchronous Apex jobs
+      (<code>AsyncApexJob</code>) and errored Flow interviews (<code>FlowInterview</code>),
+      read via the Salesforce REST API, to show you which components are currently
+      failing ("What's on fire"). Magellan reads stored results only; it never runs,
+      retries, or aborts a job.</li>
+    <li><b>Org identity</b> — your org's Id, name, and whether it is a sandbox or
+      production, so the UI can label which org you are looking at.</li>
+  </ul>
+
+  <h2>Where the analysis happens</h2>
+  <p><b>In your browser, and only there.</b> The rules engine is pure client-side code
+  bundled with the extension. It has no network access of its own — it cannot upload
+  your code even if it wanted to. The org-wide scan (Atlas / Universe) is the moment
+  other tools upload an entire codebase to a cloud service; Magellan does not.</p>
+
+  <h2>What Magellan can change in your org</h2>
+  <p><b>Nothing.</b> Magellan is read-only by construction. Its network layer issues only
+  HTTP <code>GET</code> requests — there is no code path in the extension that writes,
+  updates, deletes, executes, or deploys anything in any org, sandbox or production.
+  Findings are shown to you with a "Fix" hint and a documentation link; you make any
+  change yourself, with your own tools.</p>
+
+  <h2>What Magellan stores, and where</h2>
+  <ul>
+    <li><b>IndexedDB (in your browser)</b> — a per-org cache of fetched component
+      source/metadata (24 hours) so repeat analyses and org scans are fast. Stored per
+      Salesforce org Id. Nothing here is synced across devices.</li>
+    <li><b><code>chrome.storage.local</code> (in your browser)</b> — your settings, such
+      as the theme and whether you have seen the first-run tour.</li>
+    <li><b><code>chrome.storage.session</code> (in your browser)</b> — which component is
+      currently open in each Salesforce tab, so the side panel follows you; cleared when
+      you close the browser.</li>
+  </ul>
+  <p>Nothing Magellan writes leaves your device. Exports (CSV / JSON of scan findings)
+  are files handed to <b>you</b>, saved wherever you choose.</p>
+
+  <h2>What Magellan does NOT do</h2>
+  <ul>
+    <li>Magellan has <b>no user accounts</b>. You never create an account with us and
+      never provide us with a username or password. Nothing is installed in your
+      Salesforce org — no connected app, no OAuth, no package.</li>
+    <li>Magellan has <b>no analytics, telemetry, or tracking</b>. We do not know when you
+      install, open, or use the extension, which orgs you point it at, or what it finds,
+      and we do not want to.</li>
+    <li>Magellan has <b>no advertising</b>. We do not sell or transfer data to third
+      parties.</li>
+    <li>Magellan does <b>not fetch or execute remote code</b>. All JavaScript, including
+      the 3D globe library, ships with the extension and is reviewed by the Chrome Web
+      Store.</li>
+  </ul>
+
+  <h2>Third-party services</h2>
+  <p>Magellan makes network requests to exactly one kind of destination: <b>your own
+  Salesforce org's domains</b> (<code>*.salesforce.com</code>, <code>*.force.com</code>,
+  <code>*.salesforce-setup.com</code>). It contacts no server operated by us, and no
+  other third party. Documentation links in findings (to PMD, Salesforce Help, and
+  similar public sites) open only if you click them.</p>
+
+  <h2>Chrome permission usage</h2>
+  <ul>
+    <li><code>sidePanel</code> — draws Magellan's findings UI as a side panel.</li>
+    <li><code>storage</code> — stores your settings locally.</li>
+    <li><code>cookies</code> — reads the Salesforce session cookies, as described above,
+      to authenticate read-only API requests as you against your own org.</li>
+    <li><code>tabs</code> — knows which Salesforce tab you are looking at, so the panel
+      analyzes the component you have open and the scan targets the right org.</li>
+    <li><b>Host permissions</b> — <code>*.salesforce.com</code>,
+      <code>*.force.com</code>, <code>*.salesforce-setup.com</code> — the only domains
+      Magellan is allowed to talk to.</li>
+  </ul>
+
+  <h2>Changes</h2>
+  <p>If this policy materially changes, we will update the effective date at the top and
+  note the change in the Magellan release notes.</p>
+
+  <h2>Contact</h2>
+  <p>Questions: <a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></p>
+</div>
+</body>
+</html>
