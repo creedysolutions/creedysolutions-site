@@ -31,17 +31,23 @@
     --green: #7be3a3; --gold: #f0b95c; --cyan: #79d2e6; --lav: #a99df7;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
   body { background: var(--bg); color: var(--ink);
     font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
   a { color: var(--accent-2); text-decoration: none; }
   a:hover { text-decoration: underline; }
   .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
 
-  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; }
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
   .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
   .logo b { color: var(--accent-2); }
-  nav .links { margin-left: auto; display: flex; gap: 20px; font-size: 14px; font-weight: 600; }
-  nav .links a { color: var(--ink-soft); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px;
+    font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  @media (max-width: 760px) {
+    nav { gap: 12px; padding: 16px 0; }
+    nav .links { margin-left: 0; flex-basis: 100%; }
+  }
   nav .links a:hover { color: var(--ink); text-decoration: none; }
   nav .links .soon { font-size: 9px; font-weight: 800; letter-spacing: .5px;
     text-transform: uppercase; color: var(--green); background: rgba(123,227,163,.12);
