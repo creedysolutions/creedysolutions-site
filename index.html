@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Creedy Solutions — Salesforce Architecture & Consulting</title>
-<meta name="description" content="Creedy Solutions LLC — the Salesforce consultancy of Chris Reedy, Salesforce Architect. CPQ, Experience Cloud, architecture, org health, Field Service, and agentic AI advisory.">
-<meta property="og:title" content="Creedy Solutions — Salesforce Architecture & Consulting">
-<meta property="og:description" content="CPQ, Experience Cloud, architecture, org health checks, Field Service, and agentic AI advisory — by a Salesforce Architect who ships.">
+<title>Creedy Solutions — Salesforce Architecture & Forward Deployed Engineering</title>
+<meta name="description" content="Creedy Solutions LLC — the Salesforce consultancy of Chris Reedy, Salesforce Architect and Forward Deployed Engineer. CPQ, Experience Cloud, architecture, org health, Field Service, and agentic AI advisory.">
+<meta property="og:title" content="Creedy Solutions — Salesforce Architecture & Forward Deployed Engineering">
+<meta property="og:description" content="CPQ, Experience Cloud, architecture, org health checks, Field Service, and agentic AI advisory — by a Salesforce Architect and Forward Deployed Engineer who ships.">
 <meta property="og:url" content="https://creedysolutions.com">
 <meta property="og:image" content="https://creedysolutions.com/assets/og-image.png">
 <link rel="canonical" href="https://creedysolutions.com/">
@@ -17,9 +17,9 @@
   "@type": "ProfessionalService",
   "name": "Creedy Solutions LLC",
   "url": "https://creedysolutions.com",
-  "description": "Salesforce consultancy of Chris Reedy, Salesforce Architect: CPQ, Experience Cloud, architecture, org health, Field Service, and agentic AI advisory.",
+  "description": "Salesforce consultancy of Chris Reedy, Salesforce Architect and Forward Deployed Engineer: CPQ, Experience Cloud, architecture, org health, Field Service, and agentic AI advisory.",
   "email": "chris@creedysolutions.com",
-  "founder": { "@type": "Person", "name": "Chris Reedy", "jobTitle": "Salesforce Architect" },
+  "founder": { "@type": "Person", "name": "Chris Reedy", "jobTitle": "Salesforce Architect and Forward Deployed Engineer" },
   "knowsAbout": ["Salesforce CPQ", "Salesforce Experience Cloud", "Salesforce Architecture", "Salesforce Field Service", "Agentforce"]
 }
 </script>
@@ -95,6 +95,14 @@
   .marco.polo .mark::after { left: 25px; top: 25px; width: 8px; height: 8px; border-radius: 50%; }
   .marco.magellan .mark { background: var(--brand) url(assets/magellan-icon-128.png) center/cover; }
   .marco.magellan .mark::before, .marco.magellan .mark::after { display: none; }
+  .marco.chartless .mark { background: #0d2016 url(https://chartless.creedysolutions.com/assets/icon.svg) center/cover;
+    box-shadow: 0 0 40px rgba(52,199,89,.35); }
+  .marco.chartless .mark::before, .marco.chartless .mark::after { display: none; }
+  .plats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .plat { font-size: 12px; font-weight: 700; border: 1px solid var(--line); border-radius: 999px;
+    padding: 3px 11px; color: var(--ink-soft); white-space: nowrap; }
+  .plat.live { color: var(--green); border-color: rgba(123,227,163,.4); }
+  .plat i { font-style: normal; font-weight: 600; color: var(--dim); }
   .marco .body { flex: 1; min-width: 260px; }
   .soonpill { font-size: 10px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
     background: rgba(123,227,163,.12); border-radius: 5px; padding: 3px 8px; margin-left: 8px; vertical-align: 3px; }
@@ -129,16 +137,15 @@
         <a href="/polo">Polo <span class="soon">Soon</span></a>
         <a href="/magellan">Magellan <span class="soon">Soon</span></a>
         <a href="https://chartless.creedysolutions.com">Chartless</a>
-        <a href="https://chartless.creedysolutions.com/ios">Chartless iPhone <span class="soon">Soon</span></a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </span>
     </nav>
     <div class="hero">
-      <div class="kicker">Salesforce Architecture &amp; Consulting</div>
+      <div class="kicker">Salesforce Architecture &amp; Forward Deployed Engineering</div>
       <h1>Salesforce that's built to hold up — not just to go live.</h1>
       <p class="sub">Creedy Solutions is the consultancy of <b>Chris Reedy, Salesforce
-        Architect</b>. CPQ and Experience Cloud, org architecture, and the unglamorous
+        Architect and Forward Deployed Engineer</b>. CPQ and Experience Cloud, org architecture, and the unglamorous
         work of making an org honest again.</p>
       <div class="cta-row">
         <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Salesforce%20consulting%20inquiry">Start a conversation</a>
@@ -233,6 +240,22 @@
       </div>
       <a class="btn primary" href="/magellan">Meet Magellan →</a>
     </div>
+    <div class="marco chartless" id="chartless">
+      <div class="mark"></div>
+      <div class="body">
+        <h3>Chartless — No song left behind</h3>
+        <p>Our music app: live chord charts for whatever is playing, or for you through
+          the mic, plus a tuner suite, a practice room, and string tracking. One app on
+          Chrome, iPhone, and Android. Classic signal processing, no AI, and your audio
+          never leaves your device.</p>
+        <div class="plats">
+          <a class="plat live" href="https://chromewebstore.google.com/detail/chartless/lmejkmokdnghjnfkgmeebheoklbkgfbh">Chrome <i>· available now</i></a>
+          <span class="plat">iPhone <i>· coming soon</i></span>
+          <span class="plat">Android <i>· coming soon</i></span>
+        </div>
+      </div>
+      <a class="btn primary" href="https://chartless.creedysolutions.com">Meet Chartless →</a>
+    </div>
   </div>
 </section>
 
@@ -272,6 +295,7 @@
     <a href="/polo-privacy">Polo privacy</a>
     <a href="/magellan">Magellan</a>
     <a href="/magellan-privacy">Magellan privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
     <span class="right"><a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></span>
   </div>
 </footer>
