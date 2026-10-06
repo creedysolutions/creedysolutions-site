@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrumClock — Live drums to MIDI clock and tap tempo | Creedy Solutions</title>
+<meta name="description" content="DrumClock listens to your drummer and sends MIDI clock and tap-tempo CC to your keys rig, pedals, and DAW. No click track, no in-ears, and the band's delays and arps still land on the drummer's time. iPhone and iPad.">
+<meta property="og:title" content="DrumClock — Your drummer is the click">
+<meta property="og:description" content="No click. No in-ears. Delays, arps and sequencers in time with a human drummer. Live drums in, MIDI clock and tap tempo out. iPhone and iPad.">
+<meta property="og:url" content="https://creedysolutions.com/drumclock">
+<meta property="og:image" content="https://creedysolutions.com/assets/drumclock-og.png">
+<link rel="canonical" href="https://creedysolutions.com/drumclock">
+<link rel="icon" type="image/png" href="assets/drumclock-icon-128.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DrumClock - Drums to MIDI",
+  "applicationCategory": "MusicApplication",
+  "operatingSystem": "iOS, iPadOS",
+  "url": "https://creedysolutions.com/drumclock",
+  "description": "Listens to live drums and sends MIDI clock and tap-tempo CC to apps and hardware, so a band with no click track or in-ear monitors keeps delays, arpeggiators and sequencers in time with the drummer.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free to try; Pro $19.99/year or $49.99 once" },
+  "author": { "@type": "Organization", "name": "Creedy Solutions LLC", "url": "https://creedysolutions.com" }
+}
+</script>
+<style>
+  :root {
+    --bg: #07070a; --bg2: #0d0b0a; --panel: #141114; --line: #2a221e;
+    --ink: #f3efea; --ink-soft: #b3a79e; --dim: #7a706a;
+    --accent: #ff6a1f; --accent-2: #ff8a3d; --soft: #ffb35c;
+    --green: #3ddb7a; --amber: #ffcc33; --red: #f54545;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  @media (max-width: 760px) { nav { gap: 12px; padding: 16px 0; } nav .links { margin-left: 0; flex-basis: 100%; } }
+
+  header { background: radial-gradient(85% 130% at 72% 8%, #2a1408 0%, #140b06 45%, var(--bg) 100%); }
+  .hero { padding: 64px 0 72px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 50px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; margin: 14px 0 18px; max-width: 640px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 560px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; border-radius: 12px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #111; box-shadow: 0 0 34px rgba(255,106,31,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  .soonpill { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(61,219,122,.12); border-radius: 6px; padding: 4px 9px; }
+  .shot { flex: 0 0 300px; max-width: 300px; margin: 0 auto; }
+  .shot img { width: 100%; border-radius: 34px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(255,106,31,.18); display: block; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 680px; margin-bottom: 34px; font-size: 17px; }
+  .lead b { color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card .n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #111;
+    font-weight: 800; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 14px; }
+
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: stretch; }
+  .flow .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; text-align: center; }
+  .flow .step b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .flow .step span { font-size: 13.5px; color: var(--ink-soft); }
+  .flow .step .ico { font-size: 30px; margin-bottom: 8px; display: block; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; border-radius: 22px; border: 1px solid var(--line); display: block; }
+  .shots figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  .ipadshot img { width: 100%; max-width: 820px; border-radius: 22px; border: 1px solid var(--line); display: block; margin: 0 auto; }
+
+  table.transports { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.transports th, table.transports td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.transports th { color: var(--dim); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+  table.transports td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  table.transports td { color: var(--ink-soft); }
+  .good { color: var(--green); font-weight: 700; }
+  .ok { color: var(--amber); font-weight: 700; }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 800px; }
+  .price .card h3 { font-size: 15px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+  .price .big { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin: 6px 0 4px; }
+  .price .big small { font-size: 15px; color: var(--ink-soft); font-weight: 600; letter-spacing: 0; }
+  .price ul { list-style: none; margin-top: 12px; }
+  .price li { font-size: 14px; color: var(--ink-soft); padding: 4px 0 4px 22px; position: relative; }
+  .price li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .price .card.pro { border-color: rgba(255,106,31,.55); box-shadow: 0 0 40px rgba(255,106,31,.12); }
+
+  .watch { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .watch video { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #000; display: block; }
+  .watch p { font-size: 13.5px; color: var(--ink-soft); margin-top: 8px; }
+
+  .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "+"; color: var(--accent-2); font-weight: 800; margin-right: 10px; }
+  .faq details[open] summary::before { content: "–"; }
+  .faq p { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 760px; }
+
+  .cta { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .cta h2 { font-size: 34px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+  @media (max-width: 640px) { h1 { font-size: 36px; } .sub { font-size: 17px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="#how">How it works</a>
+        <a href="#outputs">Outputs</a>
+        <a href="#ipad">iPad</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="/drumclock-privacy">Privacy</a>
+      </span>
+    </nav>
+    <div class="hero">
+      <div class="copy">
+        <div class="kicker">DrumClock for iPhone &amp; iPad</div>
+        <h1>Your drummer is the click.</h1>
+        <p class="sub">Most bands play to a click. Some musicians hate it, and plenty of bands have no in-ears, so they can't use one at all. <b>DrumClock listens to the drums and sends the tempo to your keys rig, pedals and DAW</b> — MIDI clock, tap tempo, or both. Delays and arps land on the drummer's time. No click track, no in-ears, no tapping.</p>
+        <div class="cta-row">
+          <a class="btn primary" id="store-link" href="#pricing">Coming soon to the App Store</a>
+          <a class="btn ghost" href="#how">How it works</a>
+          <span class="soonpill">In review</span>
+        </div>
+      </div>
+      <div class="shot"><img src="assets/drumclock-hero.png" alt="DrumClock on iPhone following the drums at 97 BPM"></div>
+    </div>
+  </div>
+</header>
+
+<section id="who">
+  <div class="wrap">
+    <h2>Who it's for</h2>
+    <p class="lead">Two kinds of band, same problem: <b>the keys player's delays are at one tempo, the drummer is at another.</b></p>
+    <div class="grid">
+      <div class="card"><span class="n">1</span><h3>Bands without in-ears</h3><p>Most small churches, bar bands, school groups. No way to feed a click to the drummer, so time-based effects are guesswork. DrumClock makes the drummer the clock instead.</p></div>
+      <div class="card"><span class="n">2</span><h3>Players who hate the click</h3><p>Pushing a chorus is the point. DrumClock follows a human drummer — push, lay back, fill, break — and the band's effects follow too. Nobody chases a metronome.</p></div>
+      <div class="card"><span class="n">3</span><h3>Keys players on Sunday Keys</h3><p>Sunday Keys reads tap tempo, not clock. DrumClock taps it for you on every beat. MIDI Learn once; the delays and arps are in time all service long.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="lead">Put a phone by the kit. That's the whole setup.</p>
+    <div class="flow">
+      <div class="step"><span class="ico">🥁</span><b>Drums</b><span>Phone in the cage or on a stand, or a kick/snare mic through a USB interface.</span></div>
+      <div class="step"><span class="ico">👂</span><b>DrumClock listens</b><span>Count-off lock before beat one. Then it follows the drummer — drift, fills and breaks included.</span></div>
+      <div class="step"><span class="ico">🔌</span><b>MIDI out</b><span>Clock (24 ppqn + Start/Stop) and/or a tap-tempo CC on every beat. Wired, same iPad, network or Bluetooth.</span></div>
+      <div class="step"><span class="ico">🎹</span><b>Your rig</b><span>Sunday Keys, Helix, Strymon, Ableton, synth arps — anything with a clock input or a tap you can MIDI-map.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2>Built for a stage, not a studio</h2>
+    <div class="grid">
+      <div class="card"><h3>Stick count-off</h3><p>Three or four clicks on the sticks and the tempo is set, with beat one exactly where the drummer put it. Delays are right from the first downbeat.</p></div>
+      <div class="card"><h3>Follows, smoothly</h3><p>The clock eases toward the drummer, never jumps. Hi-hat subdivisions, fills and ghost notes don't throw it. A break holds the last tempo until the drums return.</p></div>
+      <div class="card"><h3>Presets in set order</h3><p>Name a tempo for every song, drag them into set order, step through with ‹ › or a page-turner pedal. Tap a song and the clock is there.</p></div>
+      <div class="card"><h3>Exact tempo and Hold</h3><p>Drag a ruler to the number you want and hold it. Hold also freezes the clock through a rubato bridge or a drum solo.</p></div>
+      <div class="card"><h3>Loud drummer? Gain.</h3><p>A gain control with a clip meter. iOS automatic gain is off while DrumClock listens, so what you set is what it hears.</p></div>
+      <div class="card"><h3>Connection guides</h3><p>Step-by-step for every transport, plus what to set in Sunday Keys, Helix, Strymon, Ableton, MainStage and synth arps.</p></div>
+    </div>
+    <div class="shots" style="margin-top:28px">
+      <figure><img src="assets/drumclock-shot-countoff.png" alt="Count it in"><figcaption>Count it in</figcaption></figure>
+      <figure><img src="assets/drumclock-shot-exact.png" alt="Exact tempo ruler"><figcaption>Exact tempo</figcaption></figure>
+      <figure><img src="assets/drumclock-shot-presets.png" alt="Presets list"><figcaption>Presets, in set order</figcaption></figure>
+      <figure><img src="assets/drumclock-shot-outputs.png" alt="Outputs"><figcaption>Clock, tap CC, or both</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="outputs">
+  <div class="wrap">
+    <h2>Every way out, with the honest trade-offs</h2>
+    <p class="lead">The app tells you the same thing before you pick one.</p>
+    <table class="transports">
+      <tr><th>Transport</th><th>Best for</th><th>Clock</th><th>Tap CC</th><th>Limits</th></tr>
+      <tr><td>Wired USB MIDI</td><td>Sunday morning. Interface + powered hub + 5-pin cable (or DIN-to-XLR through a snake channel).</td><td class="good">Tight</td><td class="good">Tight</td><td>Needs a hub that passes charging.</td></tr>
+      <tr><td>Same-device port</td><td>Sunday Keys on the same iPad. Pick “DrumClock” as the MIDI input.</td><td class="good">Tight</td><td class="good">Tight</td><td>Both apps share one audio interface.</td></tr>
+      <tr><td>Network MIDI</td><td>A Mac running Ableton or MainStage; long runs over Ethernet.</td><td class="ok">Ethernet good, Wi-Fi so-so</td><td class="good">Fine</td><td>iPad-to-iPad needs an RTP-MIDI app on the receiver.</td></tr>
+      <tr><td>Bluetooth MIDI</td><td>Rehearsal. No cables.</td><td class="ok">Jitters</td><td class="good">Fine</td><td>Short range; drops if a device sleeps.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="ipad">
+  <div class="wrap">
+    <h2>On the iPad: a stage console</h2>
+    <p class="lead">Setlist on the left, tempo on the right, big enough to read from the drum throne. Focus mode is just the number and the pulse for a music stand. Split View next to Sunday Keys works, and so does a hardware keyboard or foot pedal: space to start, arrows for the next song.</p>
+    <div class="ipadshot"><img src="assets/drumclock-ipad-stage.png" alt="DrumClock stage console on iPad with a setlist"></div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <h2>Pricing</h2>
+    <p class="lead">Everything is on for 14 days. After that, the free tier stays useful and Pro costs about what a cable does.</p>
+    <div class="price">
+      <div class="card"><h3>Free</h3><div class="big">$0</div>
+        <ul><li>Tempo detection, pulse and count-off</li><li>Tap, exact tempo, Hold</li><li>Presets and connection guides</li><li>MIDI output in 5-minute sessions — enough to map tap tempo and rehearse a song</li></ul></div>
+      <div class="card pro"><h3>Pro</h3><div class="big">$49.99 <small>once</small></div><div class="big" style="font-size:22px">or $19.99 <small>/ year</small></div>
+        <ul><li>Unlimited MIDI output, all service long</li><li>Every transport</li><li>One purchase covers iPhone and iPad</li><li>Everything that comes next</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="watch" hidden><!-- un-hide when assets/video/drumclock-launch.mp4 and -demo.mp4 exist -->
+  <div class="wrap">
+    <h2>Watch</h2>
+    <p class="lead">Thirty seconds to see it lock to a count-off, three minutes for the full tour.</p>
+    <div class="watch">
+      <div><video controls preload="metadata" poster="assets/drumclock-video-launch.jpg" src="assets/video/drumclock-launch.mp4"></video><p>Launch — your drummer is the click</p></div>
+      <div><video controls preload="metadata" poster="assets/drumclock-video-demo.jpg" src="assets/video/drumclock-demo.mp4"></video><p>The full tour</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <details><summary>Does Sunday Keys take MIDI clock?</summary><p>No, but it reads tap tempo. Turn on “Tap tempo CC” in DrumClock's Outputs, then MIDI Learn Tap Tempo in Sunday Keys while DrumClock sends test taps. Every beat after that, DrumClock taps it for you. The in-app guide walks through it.</p></details>
+    <details><summary>Does the drummer need to count in?</summary><p>No. If there's a count-off, DrumClock locks before beat one. If there isn't, it locks within a couple of bars like any beat tracker. Hold or a preset covers everything else.</p></details>
+    <details><summary>Will a drum fill or a stop throw it off?</summary><p>Fills and ghost notes land between beats and are ignored. A break holds the last tempo; the clock keeps running and the tracker picks the beat back up when the drums return. For a rubato section, tap Hold.</p></details>
+    <details><summary>What about half-time and double-time?</summary><p>Beat trackers can pick the wrong octave. ÷2 and ×2 fix it with one tap, and the tracker folds back into a sensible range on its own if a count-off was read at double time.</p></details>
+    <details><summary>Which hardware do I need for wired?</summary><p>A class-compliant USB MIDI interface (Roland UM-ONE mk2, iConnectivity mio, or an audio interface with MIDI out), a USB-C hub with power passthrough, and a 5-pin cable. For long runs, DIN-to-XLR adapters through a spare channel of the stage snake.</p></details>
+    <details><summary>Does any audio leave the phone?</summary><p>No. Audio is analysed on the device and never recorded, stored or uploaded. No accounts, no ads.</p></details>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Your drummer is the click.</h2>
+    <p class="lead" style="margin:10px auto 24px">Free to try for 14 days. iPhone and iPad.</p>
+    <a class="btn primary" href="#pricing">Coming soon to the App Store</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="/">Home</a>
+    <a href="/drumclock-privacy">DrumClock privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chartless@creedysolutions.com">chartless@creedysolutions.com</a></span>
+  </div>
+</footer>
+</body>
+</html>

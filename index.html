@@ -98,6 +98,10 @@
   .marco.chartless .mark { background: #0d2016 url(https://chartless.creedysolutions.com/assets/icon.svg) center/cover;
     box-shadow: 0 0 40px rgba(52,199,89,.35); }
   .marco.chartless .mark::before, .marco.chartless .mark::after { display: none; }
+  .marco.drumclock .mark { background: #0b0b0f url(assets/drumclock-icon-128.png) center/cover;
+    box-shadow: 0 0 40px rgba(255,106,31,.4); }
+  .marco.drumclock .mark::before, .marco.drumclock .mark::after { display: none; }
+  .plat.soon { color: var(--gold); border-color: rgba(240,185,92,.4); }
   .plats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .plat { font-size: 12px; font-weight: 700; border: 1px solid var(--line); border-radius: 999px;
     padding: 3px 11px; color: var(--ink-soft); white-space: nowrap; }
@@ -137,6 +141,7 @@
         <a href="/polo">Polo <span class="soon">Soon</span></a>
         <a href="/magellan">Magellan <span class="soon">Soon</span></a>
         <a href="https://chartless.creedysolutions.com">Chartless</a>
+        <a href="/drumclock">DrumClock <span class="soon">New</span></a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </span>
@@ -255,6 +260,20 @@
         </div>
       </div>
       <a class="btn primary" href="https://chartless.creedysolutions.com">Meet Chartless →</a>
+    </div>
+    <div class="marco drumclock" id="drumclock">
+      <div class="mark"></div>
+      <div class="body">
+        <h3>DrumClock — Your drummer is the click</h3>
+        <p>Most bands play to a click. Some musicians hate it, and bands without in-ears can't
+          use one at all. DrumClock listens to the drums and sends MIDI clock and tap tempo to
+          the keys rig, pedals and DAW, so delays and arps land on the drummer's time. Count-off
+          lock, presets in set order, an iPad stage console. Audio never leaves the device.</p>
+        <div class="plats">
+          <span class="plat soon">iPhone &amp; iPad <i>· in review</i></span>
+        </div>
+      </div>
+      <a class="btn primary" href="/drumclock">Meet DrumClock →</a>
     </div>
   </div>
 </section>
