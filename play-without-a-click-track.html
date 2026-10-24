@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playing without a click track: how bands stay tight with no click | Creedy Solutions</title>
+<meta name="description" content="Plenty of great bands play without a click. How to stay tight without one, when a click is worth it, and how to keep delays, arps and tracks-free keys in time with a human drummer.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Playing without a click track">
+<meta property="og:description" content="How bands stay tight without a click, when a click is worth it, and how to keep the keys and delays on the drummer's time.">
+<meta property="og:url" content="https://creedysolutions.com/play-without-a-click-track">
+<meta property="og:image" content="https://creedysolutions.com/assets/drumclock-og.png?v=2">
+<link rel="canonical" href="https://creedysolutions.com/play-without-a-click-track">
+<link rel="icon" type="image/png" href="assets/drumclock-icon-128.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Do bands need a click track?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. A click helps when a band runs backing tracks or needs a song at an exact tempo, but plenty of bands play without one. What matters is that everyone, including time-based gear like delays and arpeggiators, follows the same tempo source." } },
+    { "@type": "Question", "name": "How do you keep delays in time without a click?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Make the drummer the tempo source. A beat tracker such as DrumClock listens to the drums and sends MIDI clock or tap tempo to the delays and synths, so they follow the drummer instead of a fixed tempo." } },
+    { "@type": "Question", "name": "Can a worship team play without in-ear monitors?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Without in-ears there's no practical way to give the drummer a click, so the band follows the drummer. Time-based effects can follow the drummer too if something sends them the drummer's tempo." } }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #07070a; --bg2: #0d0b0a; --panel: #141114; --line: #2a221e;
+    --ink: #f3efea; --ink-soft: #b3a79e; --dim: #7a706a;
+    --accent: #ff6a1f; --accent-2: #ff8a3d; --soft: #ffb35c;
+    --green: #3ddb7a; --amber: #ffcc33; --red: #f54545;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  @media (max-width: 760px) { nav { gap: 12px; padding: 16px 0; } nav .links { margin-left: 0; flex-basis: 100%; } }
+
+  header { background: radial-gradient(85% 130% at 72% 8%, #2a1408 0%, #140b06 45%, var(--bg) 100%); }
+  .hero { padding: 64px 0 72px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 50px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; margin: 14px 0 18px; max-width: 640px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 560px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; border-radius: 12px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #111; box-shadow: 0 0 34px rgba(255,106,31,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  .soonpill { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(61,219,122,.12); border-radius: 6px; padding: 4px 9px; }
+  .shot { flex: 0 0 300px; max-width: 300px; margin: 0 auto; }
+  .shot img { width: 100%; border-radius: 34px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(255,106,31,.18); display: block; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 680px; margin-bottom: 34px; font-size: 17px; }
+  .lead b { color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card .n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #111;
+    font-weight: 800; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 14px; }
+
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: stretch; }
+  .flow .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; text-align: center; }
+  .flow .step b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .flow .step span { font-size: 13.5px; color: var(--ink-soft); }
+  .flow .step .ico { font-size: 30px; margin-bottom: 8px; display: block; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; border-radius: 22px; border: 1px solid var(--line); display: block; }
+  .shots figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  .ipadshot img { width: 100%; max-width: 820px; border-radius: 22px; border: 1px solid var(--line); display: block; margin: 0 auto; }
+
+  table.transports { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.transports th, table.transports td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.transports th { color: var(--dim); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+  table.transports td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  table.transports td { color: var(--ink-soft); }
+  .good { color: var(--green); font-weight: 700; }
+  .ok { color: var(--amber); font-weight: 700; }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 800px; }
+  .price .card h3 { font-size: 15px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+  .price .big { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin: 6px 0 4px; }
+  .price .big small { font-size: 15px; color: var(--ink-soft); font-weight: 600; letter-spacing: 0; }
+  .price ul { list-style: none; margin-top: 12px; }
+  .price li { font-size: 14px; color: var(--ink-soft); padding: 4px 0 4px 22px; position: relative; }
+  .price li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .price .card.pro { border-color: rgba(255,106,31,.55); box-shadow: 0 0 40px rgba(255,106,31,.12); }
+
+  .watch { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .watch video { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #000; display: block; }
+  .watch p { font-size: 13.5px; color: var(--ink-soft); margin-top: 8px; }
+
+  .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "+"; color: var(--accent-2); font-weight: 800; margin-right: 10px; }
+  .faq details[open] summary::before { content: "–"; }
+  .faq p { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 760px; }
+
+  .cta { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .cta h2 { font-size: 34px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+  @media (max-width: 640px) { h1 { font-size: 36px; } .sub { font-size: 17px; } }
+</style>
+<style>
+  article { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
+  article h2 { margin-top: 44px; }
+  article h3 { font-size: 18px; margin: 26px 0 6px; }
+  article p, article li { color: var(--ink-soft); font-size: 16.5px; margin-bottom: 14px; }
+  article p b, article li b { color: var(--ink); }
+  article ol, article ul { padding-left: 22px; margin-bottom: 14px; }
+  .note { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin: 22px 0; }
+  .note p { margin: 0; font-size: 15px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/drumclock">DrumClock</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<article>
+  <div class="kicker">Guide</div>
+  <h1 style="font-size:40px">Playing without a click track</h1>
+  <p>Clicks are everywhere now: worship teams, cover bands, school groups. They solve real problems. They also cost real things: in-ear monitors, someone to run the tracks, and a band that plays to a machine instead of to each other. Plenty of great bands have never used one.</p>
+  <p>If your band plays without a click, by choice or because nobody has in-ears, here is how to stay tight, and the one problem a click used to solve that you still need to handle.</p>
+
+  <h2>When a click is worth it</h2>
+  <ul>
+    <li><b>You run backing tracks.</b> Tracks can't follow the band, so the band follows the tracks, and the click is how.</li>
+    <li><b>Recording to a grid.</b> Editing later is much easier.</li>
+    <li><b>A song lives or dies on an exact tempo</b> and the band keeps rushing it.</li>
+  </ul>
+  <p>If none of those are you, the click is optional.</p>
+
+  <h2>Staying tight without one</h2>
+  <ol>
+    <li><b>Pick the tempo before the song.</b> A phone metronome in the drummer's hand for the count-in is enough. Most rushing starts in the first bar.</li>
+    <li><b>Count it in with the sticks.</b> Everyone hears the same four.</li>
+    <li><b>The drummer leads, everyone watches.</b> Hi-hat and kick are the click now. Bass locks to the kick.</li>
+    <li><b>Rehearse transitions.</b> Tempo slips happen at the bridge and the last chorus. Practice those spots, not the whole song.</li>
+    <li><b>Record a rehearsal on a phone.</b> Drift you can't feel while playing is obvious on playback.</li>
+  </ol>
+
+  <h2>The problem that's left: delays, arps and tremolo</h2>
+  <p>Humans follow the drummer fine. Gear doesn't. A dotted-eighth delay, a synth arpeggio or a tremolo pedal runs at whatever tempo it was last given. Without a click feeding it MIDI clock, someone taps tempo by hand at the top of each song, and by the second chorus the repeats are fighting the snare.</p>
+  <p>The fix is to give the gear the drummer's tempo, live. A beat tracker listens to the kit and sends MIDI clock (or a tap on every beat) to the keys rig and pedals, so they follow the drummer the way the band does. That's what <a href="/drumclock">DrumClock</a> does: phone by the kit, stick count-off, and the delays and arps follow the drummer all night.</p>
+  <div class="note"><p><b>The short version:</b> without a click, the drummer is the click. Make that true for the gear too.</p></div>
+
+  <h2>Try it</h2>
+  <p>DrumClock is free to try for 14 days with everything on, on iPhone, iPad and Android. Audio is analysed on the device and never recorded or uploaded.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="https://apps.apple.com/app/id6816780499">Download on the App Store</a>
+    <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.creedysolutions.drumclock">Get it on Google Play</a>
+  </div>
+  <p style="margin-top:28px">Setup by rig: <a href="/sync-delays-to-drummer">sync delays and arps to a live drummer</a> · <a href="/sunday-keys-tap-tempo">Sunday Keys tap tempo</a> · <a href="/midi-clock-from-live-drums">MIDI clock from live drums</a>.</p>
+</article>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="/">Home</a>
+    <a href="/drumclock">DrumClock</a>
+    <a href="/drumclock-privacy">DrumClock privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chartless@creedysolutions.com">chartless@creedysolutions.com</a></span>
+  </div>
+</footer>
+</body>
+</html>
