@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to sync delays and arps to a live drummer (no click, no in-ears) | Creedy Solutions</title>
+<meta name="description" content="Keep delay repeats, arpeggiators and sequencers in time with a human drummer when the band has no click track or in-ear monitors. Three ways to do it, plus setup notes for Sunday Keys, Helix, Strymon, Ableton and MainStage.">
+<meta property="og:title" content="How to sync delays and arps to a live drummer, without a click">
+<meta property="og:description" content="No in-ears, no click track, and the delays still land on the drummer's time. Three ways to do it, with setup notes for Sunday Keys, Helix, Strymon, Ableton and MainStage.">
+<meta property="og:url" content="https://creedysolutions.com/sync-delays-to-drummer">
+<meta property="og:image" content="https://creedysolutions.com/assets/drumclock-og.png">
+<link rel="canonical" href="https://creedysolutions.com/sync-delays-to-drummer">
+<link rel="icon" type="image/png" href="assets/drumclock-icon-128.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I sync a delay pedal to a live drummer without a click track?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Send the pedal MIDI clock (or a tap-tempo message) that follows the drummer instead of a fixed tempo. A beat-tracking app like DrumClock listens to the drums and outputs MIDI clock and tap tempo on the drummer's time, so the repeats follow when the drummer pushes or lays back." } },
+    { "@type": "Question", "name": "Does Sunday Keys accept MIDI clock?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Sunday Keys reads tap tempo, which you can MIDI Learn. Send it a tap-tempo controller message on every beat and the delays and arps follow the drummer." } },
+    { "@type": "Question", "name": "Do we need in-ear monitors to play with tempo-synced effects?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. In-ears are only needed if the drummer has to hear a click. If the gear follows the drummer instead, nobody needs a click in their ears." } }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #07070a; --bg2: #0d0b0a; --panel: #141114; --line: #2a221e;
+    --ink: #f3efea; --ink-soft: #b3a79e; --dim: #7a706a;
+    --accent: #ff6a1f; --accent-2: #ff8a3d; --soft: #ffb35c;
+    --green: #3ddb7a; --amber: #ffcc33; --red: #f54545;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  @media (max-width: 760px) { nav { gap: 12px; padding: 16px 0; } nav .links { margin-left: 0; flex-basis: 100%; } }
+
+  header { background: radial-gradient(85% 130% at 72% 8%, #2a1408 0%, #140b06 45%, var(--bg) 100%); }
+  .hero { padding: 64px 0 72px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 50px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; margin: 14px 0 18px; max-width: 640px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 560px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; border-radius: 12px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #111; box-shadow: 0 0 34px rgba(255,106,31,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  .soonpill { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(61,219,122,.12); border-radius: 6px; padding: 4px 9px; }
+  .shot { flex: 0 0 300px; max-width: 300px; margin: 0 auto; }
+  .shot img { width: 100%; border-radius: 34px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(255,106,31,.18); display: block; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 680px; margin-bottom: 34px; font-size: 17px; }
+  .lead b { color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card .n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #111;
+    font-weight: 800; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 14px; }
+
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: stretch; }
+  .flow .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; text-align: center; }
+  .flow .step b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .flow .step span { font-size: 13.5px; color: var(--ink-soft); }
+  .flow .step .ico { font-size: 30px; margin-bottom: 8px; display: block; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; border-radius: 22px; border: 1px solid var(--line); display: block; }
+  .shots figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  .ipadshot img { width: 100%; max-width: 820px; border-radius: 22px; border: 1px solid var(--line); display: block; margin: 0 auto; }
+
+  table.transports { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.transports th, table.transports td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.transports th { color: var(--dim); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+  table.transports td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  table.transports td { color: var(--ink-soft); }
+  .good { color: var(--green); font-weight: 700; }
+  .ok { color: var(--amber); font-weight: 700; }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 800px; }
+  .price .card h3 { font-size: 15px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+  .price .big { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin: 6px 0 4px; }
+  .price .big small { font-size: 15px; color: var(--ink-soft); font-weight: 600; letter-spacing: 0; }
+  .price ul { list-style: none; margin-top: 12px; }
+  .price li { font-size: 14px; color: var(--ink-soft); padding: 4px 0 4px 22px; position: relative; }
+  .price li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .price .card.pro { border-color: rgba(255,106,31,.55); box-shadow: 0 0 40px rgba(255,106,31,.12); }
+
+  .watch { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .watch video { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #000; display: block; }
+  .watch p { font-size: 13.5px; color: var(--ink-soft); margin-top: 8px; }
+
+  .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "+"; color: var(--accent-2); font-weight: 800; margin-right: 10px; }
+  .faq details[open] summary::before { content: "–"; }
+  .faq p { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 760px; }
+
+  .cta { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .cta h2 { font-size: 34px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+  @media (max-width: 640px) { h1 { font-size: 36px; } .sub { font-size: 17px; } }
+</style>
+<style>
+  article { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
+  article h2 { margin-top: 44px; }
+  article h3 { font-size: 18px; margin: 26px 0 6px; }
+  article p, article li { color: var(--ink-soft); font-size: 16.5px; margin-bottom: 14px; }
+  article p b, article li b { color: var(--ink); }
+  article ol, article ul { padding-left: 22px; margin-bottom: 14px; }
+  .note { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin: 22px 0; }
+  .note p { margin: 0; font-size: 15px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/drumclock">DrumClock</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<article>
+  <div class="kicker">Guide</div>
+  <h1 style="font-size:40px">How to sync delays and arps to a live drummer, with no click and no in-ears</h1>
+  <p>Dotted-eighth delays, synth arps, tremolo, a sequenced pad: they all need a tempo. In a band that plays to a click, that's easy. Everybody follows the click and the gear follows the click too.</p>
+  <p>Most bands don't work that way. Small churches, bar bands and school groups often have no in-ear monitors, so there's no way to put a click in the drummer's ears. And plenty of drummers who could use a click would rather not, because pushing a chorus and laying back on a bridge is the point. Either way, the keys player's delays end up at one tempo while the drummer is at another.</p>
+  <p>Here are the three ways bands handle it, and what each one costs you.</p>
+
+  <h2>1. Tap it by hand</h2>
+  <p>Somebody (usually the keys player or guitarist) hits tap tempo at the top of every song. It works, kind of. The tempo is only as good as the four taps, it's frozen after that, and the drummer is not a metronome. By the second chorus the repeats are smearing against the snare.</p>
+  <p><b>Cost:</b> a free hand you don't have, and drift every song.</p>
+
+  <h2>2. Put the band on a click</h2>
+  <p>Run a click (or tracks) from a laptop or phone, send MIDI clock from the same source to the keys rig, and give the drummer in-ears. Now everything lines up.</p>
+  <p><b>Cost:</b> an in-ear system for at least the drummer, someone to run it, and a band that plays to a machine. For a lot of teams that's a non-starter on budget alone.</p>
+
+  <h2>3. Make the drummer the click</h2>
+  <p>Flip it around. Instead of the drummer following a tempo, the gear follows the drummer. A beat tracker listens to the kit and sends MIDI clock, a tap-tempo message on every beat, or both, to whatever needs a tempo. When the drummer pushes, the delays push. When there's a break, the last tempo holds until the drums come back.</p>
+  <p>That's what I built <a href="/drumclock">DrumClock</a> to do. Put a phone by the kit (in the cage, on a stand, or fed from a kick and snare mic), let the drummer count it in on the sticks, and the tempo is set before beat one. From there it eases toward the drummer, so fills and ghost notes don't throw it.</p>
+  <p><b>Cost:</b> a phone and a way to get MIDI out of it. No in-ears, no click, nobody tapping.</p>
+
+  <div class="note"><p><b>The short version:</b> if your band can't or won't play to a click, don't give your gear a fixed tempo. Give it the drummer's tempo.</p></div>
+
+  <h2>Setup notes by gear</h2>
+  <p>Every rig needs one of two things: MIDI clock (a steady stream the device locks to) or tap tempo (a message on every beat that the device treats like you tapping its button). DrumClock sends either or both.</p>
+
+  <h3>Sunday Keys</h3>
+  <p>Sunday Keys doesn't take MIDI clock, but its tap tempo can be MIDI-learned. Turn on <b>Tap tempo CC</b> in DrumClock's Outputs, open Sunday Keys MIDI Learn on Tap Tempo, and send a few test taps. After that, every beat taps the tempo for you. On the same iPad, pick DrumClock as the MIDI input; from a phone in the drum cage, run it wired.</p>
+
+  <h3>Line 6 Helix and HX</h3>
+  <p>Helix follows incoming MIDI clock when it's set to receive it in the global MIDI/tempo settings. Send clock over a USB MIDI interface and 5-pin cable, and any delay set to a note value follows the drummer.</p>
+
+  <h3>Strymon and other MIDI pedals</h3>
+  <p>Strymon's MIDI-equipped pedals (and most boards with a MIDI hub) lock to MIDI clock. Feed clock into the first device and pass it through the chain. Delays set to subdivisions follow the drummer instead of the last tap.</p>
+
+  <h3>Ableton Live and MainStage</h3>
+  <p>Both can follow external MIDI clock. In Ableton, enable Sync on the incoming MIDI port; in MainStage, set the concert to take its tempo from MIDI clock input. Arps, LFOs and tempo-synced plug-ins then ride the drummer's time. A Mac on the same network can take it over Network MIDI.</p>
+
+  <h3>Hardware synths and arps</h3>
+  <p>Anything with a MIDI clock input works. Set the synth to external clock and the arp follows.</p>
+
+  <h2>Getting MIDI off the phone</h2>
+  <ul>
+    <li><b>Wired USB MIDI:</b> tightest. A class-compliant interface, a USB-C hub with power passthrough, and a 5-pin cable. For long runs, DIN-to-XLR adapters through a spare snake channel.</li>
+    <li><b>Same iPad:</b> if Sunday Keys runs on the iPad that's listening, there's no cable at all.</li>
+    <li><b>Network MIDI:</b> good over Ethernet, so-so over Wi-Fi.</li>
+    <li><b>Bluetooth MIDI:</b> fine for rehearsal, too jittery for clock on a stage.</li>
+  </ul>
+
+  <h2>Try it on Sunday</h2>
+  <p>DrumClock is free to try for 14 days with everything on, then the free tier keeps tempo detection, presets and 10 minutes of MIDI output a day, enough to map tap tempo and rehearse a song. Pro is $19.99 a year or $49.99 once. Audio is analysed on the device and never recorded or uploaded.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="https://apps.apple.com/app/id6816780499">Download on the App Store</a>
+    <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.creedysolutions.drumclock">Get it on Google Play</a>
+  </div>
+  <p style="margin-top:28px">Want to see it from the drum throne first? <a href="https://youtu.be/219nut_T7SM">The full training is eleven minutes on YouTube.</a></p>
+  <p style="font-size:13px;color:var(--dim)">Sunday Keys is a product of Sunday Sounds. Helix is a trademark of Line 6, Strymon of Damage Control Engineering, Ableton Live of Ableton AG, MainStage of Apple Inc. DrumClock is independent and not affiliated with any of them.</p>
+</article>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="/">Home</a>
+    <a href="/drumclock">DrumClock</a>
+    <a href="/drumclock-privacy">DrumClock privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chartless@creedysolutions.com">chartless@creedysolutions.com</a></span>
+  </div>
+</footer>
+</body>
+</html>
