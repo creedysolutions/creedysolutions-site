@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunday Keys tap tempo from the drummer (no MIDI clock needed) | Creedy Solutions</title>
+<meta name="description" content="Sunday Keys doesn't take MIDI clock, but its tap tempo can be MIDI-learned. Here's how to have every beat of your live drummer tap it for you, so delays and arps stay in time all service with no click or in-ears.">
+<meta property="og:title" content="Sunday Keys tap tempo, tapped by your drummer">
+<meta property="og:description" content="Sunday Keys reads tap tempo, not MIDI clock. Map it once and let the drums tap it on every beat.">
+<meta property="og:url" content="https://creedysolutions.com/sunday-keys-tap-tempo">
+<meta property="og:image" content="https://creedysolutions.com/assets/drumclock-og.png">
+<link rel="canonical" href="https://creedysolutions.com/sunday-keys-tap-tempo">
+<link rel="icon" type="image/png" href="assets/drumclock-icon-128.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Does Sunday Keys accept MIDI clock?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Sunday Keys follows its own tap tempo, which you can MIDI Learn to a controller message. Anything that sends that message on every beat can drive it." } },
+    { "@type": "Question", "name": "How do I keep Sunday Keys delays in time with a live drummer?",
+      "acceptedAnswer": { "@type": "Answer", "text": "MIDI Learn the Sunday Keys tap tempo to a CC, then send that CC on every beat from something that follows the drummer. DrumClock listens to the drums on a phone or iPad and sends a tap-tempo CC on each beat, so Sunday Keys stays on the drummer's time." } },
+    { "@type": "Question", "name": "Can DrumClock and Sunday Keys run on the same iPad?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Pick DrumClock as the MIDI input in Sunday Keys. Both apps share the iPad's audio interface." } }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #07070a; --bg2: #0d0b0a; --panel: #141114; --line: #2a221e;
+    --ink: #f3efea; --ink-soft: #b3a79e; --dim: #7a706a;
+    --accent: #ff6a1f; --accent-2: #ff8a3d; --soft: #ffb35c;
+    --green: #3ddb7a; --amber: #ffcc33; --red: #f54545;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  @media (max-width: 760px) { nav { gap: 12px; padding: 16px 0; } nav .links { margin-left: 0; flex-basis: 100%; } }
+
+  header { background: radial-gradient(85% 130% at 72% 8%, #2a1408 0%, #140b06 45%, var(--bg) 100%); }
+  .hero { padding: 64px 0 72px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 50px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; margin: 14px 0 18px; max-width: 640px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 560px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; border-radius: 12px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #111; box-shadow: 0 0 34px rgba(255,106,31,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  .soonpill { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(61,219,122,.12); border-radius: 6px; padding: 4px 9px; }
+  .shot { flex: 0 0 300px; max-width: 300px; margin: 0 auto; }
+  .shot img { width: 100%; border-radius: 34px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(255,106,31,.18); display: block; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 680px; margin-bottom: 34px; font-size: 17px; }
+  .lead b { color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card .n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #111;
+    font-weight: 800; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 14px; }
+
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: stretch; }
+  .flow .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; text-align: center; }
+  .flow .step b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .flow .step span { font-size: 13.5px; color: var(--ink-soft); }
+  .flow .step .ico { font-size: 30px; margin-bottom: 8px; display: block; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; border-radius: 22px; border: 1px solid var(--line); display: block; }
+  .shots figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  .ipadshot img { width: 100%; max-width: 820px; border-radius: 22px; border: 1px solid var(--line); display: block; margin: 0 auto; }
+
+  table.transports { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.transports th, table.transports td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.transports th { color: var(--dim); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+  table.transports td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  table.transports td { color: var(--ink-soft); }
+  .good { color: var(--green); font-weight: 700; }
+  .ok { color: var(--amber); font-weight: 700; }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 800px; }
+  .price .card h3 { font-size: 15px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+  .price .big { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin: 6px 0 4px; }
+  .price .big small { font-size: 15px; color: var(--ink-soft); font-weight: 600; letter-spacing: 0; }
+  .price ul { list-style: none; margin-top: 12px; }
+  .price li { font-size: 14px; color: var(--ink-soft); padding: 4px 0 4px 22px; position: relative; }
+  .price li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .price .card.pro { border-color: rgba(255,106,31,.55); box-shadow: 0 0 40px rgba(255,106,31,.12); }
+
+  .watch { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .watch video { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #000; display: block; }
+  .watch p { font-size: 13.5px; color: var(--ink-soft); margin-top: 8px; }
+
+  .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "+"; color: var(--accent-2); font-weight: 800; margin-right: 10px; }
+  .faq details[open] summary::before { content: "–"; }
+  .faq p { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 760px; }
+
+  .cta { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .cta h2 { font-size: 34px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+  @media (max-width: 640px) { h1 { font-size: 36px; } .sub { font-size: 17px; } }
+</style>
+<style>
+  article { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
+  article h2 { margin-top: 44px; }
+  article h3 { font-size: 18px; margin: 26px 0 6px; }
+  article p, article li { color: var(--ink-soft); font-size: 16.5px; margin-bottom: 14px; }
+  article p b, article li b { color: var(--ink); }
+  article ol, article ul { padding-left: 22px; margin-bottom: 14px; }
+  .note { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin: 22px 0; }
+  .note p { margin: 0; font-size: 15px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/drumclock">DrumClock</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<article>
+  <div class="kicker">Guide</div>
+  <h1 style="font-size:40px">Sunday Keys tap tempo, tapped by your drummer</h1>
+  <p>Sunday Keys sounds great on a Sunday morning, and its delays, arps and tremolo are a big part of why. They all need a tempo. The catch: <b>Sunday Keys doesn't take MIDI clock.</b> It has a tap tempo, and that's it.</p>
+  <p>So somebody taps. Every song, every service. Miss it, and the dotted-eighth repeats run at the last song's tempo. Nail it, and it's still frozen at four taps while the drummer pushes the chorus. Teams with in-ears and a click can run tracks and live with it. Most teams don't have in-ears.</p>
+
+  <h2>The fix: let the drums tap it</h2>
+  <p>Sunday Keys' tap tempo can be MIDI-learned. That means anything that sends a MIDI message on every beat can be the one tapping. If that something is listening to the drummer, the delays follow the drummer: push, lay back, fill, break.</p>
+  <p>That's the job <a href="/drumclock">DrumClock</a> does. A phone or iPad near the kit listens to the drums, locks on the stick count-off, and sends a <b>tap-tempo CC on every beat</b>. It can send MIDI clock at the same time for anything else in the rig that takes clock (Helix, Strymon, MainStage, Ableton, synth arps).</p>
+
+  <h2>Setup, once</h2>
+  <ol>
+    <li><b>In DrumClock:</b> open Outputs and turn on <b>Tap tempo CC</b>.</li>
+    <li><b>In Sunday Keys:</b> open MIDI Learn and pick Tap Tempo.</li>
+    <li><b>Back in DrumClock:</b> tap <b>Send 4 test taps</b>. Sunday Keys learns the message. The mapping sticks.</li>
+    <li><b>Play.</b> From here on, every beat taps the tempo for you.</li>
+  </ol>
+  <div class="note"><p><b>Same iPad?</b> Pick DrumClock as the MIDI input in Sunday Keys and you're done, no cables. Running Sunday Keys on a laptop or a second iPad? A phone in the drum cage, a USB MIDI interface and a 5-pin cable is the tightest connection. Network MIDI works over Ethernet; Bluetooth is fine for rehearsal.</p></div>
+
+  <h2>What it handles on a real Sunday</h2>
+  <ul>
+    <li><b>Count-offs:</b> three or four clicks on the sticks and the tempo is set before beat one.</li>
+    <li><b>Fills and ghost notes:</b> they land between beats and are ignored.</li>
+    <li><b>Breaks and rubato:</b> the last tempo holds until the drums come back, or tap Hold for a free-time bridge.</li>
+    <li><b>Half-time feel:</b> one tap of ÷2 or ×2 fixes a beat tracker's octave guess.</li>
+    <li><b>Set lists:</b> save a tempo per song in set order so the clock is there before the count-in.</li>
+  </ul>
+
+  <h2>Try it this week</h2>
+  <p>DrumClock is free to try for 14 days with everything on. After that the free tier keeps tempo detection, presets and 10 minutes of MIDI output a day, enough to map Sunday Keys and rehearse a song. Pro is $19.99 a year or $49.99 once. Audio is analysed on the device and never recorded or uploaded.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="https://apps.apple.com/app/id6816780499">Download on the App Store</a>
+    <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.creedysolutions.drumclock">Get it on Google Play</a>
+  </div>
+  <p style="margin-top:28px">More rigs (Helix, Strymon, Ableton, MainStage): <a href="/sync-delays-to-drummer">how to sync delays and arps to a live drummer</a>.</p>
+  <p style="font-size:13px;color:var(--dim)">Sunday Keys is a product of Sunday Sounds. DrumClock is an independent app and is not affiliated with or endorsed by Sunday Sounds.</p>
+</article>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="/">Home</a>
+    <a href="/drumclock">DrumClock</a>
+    <a href="/drumclock-privacy">DrumClock privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chartless@creedysolutions.com">chartless@creedysolutions.com</a></span>
+  </div>
+</footer>
+</body>
+</html>
