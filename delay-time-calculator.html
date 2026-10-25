@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-itunes-app" content="app-id=6816780499">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tap tempo and delay time calculator (BPM to ms, dotted eighth) | Creedy Solutions</title>
+<meta name="description" content="Free tap tempo and delay time calculator: tap or type a BPM and get quarter, eighth, dotted-eighth, triplet and sixteenth delay times in milliseconds, plus a chart from 60 to 180 BPM.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tap tempo and delay time calculator">
+<meta property="og:description" content="Tap or type a BPM, get every delay time in ms. Dotted eighth included.">
+<meta property="og:url" content="https://creedysolutions.com/delay-time-calculator">
+<meta property="og:image" content="https://creedysolutions.com/assets/drumclock-og.png?v=2">
+<link rel="canonical" href="https://creedysolutions.com/delay-time-calculator">
+<link rel="icon" type="image/png" href="assets/drumclock-icon-128.png">
+<link rel="alternate" type="application/rss+xml" title="Creedy Solutions: DrumClock guides" href="/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I convert BPM to milliseconds for delay?", "acceptedAnswer": { "@type": "Answer", "text": "Divide 60,000 by the BPM to get a quarter note in milliseconds. Halve it for an eighth note, multiply the quarter by 0.75 for a dotted eighth, and divide it by 3 for an eighth-note triplet." } },
+    { "@type": "Question", "name": "What is the dotted eighth delay time at 120 BPM?", "acceptedAnswer": { "@type": "Answer", "text": "375 ms. A quarter note at 120 BPM is 500 ms, and a dotted eighth is three quarters of that." } },
+    { "@type": "Question", "name": "How do I keep delay times in sync when the drummer speeds up?", "acceptedAnswer": { "@type": "Answer", "text": "A fixed millisecond value or a single tap only matches one tempo. To follow a live drummer, the delay has to receive tempo continuously, through MIDI clock or a tap on every beat. DrumClock listens to the drums and sends both." } }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #07070a; --bg2: #0d0b0a; --panel: #141114; --line: #2a221e;
+    --ink: #f3efea; --ink-soft: #b3a79e; --dim: #7a706a;
+    --accent: #ff6a1f; --accent-2: #ff8a3d; --soft: #ffb35c;
+    --green: #3ddb7a; --amber: #ffcc33; --red: #f54545;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  @media (max-width: 760px) { nav { gap: 12px; padding: 16px 0; } nav .links { margin-left: 0; flex-basis: 100%; } }
+
+  header { background: radial-gradient(85% 130% at 72% 8%, #2a1408 0%, #140b06 45%, var(--bg) 100%); }
+  .hero { padding: 64px 0 72px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 50px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; margin: 14px 0 18px; max-width: 640px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 560px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; border-radius: 12px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #111; box-shadow: 0 0 34px rgba(255,106,31,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  .soonpill { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(61,219,122,.12); border-radius: 6px; padding: 4px 9px; }
+  .shot { flex: 0 0 300px; max-width: 300px; margin: 0 auto; }
+  .shot img { width: 100%; border-radius: 34px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(255,106,31,.18); display: block; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 680px; margin-bottom: 34px; font-size: 17px; }
+  .lead b { color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card .n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #111;
+    font-weight: 800; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 14px; }
+
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: stretch; }
+  .flow .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; text-align: center; }
+  .flow .step b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .flow .step span { font-size: 13.5px; color: var(--ink-soft); }
+  .flow .step .ico { font-size: 30px; margin-bottom: 8px; display: block; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; border-radius: 22px; border: 1px solid var(--line); display: block; }
+  .shots figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  .ipadshot img { width: 100%; max-width: 820px; border-radius: 22px; border: 1px solid var(--line); display: block; margin: 0 auto; }
+
+  table.transports { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.transports th, table.transports td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.transports th { color: var(--dim); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+  table.transports td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  table.transports td { color: var(--ink-soft); }
+  .good { color: var(--green); font-weight: 700; }
+  .ok { color: var(--amber); font-weight: 700; }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 800px; }
+  .price .card h3 { font-size: 15px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+  .price .big { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin: 6px 0 4px; }
+  .price .big small { font-size: 15px; color: var(--ink-soft); font-weight: 600; letter-spacing: 0; }
+  .price ul { list-style: none; margin-top: 12px; }
+  .price li { font-size: 14px; color: var(--ink-soft); padding: 4px 0 4px 22px; position: relative; }
+  .price li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .price .card.pro { border-color: rgba(255,106,31,.55); box-shadow: 0 0 40px rgba(255,106,31,.12); }
+
+  .watch { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .watch video { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #000; display: block; }
+  .watch p { font-size: 13.5px; color: var(--ink-soft); margin-top: 8px; }
+
+  .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "+"; color: var(--accent-2); font-weight: 800; margin-right: 10px; }
+  .faq details[open] summary::before { content: "–"; }
+  .faq p { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 760px; }
+
+  .cta { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .cta h2 { font-size: 34px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+  @media (max-width: 640px) { h1 { font-size: 36px; } .sub { font-size: 17px; } }
+
+  .calc { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: grid; gap: 18px; }
+  .calc .row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .calc input { background: #0b0a0b; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 22px; font-weight: 800; width: 130px; }
+  .tap { background: var(--accent); color: #111; border: 0; border-radius: 14px; padding: 18px 34px; font-size: 20px; font-weight: 800; cursor: pointer; touch-action: manipulation; }
+  .tap:active { background: var(--accent-2); }
+  .out { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .out div { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .out b { display: block; font-size: 24px; color: var(--ink); }
+  .out span { font-size: 13px; color: var(--dim); }
+  .out .hl { border-color: var(--accent); }
+  table.bpm { border-collapse: collapse; width: 100%; font-size: 14px; }
+  table.bpm th, table.bpm td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: right; color: var(--ink-soft); }
+  table.bpm th { color: var(--dim); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+  table.bpm td.hl { color: var(--soft); font-weight: 700; }
+  .tablewrap { overflow-x: auto; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/drumclock">DrumClock</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+      </span>
+    </nav>
+  </div>
+</header>
+<section>
+  <div class="wrap">
+    <div class="kicker">Free tool</div>
+    <h1>Tap tempo and delay time calculator</h1>
+    <p class="lead">Tap along or type a BPM and get every delay time in milliseconds. Dotted eighth is the highlighted one, because of course it is.</p>
+    <div class="calc">
+      <div class="row">
+        <button class="tap" id="tap" type="button">Tap</button>
+        <label>BPM <input id="bpm" type="number" min="20" max="300" step="0.1" value="120" inputmode="decimal"></label>
+        <span id="hint" style="color:var(--dim);font-size:14px">Tap four or more times. It resets after two seconds of quiet.</span>
+      </div>
+      <div class="out" id="out"></div>
+    </div>
+    <p class="lead" style="margin-top:28px">The catch: a number in milliseconds is right for exactly one tempo. Drummers don't play exactly one tempo, and that's a feature. If you'd rather the delays follow the drummer all night, <a href="/drumclock">DrumClock</a> listens to the kit and sends MIDI clock or a tap on every beat, so the repeats land wherever the drummer goes. Setup notes: <a href="/sync-delays-to-drummer">delays and arps</a> · <a href="/sunday-keys-tap-tempo">Sunday Keys</a>.</p>
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Delay times from 60 to 180 BPM</h2>
+    <p class="lead">Milliseconds, rounded. Quarter = 60,000 ÷ BPM. Eighth is half that, dotted eighth is three quarters of the quarter, triplet eighth is a third.</p>
+    <div class="tablewrap"><table class="bpm"><tr><th>BPM</th><th>Quarter</th><th>Eighth</th><th>Dotted 8th</th><th>8th triplet</th><th>16th</th></tr><tr><td><b>60</b></td><td>1000</td><td>500</td><td class="hl">750</td><td>333</td><td>250</td></tr><tr><td><b>62</b></td><td>968</td><td>484</td><td class="hl">726</td><td>323</td><td>242</td></tr><tr><td><b>64</b></td><td>938</td><td>469</td><td class="hl">703</td><td>312</td><td>234</td></tr><tr><td><b>66</b></td><td>909</td><td>455</td><td class="hl">682</td><td>303</td><td>227</td></tr><tr><td><b>68</b></td><td>882</td><td>441</td><td class="hl">662</td><td>294</td><td>221</td></tr><tr><td><b>70</b></td><td>857</td><td>429</td><td class="hl">643</td><td>286</td><td>214</td></tr><tr><td><b>72</b></td><td>833</td><td>417</td><td class="hl">625</td><td>278</td><td>208</td></tr><tr><td><b>74</b></td><td>811</td><td>405</td><td class="hl">608</td><td>270</td><td>203</td></tr><tr><td><b>76</b></td><td>789</td><td>395</td><td class="hl">592</td><td>263</td><td>197</td></tr><tr><td><b>78</b></td><td>769</td><td>385</td><td class="hl">577</td><td>256</td><td>192</td></tr><tr><td><b>80</b></td><td>750</td><td>375</td><td class="hl">562</td><td>250</td><td>188</td></tr><tr><td><b>82</b></td><td>732</td><td>366</td><td class="hl">549</td><td>244</td><td>183</td></tr><tr><td><b>84</b></td><td>714</td><td>357</td><td class="hl">536</td><td>238</td><td>179</td></tr><tr><td><b>86</b></td><td>698</td><td>349</td><td class="hl">523</td><td>233</td><td>174</td></tr><tr><td><b>88</b></td><td>682</td><td>341</td><td class="hl">511</td><td>227</td><td>170</td></tr><tr><td><b>90</b></td><td>667</td><td>333</td><td class="hl">500</td><td>222</td><td>167</td></tr><tr><td><b>92</b></td><td>652</td><td>326</td><td class="hl">489</td><td>217</td><td>163</td></tr><tr><td><b>94</b></td><td>638</td><td>319</td><td class="hl">479</td><td>213</td><td>160</td></tr><tr><td><b>96</b></td><td>625</td><td>312</td><td class="hl">469</td><td>208</td><td>156</td></tr><tr><td><b>98</b></td><td>612</td><td>306</td><td class="hl">459</td><td>204</td><td>153</td></tr><tr><td><b>100</b></td><td>600</td><td>300</td><td class="hl">450</td><td>200</td><td>150</td></tr><tr><td><b>102</b></td><td>588</td><td>294</td><td class="hl">441</td><td>196</td><td>147</td></tr><tr><td><b>104</b></td><td>577</td><td>288</td><td class="hl">433</td><td>192</td><td>144</td></tr><tr><td><b>106</b></td><td>566</td><td>283</td><td class="hl">425</td><td>189</td><td>142</td></tr><tr><td><b>108</b></td><td>556</td><td>278</td><td class="hl">417</td><td>185</td><td>139</td></tr><tr><td><b>110</b></td><td>545</td><td>273</td><td class="hl">409</td><td>182</td><td>136</td></tr><tr><td><b>112</b></td><td>536</td><td>268</td><td class="hl">402</td><td>179</td><td>134</td></tr><tr><td><b>114</b></td><td>526</td><td>263</td><td class="hl">395</td><td>175</td><td>132</td></tr><tr><td><b>116</b></td><td>517</td><td>259</td><td class="hl">388</td><td>172</td><td>129</td></tr><tr><td><b>118</b></td><td>508</td><td>254</td><td class="hl">381</td><td>169</td><td>127</td></tr><tr><td><b>120</b></td><td>500</td><td>250</td><td class="hl">375</td><td>167</td><td>125</td></tr><tr><td><b>122</b></td><td>492</td><td>246</td><td class="hl">369</td><td>164</td><td>123</td></tr><tr><td><b>124</b></td><td>484</td><td>242</td><td class="hl">363</td><td>161</td><td>121</td></tr><tr><td><b>126</b></td><td>476</td><td>238</td><td class="hl">357</td><td>159</td><td>119</td></tr><tr><td><b>128</b></td><td>469</td><td>234</td><td class="hl">352</td><td>156</td><td>117</td></tr><tr><td><b>130</b></td><td>462</td><td>231</td><td class="hl">346</td><td>154</td><td>115</td></tr><tr><td><b>132</b></td><td>455</td><td>227</td><td class="hl">341</td><td>152</td><td>114</td></tr><tr><td><b>134</b></td><td>448</td><td>224</td><td class="hl">336</td><td>149</td><td>112</td></tr><tr><td><b>136</b></td><td>441</td><td>221</td><td class="hl">331</td><td>147</td><td>110</td></tr><tr><td><b>138</b></td><td>435</td><td>217</td><td class="hl">326</td><td>145</td><td>109</td></tr><tr><td><b>140</b></td><td>429</td><td>214</td><td class="hl">321</td><td>143</td><td>107</td></tr><tr><td><b>142</b></td><td>423</td><td>211</td><td class="hl">317</td><td>141</td><td>106</td></tr><tr><td><b>144</b></td><td>417</td><td>208</td><td class="hl">312</td><td>139</td><td>104</td></tr><tr><td><b>146</b></td><td>411</td><td>205</td><td class="hl">308</td><td>137</td><td>103</td></tr><tr><td><b>148</b></td><td>405</td><td>203</td><td class="hl">304</td><td>135</td><td>101</td></tr><tr><td><b>150</b></td><td>400</td><td>200</td><td class="hl">300</td><td>133</td><td>100</td></tr><tr><td><b>152</b></td><td>395</td><td>197</td><td class="hl">296</td><td>132</td><td>99</td></tr><tr><td><b>154</b></td><td>390</td><td>195</td><td class="hl">292</td><td>130</td><td>97</td></tr><tr><td><b>156</b></td><td>385</td><td>192</td><td class="hl">288</td><td>128</td><td>96</td></tr><tr><td><b>158</b></td><td>380</td><td>190</td><td class="hl">285</td><td>127</td><td>95</td></tr><tr><td><b>160</b></td><td>375</td><td>188</td><td class="hl">281</td><td>125</td><td>94</td></tr><tr><td><b>162</b></td><td>370</td><td>185</td><td class="hl">278</td><td>123</td><td>93</td></tr><tr><td><b>164</b></td><td>366</td><td>183</td><td class="hl">274</td><td>122</td><td>91</td></tr><tr><td><b>166</b></td><td>361</td><td>181</td><td class="hl">271</td><td>120</td><td>90</td></tr><tr><td><b>168</b></td><td>357</td><td>179</td><td class="hl">268</td><td>119</td><td>89</td></tr><tr><td><b>170</b></td><td>353</td><td>176</td><td class="hl">265</td><td>118</td><td>88</td></tr><tr><td><b>172</b></td><td>349</td><td>174</td><td class="hl">262</td><td>116</td><td>87</td></tr><tr><td><b>174</b></td><td>345</td><td>172</td><td class="hl">259</td><td>115</td><td>86</td></tr><tr><td><b>176</b></td><td>341</td><td>170</td><td class="hl">256</td><td>114</td><td>85</td></tr><tr><td><b>178</b></td><td>337</td><td>169</td><td class="hl">253</td><td>112</td><td>84</td></tr><tr><td><b>180</b></td><td>333</td><td>167</td><td class="hl">250</td><td>111</td><td>83</td></tr></table></div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="/">Home</a>
+    <a href="/drumclock">DrumClock</a>
+    <a href="/drumclock-privacy">DrumClock privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chartless@creedysolutions.com">chartless@creedysolutions.com</a></span>
+  </div>
+</footer>
+<script>
+(function(){
+  var bpm=document.getElementById('bpm'), out=document.getElementById('out'), taps=[];
+  var notes=[['Whole',4],['Half',2],['Dotted quarter',1.5],['Quarter',1],['Dotted eighth',.75,1],['Eighth',.5],['Eighth triplet',1/3],['Sixteenth',.25]];
+  function render(){
+    var b=parseFloat(bpm.value); if(!(b>0)){out.innerHTML='';return;}
+    var q=60000/b;
+    out.innerHTML=notes.map(function(n){var ms=q*n[1];return '<div'+(n[2]?' class="hl"':'')+'><b>'+ms.toFixed(ms<100?1:0)+' ms</b><span>'+n[0]+' · '+(1000/ms).toFixed(2)+' Hz</span></div>';}).join('');
+  }
+  document.getElementById('tap').addEventListener('click',function(){
+    var t=performance.now(); if(taps.length&&t-taps[taps.length-1]>2000)taps=[]; taps.push(t); if(taps.length>8)taps.shift();
+    if(taps.length>1){var avg=(taps[taps.length-1]-taps[0])/(taps.length-1); bpm.value=(60000/avg).toFixed(1); render();}
+  });
+  bpm.addEventListener('input',render); render();
+})();
+</script>
+</body>
+</html>
