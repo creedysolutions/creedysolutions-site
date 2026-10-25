@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-itunes-app" content="app-id=6816780499">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free online metronome with tap tempo | Creedy Solutions</title>
+<meta name="description" content="Free online metronome: set or tap a tempo, pick the time signature and accent, and it keeps steady time in your browser. 30 to 300 BPM.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free online metronome with tap tempo">
+<meta property="og:description" content="Set or tap a tempo, pick a time signature, and go.">
+<meta property="og:url" content="https://creedysolutions.com/metronome">
+<meta property="og:image" content="https://creedysolutions.com/assets/drumclock-og.png?v=2">
+<link rel="canonical" href="https://creedysolutions.com/metronome">
+<link rel="icon" type="image/png" href="assets/drumclock-icon-128.png">
+<link rel="alternate" type="application/rss+xml" title="Creedy Solutions: DrumClock guides" href="/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is this online metronome free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It runs in your browser using the Web Audio clock, so it stays steady even if the page is busy." } },
+    { "@type": "Question", "name": "How do I find the BPM of a song?", "acceptedAnswer": { "@type": "Answer", "text": "Tap along with the song for a few bars using the Tap button. The metronome averages your taps and sets the tempo." } },
+    { "@type": "Question", "name": "Can a band play without a click track?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Many bands follow the drummer instead. If the band uses delays, arps or loops that need a tempo, DrumClock listens to the live drummer and sends MIDI clock so the gear follows the drummer instead of a click." } }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #07070a; --bg2: #0d0b0a; --panel: #141114; --line: #2a221e;
+    --ink: #f3efea; --ink-soft: #b3a79e; --dim: #7a706a;
+    --accent: #ff6a1f; --accent-2: #ff8a3d; --soft: #ffb35c;
+    --green: #3ddb7a; --amber: #ffcc33; --red: #f54545;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  @media (max-width: 760px) { nav { gap: 12px; padding: 16px 0; } nav .links { margin-left: 0; flex-basis: 100%; } }
+
+  header { background: radial-gradient(85% 130% at 72% 8%, #2a1408 0%, #140b06 45%, var(--bg) 100%); }
+  .hero { padding: 64px 0 72px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 50px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; margin: 14px 0 18px; max-width: 640px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 560px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; border-radius: 12px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #111; box-shadow: 0 0 34px rgba(255,106,31,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  .soonpill { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(61,219,122,.12); border-radius: 6px; padding: 4px 9px; }
+  .shot { flex: 0 0 300px; max-width: 300px; margin: 0 auto; }
+  .shot img { width: 100%; border-radius: 34px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(255,106,31,.18); display: block; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 680px; margin-bottom: 34px; font-size: 17px; }
+  .lead b { color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card .n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #111;
+    font-weight: 800; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 14px; }
+
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: stretch; }
+  .flow .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; text-align: center; }
+  .flow .step b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .flow .step span { font-size: 13.5px; color: var(--ink-soft); }
+  .flow .step .ico { font-size: 30px; margin-bottom: 8px; display: block; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; border-radius: 22px; border: 1px solid var(--line); display: block; }
+  .shots figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  .ipadshot img { width: 100%; max-width: 820px; border-radius: 22px; border: 1px solid var(--line); display: block; margin: 0 auto; }
+
+  table.transports { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.transports th, table.transports td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.transports th { color: var(--dim); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+  table.transports td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  table.transports td { color: var(--ink-soft); }
+  .good { color: var(--green); font-weight: 700; }
+  .ok { color: var(--amber); font-weight: 700; }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 800px; }
+  .price .card h3 { font-size: 15px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+  .price .big { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin: 6px 0 4px; }
+  .price .big small { font-size: 15px; color: var(--ink-soft); font-weight: 600; letter-spacing: 0; }
+  .price ul { list-style: none; margin-top: 12px; }
+  .price li { font-size: 14px; color: var(--ink-soft); padding: 4px 0 4px 22px; position: relative; }
+  .price li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .price .card.pro { border-color: rgba(255,106,31,.55); box-shadow: 0 0 40px rgba(255,106,31,.12); }
+
+  .watch { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .watch video { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #000; display: block; }
+  .watch p { font-size: 13.5px; color: var(--ink-soft); margin-top: 8px; }
+
+  .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "+"; color: var(--accent-2); font-weight: 800; margin-right: 10px; }
+  .faq details[open] summary::before { content: "–"; }
+  .faq p { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 760px; }
+
+  .cta { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .cta h2 { font-size: 34px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+  @media (max-width: 640px) { h1 { font-size: 36px; } .sub { font-size: 17px; } }
+
+  .calc { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: grid; gap: 18px; }
+  .calc .row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .calc input { background: #0b0a0b; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 22px; font-weight: 800; width: 130px; }
+  .tap { background: var(--accent); color: #111; border: 0; border-radius: 14px; padding: 18px 34px; font-size: 20px; font-weight: 800; cursor: pointer; touch-action: manipulation; }
+  .tap:active { background: var(--accent-2); }
+  .out { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .out div { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .out b { display: block; font-size: 24px; color: var(--ink); }
+  .out span { font-size: 13px; color: var(--dim); }
+  .out .hl { border-color: var(--accent); }
+  table.bpm { border-collapse: collapse; width: 100%; font-size: 14px; }
+  table.bpm th, table.bpm td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: right; color: var(--ink-soft); }
+  table.bpm th { color: var(--dim); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+  table.bpm td.hl { color: var(--soft); font-weight: 700; }
+  .tablewrap { overflow-x: auto; }
+  .dots { display: flex; gap: 12px; justify-content: center; margin: 10px 0 4px; }
+  .dots i { width: 22px; height: 22px; border-radius: 50%; background: #241d1a; display: block; transition: background .05s; }
+  .dots i.on { background: var(--accent); }
+  .dots i.on.acc { background: var(--soft); }
+  .big { font-size: 64px; font-weight: 800; text-align: center; line-height: 1; }
+  .calc input[type=range] { width: 100%; accent-color: var(--accent); }
+  .calc select { background: #0b0a0b; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font: inherit; }
+  .step { background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-weight: 800; cursor: pointer; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/drumclock">DrumClock</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+      </span>
+    </nav>
+  </div>
+</header>
+<section>
+  <div class="wrap">
+    <div class="kicker">Free tool</div>
+    <h1>Online metronome</h1>
+    <p class="lead">Set a tempo or tap one in, pick the time signature, hit Start. It runs on the browser's audio clock, so it stays steady even when the page is busy.</p>
+    <div class="calc">
+      <div class="big"><span id="bpmv">100</span> <span style="font-size:20px;color:var(--dim)">BPM</span></div>
+      <input type="range" id="bpm" min="30" max="300" value="100" aria-label="Tempo">
+      <div class="row" style="justify-content:center">
+        <button class="step" id="minus" type="button">−1</button>
+        <button class="tap" id="start" type="button">Start</button>
+        <button class="step" id="plus" type="button">+1</button>
+        <button class="step" id="tapb" type="button">Tap</button>
+        <select id="sig" aria-label="Time signature"><option value="4">4/4</option><option value="3">3/4</option><option value="2">2/4</option><option value="6">6/8</option><option value="5">5/4</option><option value="1">No accent</option></select>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+    <p class="lead" style="margin-top:28px">A metronome is great for practice. On stage, a lot of bands can't run one at all: no in-ears means nobody can hear the click, and plenty of drummers would rather push the chorus anyway. If your keys, delays or loops still need a tempo, <a href="/drumclock">DrumClock</a> flips it around. The drummer counts it in, and the gear follows the drummer instead of a click. More on that: <a href="/play-without-a-click-track">playing without a click track</a>. Need delay times in ms? <a href="/delay-time-calculator">Delay time calculator</a>.</p>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="/">Home</a>
+    <a href="/drumclock">DrumClock</a>
+    <a href="/drumclock-privacy">DrumClock privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chartless@creedysolutions.com">chartless@creedysolutions.com</a></span>
+  </div>
+</footer>
+<script>
+(function(){
+  var ctx=null, running=false, next=0, beat=0, timer=null, taps=[];
+  var bpm=document.getElementById('bpm'), bpmv=document.getElementById('bpmv'), sig=document.getElementById('sig'), dots=document.getElementById('dots'), start=document.getElementById('start');
+  function per(){ return +sig.value===6 ? 6 : +sig.value; }
+  function drawDots(){ var n=per(); dots.innerHTML=''; for(var i=0;i<n;i++){ var d=document.createElement('i'); dots.appendChild(d);} }
+  function setBpm(v){ v=Math.max(30,Math.min(300,Math.round(v))); bpm.value=v; bpmv.textContent=v; }
+  function click(t, accent){
+    var o=ctx.createOscillator(), g=ctx.createGain(); o.frequency.value=accent?1600:1000;
+    g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(accent?0.9:0.55,t+0.002); g.gain.exponentialRampToValueAtTime(0.0001,t+0.05);
+    o.connect(g).connect(ctx.destination); o.start(t); o.stop(t+0.06);
+  }
+  function light(i, accent, t){ var delay=Math.max(0,(t-ctx.currentTime)*1000); setTimeout(function(){ var ds=dots.children; for(var k=0;k<ds.length;k++){ ds[k].className=''; } if(ds[i]) ds[i].className='on'+(accent?' acc':''); }, delay); }
+  function sched(){
+    var spb = 60 / +bpm.value;  // 6/8 counts each eighth as a beat, accents on 1 and 4
+    while(next < ctx.currentTime+0.1){ var n=per(), i=beat%n, acc=(+sig.value!==1)&&(i===0 || (+sig.value===6 && i===3)); click(next, acc); light(i, acc, next); next+=spb; beat++; }
+  }
+  start.addEventListener('click',function(){
+    if(!ctx) ctx=new (window.AudioContext||window.webkitAudioContext)();
+    if(running){ running=false; clearInterval(timer); start.textContent='Start'; return; }
+    ctx.resume(); running=true; beat=0; next=ctx.currentTime+0.05; timer=setInterval(sched,25); start.textContent='Stop';
+  });
+  bpm.addEventListener('input',function(){ setBpm(bpm.value); });
+  document.getElementById('minus').addEventListener('click',function(){ setBpm(+bpm.value-1); });
+  document.getElementById('plus').addEventListener('click',function(){ setBpm(+bpm.value+1); });
+  document.getElementById('tapb').addEventListener('click',function(){ var t=performance.now(); if(taps.length&&t-taps[taps.length-1]>2000) taps=[]; taps.push(t); if(taps.length>8) taps.shift(); if(taps.length>1) setBpm(60000/((taps[taps.length-1]-taps[0])/(taps.length-1))); });
+  sig.addEventListener('change',function(){ beat=0; drawDots(); });
+  drawDots();
+})();
+</script>
+</body>
+</html>
