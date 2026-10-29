@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Talk from Creedy Solutions | podcast</title>
+<meta name="description" content="A one-person app shop, out loud: DrumClock and Chartless, how they work and what they get wrong, in eight-minute episodes.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Shop Talk from Creedy Solutions | podcast">
+<meta property="og:description" content="A one-person app shop, out loud: DrumClock and Chartless, how they work and what they get wrong, in eight-minute episodes.">
+<meta property="og:url" content="https://creedysolutions.com/shop-talk">
+<meta property="og:image" content="https://creedysolutions.com/assets/shop-talk-art.png">
+<link rel="canonical" href="https://creedysolutions.com/shop-talk">
+<link rel="icon" type="image/png" href="/assets/shop-talk-icon-128.png">
+<link rel="alternate" type="application/rss+xml" title="Shop Talk from Creedy Solutions" href="https://creedysolutions.com/podcast.xml">
+
+<style>
+  :root { --bg:#07070a; --bg2:#0d0b0a; --panel:#141114; --line:#2a221e; --ink:#f3efea; --ink-soft:#b3a79e; --dim:#7a706a;
+    --accent:#ff6a1f; --accent-2:#ff8a3d; --soft:#ffb35c; --green:#3ddb7a; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { overflow-x:hidden; }
+  body { background:var(--bg); color:var(--ink); font:16px/1.65 -apple-system,"SF Pro Text","Segoe UI",system-ui,sans-serif; }
+  a { color:var(--accent-2); text-decoration:none; } a:hover { text-decoration:underline; }
+  .wrap { max-width:1020px; margin:0 auto; padding:0 24px; }
+  nav { display:flex; align-items:center; gap:22px; padding:20px 0; flex-wrap:wrap; }
+  .logo { font-weight:800; font-size:17px; letter-spacing:-.3px; color:var(--ink); } .logo b { color:var(--accent-2); }
+  nav .links { margin-left:auto; display:flex; flex-wrap:wrap; gap:8px 20px; font-size:14px; font-weight:600; }
+  nav .links a { color:var(--ink-soft); white-space:nowrap; } nav .links a:hover { color:var(--ink); text-decoration:none; }
+  @media (max-width:760px) { nav { gap:12px; padding:16px 0; } nav .links { margin-left:0; flex-basis:100%; } }
+  header { background:radial-gradient(85% 130% at 72% 8%, #2a1408 0%, #140b06 45%, var(--bg) 100%); }
+  .hero { padding:40px 0 48px; display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
+  .hero .copy { flex:1; min-width:300px; }
+  .kicker { font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent-2); }
+  h1 { font-size:42px; font-weight:800; letter-spacing:-1.2px; line-height:1.08; margin:14px 0 14px; max-width:680px; }
+  .sub { font-size:19px; color:var(--ink-soft); max-width:600px; }
+  .art { flex:0 0 260px; max-width:260px; margin:0 auto; }
+  .art img { width:100%; border-radius:18px; border:1px solid var(--line); box-shadow:0 30px 80px rgba(255,106,31,.18); display:block; }
+  .player { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:18px 20px; margin:26px 0; }
+  .player audio { width:100%; display:block; }
+  .player .meta { display:flex; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--dim); margin-top:10px; }
+  .btn { display:inline-block; border-radius:12px; padding:11px 18px; font-weight:700; font-size:14px; }
+  .btn.primary { background:var(--accent); color:#111; } .btn.primary:hover { background:var(--accent-2); text-decoration:none; }
+  .btn.ghost { border:1px solid var(--line); color:var(--ink); } .btn.ghost:hover { border-color:var(--accent-2); text-decoration:none; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:18px; }
+  section { padding:34px 0; } h2 { font-size:26px; font-weight:800; letter-spacing:-.5px; margin-bottom:10px; }
+  main { max-width:780px; margin:0 auto; padding:0 24px 60px; }
+  main p { color:var(--ink-soft); font-size:16.5px; margin-bottom:14px; } main p b { color:var(--ink); }
+  .chapters { list-style:none; } .chapters li { border-top:1px solid var(--line); padding:9px 0; display:flex; gap:16px; font-size:15.5px; }
+  .chapters a { color:var(--soft); font-variant-numeric:tabular-nums; min-width:52px; } .chapters span { color:var(--ink); }
+  .note { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:22px 0; }
+  .note p { margin:0; font-size:15px; }
+  .app { display:flex; gap:18px; align-items:center; background:var(--panel); border:1px solid rgba(255,106,31,.45); border-radius:16px; padding:20px; margin:26px 0; flex-wrap:wrap; }
+  .app img { width:56px; height:56px; border-radius:14px; } .app .t { flex:1; min-width:220px; } .app .t b { font-size:17px; } .app .t p { font-size:14.5px; margin:4px 0 0; }
+  .tx p { font-size:16px; margin-bottom:12px; } .tx b { color:var(--soft); margin-right:6px; }
+  .eps { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+  .ep { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:20px; display:block; color:var(--ink); }
+  .ep:hover { border-color:var(--accent-2); text-decoration:none; } .ep img { width:100%; border-radius:12px; margin-bottom:12px; }
+  .ep .k { font-size:12px; color:var(--dim); text-transform:uppercase; letter-spacing:1px; } .ep h3 { font-size:18px; margin:4px 0 6px; } .ep p { font-size:14px; color:var(--ink-soft); }
+  .subs { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+  footer { border-top:1px solid var(--line); padding:26px 0; font-size:13px; color:var(--dim); } footer .wrap { display:flex; gap:18px; flex-wrap:wrap; }
+  footer a { color:var(--dim); } footer .right { margin-left:auto; }
+  @media (max-width:640px) { h1 { font-size:32px; } .sub { font-size:17px; } }
+</style>
+
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/shop-talk">Shop Talk</a>
+        <a href="/drumclock">DrumClock</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+      </span>
+    </nav>
+
+    <div class="hero">
+      <div class="copy">
+        <div class="kicker">Podcast</div>
+        <h1>Shop Talk from Creedy Solutions</h1>
+        <p class="sub">A one-person app shop, out loud. Chris Reedy (35 years of electric guitar, former worship leader) talks through the apps he builds with Nova, a synthetic co-host who asks the hard ones. Eight minutes an episode.</p>
+        <div class="subs">
+  <a class="btn ghost" href="/podcast.xml">RSS</a>
+  <a class="btn ghost" href="https://www.youtube.com/@CRSMusicApps">YouTube</a>
+  <!-- Apple Podcasts and Spotify links go here once the feed is submitted -->
+</div>
+      </div>
+      <div class="art"><img src="/assets/shop-talk-art.png" alt="Shop Talk from Creedy Solutions"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section><h2>Episodes</h2><div class="eps"><a class="ep" href="/shop-talk/ep01"><img src="/assets/shop-talk-ep01.jpg" alt=""><div class="k">Episode 1 · DrumClock · 8:10</div><h3>Your drummer is the click</h3><p>DrumClock, for bands with no in-ears and players who hate the click</p></a>
+<a class="ep" href="/shop-talk/ep02"><img src="/assets/shop-talk-ep02.jpg" alt=""><div class="k">Episode 2 · Chartless · 6:26</div><h3>No song left behind</h3><p>Chartless, live chord charts for the Sunday set you got on Thursday</p></a>
+<a class="ep" href="/shop-talk/ep03"><img src="/assets/shop-talk-ep03.jpg" alt=""><div class="k">Episode 3 · Chartless · 7:06</div><h3>Learn the song, not the chart</h3><p>Practicing, capo positions and alternate tunings for worship players</p></a>
+<a class="ep" href="/shop-talk/ep04"><img src="/assets/shop-talk-ep04.jpg" alt=""><div class="k">Episode 4 · Chartless · 6:35</div><h3>A practice room students will actually open</h3><p>Chartless for guitar, uke, piano and bass teachers</p></a></div></section>
+  <div class="note"><p><b>Who's talking.</b> Chris is a real person. This is his voice, cloned, reading words he wrote and is responsible for. He digitized himself because there's one of him and a lot of hours he's asleep for. Nova, the co-host, is fully synthetic. The apps contain no AI.</p></div>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="/">Home</a>
+    <a href="/shop-talk">Shop Talk</a>
+    <a href="/podcast.xml">RSS</a>
+    <a href="/drumclock">DrumClock</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></span>
+  </div>
+</footer>
+</body>
+</html>

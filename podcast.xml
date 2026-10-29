@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+<channel>
+<title>Shop Talk from Creedy Solutions</title>
+<link>https://creedysolutions.com/shop-talk</link>
+<description>A one-person app shop, out loud. Chris Reedy, 35 years of electric guitar and a former worship leader, talks through the apps he builds (DrumClock, Chartless) with Nova, a synthetic co-host who asks the hard ones. How the apps work, what they get wrong, and what they're for. Eight minutes an episode, every other Tuesday.</description>
+<language>en-us</language>
+<copyright>© 2026 Creedy Solutions LLC</copyright>
+<atom:link href="https://creedysolutions.com/podcast.xml" rel="self" type="application/rss+xml"/>
+<lastBuildDate>Thu, 29 Oct 2026 15:55:27 +0000</lastBuildDate>
+<itunes:author>Chris Reedy</itunes:author>
+<itunes:owner><itunes:name>Chris Reedy</itunes:name><itunes:email>chris@creedysolutions.com</itunes:email></itunes:owner>
+<itunes:image href="https://creedysolutions.com/assets/shop-talk-art.png"/>
+<itunes:category text="Music"><itunes:category text="Music Commentary"/></itunes:category>
+<itunes:category text="Technology"/>
+<itunes:explicit>false</itunes:explicit>
+<itunes:type>episodic</itunes:type>
+<podcast:locked>yes</podcast:locked>
+<item>
+  <title>1. Your drummer is the click: DrumClock, for bands with no in-ears and players who hate the click</title>
+  <link>https://creedysolutions.com/shop-talk/ep01</link>
+  <guid isPermaLink="false">creedysolutions-shop-talk-ep01</guid>
+  <pubDate>Thu, 29 Oct 2026 09:00:00 -0500</pubDate>
+  <description>Most bands play to a click. Plenty of bands can&#x27;t, and some players won&#x27;t. DrumClock puts a phone by the kit, listens to the drummer, and sends MIDI clock and tap tempo to the keys rig, pedals and DAW. Chris answers the skeptic questions: how a phone pulls a tempo out of a live kit, what happens on a break, the stick count-off, the Sunday Keys tap-tempo problem, set-list presets, and what it gets wrong.
+
+0:00 Shop Talk · 1:02 Your drummer is the click · 2:34 How it hears the drums · 3:11 Breaks and the count-off · 3:54 Drummers who hate the click · 4:20 Clock, tap tempo and Sunday Keys · 6:10 Set lists · 6:36 What it gets wrong · 7:07 Price and platforms · 7:33 Why build it
+
+Transcript and chapters: https://creedysolutions.com/shop-talk/ep01
+DrumClock: https://creedysolutions.com/drumclock</description>
+  <enclosure url="https://creedysolutions.com/media/shop-talk-ep01.mp3" length="9794395" type="audio/mpeg"/>
+  <itunes:duration>489</itunes:duration>
+  <itunes:episode>1</itunes:episode>
+  <itunes:episodeType>full</itunes:episodeType>
+  <itunes:explicit>false</itunes:explicit>
+  <itunes:image href="https://creedysolutions.com/assets/shop-talk-ep01.jpg"/>
+  <itunes:summary>Most bands play to a click. Plenty of bands can&#x27;t, and some players won&#x27;t. DrumClock puts a phone by the kit, listens to the drummer, and sends MIDI clock and tap tempo to the keys rig, pedals and DAW. Chris answers the skeptic questions: how a phone pulls a tempo out of a live kit, what happens on a break, the stick count-off, the Sunday Keys tap-tempo problem, set-list presets, and what it gets wrong.</itunes:summary>
+</item>
+<item>
+  <title>2. No song left behind: Chartless, live chord charts for the Sunday set you got on Thursday</title>
+  <link>https://creedysolutions.com/shop-talk/ep02</link>
+  <guid isPermaLink="false">creedysolutions-shop-talk-ep02</guid>
+  <pubDate>Thu, 29 Oct 2026 09:30:00 -0500</pubDate>
+  <description>The set lands Thursday night, two songs you&#x27;ve never played, one chart in the wrong key. Chartless listens to the actual recording, in a browser tab or through the mic, and shows the chords live, in key, on the beat, then reads the whole song into bars. Chris answers the skeptic questions: why chord apps are a little wrong and how Simple mode fixes that for worship and folk, why there is no AI in the app, the other four tabs, why a guitar with every needle dead center still sounds sour and what Sweetened tuning does about it, where it runs, and who it is not for.
+
+0:00 Shop Talk · 1:02 Setlist dropped Thursday · 1:30 Live chords · 2:17 Simple mode · 3:11 Why no AI · 3:39 The other four tabs · 4:00 Sweetened tuning · 5:08 Where it runs · 5:41 Price · 5:54 No song left behind
+
+Transcript and chapters: https://creedysolutions.com/shop-talk/ep02
+Chartless: https://chartless.creedysolutions.com</description>
+  <enclosure url="https://creedysolutions.com/media/shop-talk-ep02.mp3" length="7714003" type="audio/mpeg"/>
+  <itunes:duration>385</itunes:duration>
+  <itunes:episode>2</itunes:episode>
+  <itunes:episodeType>full</itunes:episodeType>
+  <itunes:explicit>false</itunes:explicit>
+  <itunes:image href="https://creedysolutions.com/assets/shop-talk-ep02.jpg"/>
+  <itunes:summary>The set lands Thursday night, two songs you&#x27;ve never played, one chart in the wrong key. Chartless listens to the actual recording, in a browser tab or through the mic, and shows the chords live, in key, on the beat, then reads the whole song into bars. Chris answers the skeptic questions: why chord apps are a little wrong and how Simple mode fixes that for worship and folk, why there is no AI in the app, the other four tabs, why a guitar with every needle dead center still sounds sour and what Sweetened tuning does about it, where it runs, and who it is not for.</itunes:summary>
+</item>
+<item>
+  <title>3. Learn the song, not the chart: Practicing, capo positions and alternate tunings for worship players</title>
+  <link>https://creedysolutions.com/shop-talk/ep03</link>
+  <guid isPermaLink="false">creedysolutions-shop-talk-ep03</guid>
+  <pubDate>Thu, 29 Oct 2026 10:00:00 -0500</pubDate>
+  <description>Not the Thursday emergency this time. The craft side: sitting with a song, looping the bridge at sixty, trying two or three capo spots with the chords running, charts in drop D and DADGAD, and why the number system does more for a volunteer player than anything else.
+
+0:00 Shop Talk · 0:38 Learning the song · 1:37 Practicing · 2:35 Capo positions · 3:35 Alternate tunings · 4:33 Honing the craft · 5:33 Where it runs · 5:59 Price · 6:33 No song left behind
+
+Transcript and chapters: https://creedysolutions.com/shop-talk/ep03
+Chartless: https://chartless.creedysolutions.com</description>
+  <enclosure url="https://creedysolutions.com/media/shop-talk-ep03.mp3" length="8525366" type="audio/mpeg"/>
+  <itunes:duration>426</itunes:duration>
+  <itunes:episode>3</itunes:episode>
+  <itunes:episodeType>full</itunes:episodeType>
+  <itunes:explicit>false</itunes:explicit>
+  <itunes:image href="https://creedysolutions.com/assets/shop-talk-ep03.jpg"/>
+  <itunes:summary>Not the Thursday emergency this time. The craft side: sitting with a song, looping the bridge at sixty, trying two or three capo spots with the chords running, charts in drop D and DADGAD, and why the number system does more for a volunteer player than anything else.</itunes:summary>
+</item>
+<item>
+  <title>4. A practice room students will actually open: Chartless for guitar, uke, piano and bass teachers</title>
+  <link>https://creedysolutions.com/shop-talk/ep04</link>
+  <guid isPermaLink="false">creedysolutions-shop-talk-ep04</guid>
+  <pubDate>Thu, 29 Oct 2026 10:30:00 -0500</pubDate>
+  <description>The lesson ends and the paper doesn&#x27;t make any sound. Build the progression in the lesson, loop it over a pad, send it home on the phone. One chart for nine instruments, Nashville numbers for beginners, chords from the YouTube lesson, PDFs for the folder, and no account or ads on a kid&#x27;s phone.
+
+0:00 Shop Talk · 0:37 The lesson ends · 1:42 One chart, every instrument · 2:31 Teaching the numbers · 3:31 The YouTube lesson · 4:36 The folder · 5:21 No account, no ads · 6:04 No song left behind
+
+Transcript and chapters: https://creedysolutions.com/shop-talk/ep04
+Chartless: https://chartless.creedysolutions.com</description>
+  <enclosure url="https://creedysolutions.com/media/shop-talk-ep04.mp3" length="7907309" type="audio/mpeg"/>
+  <itunes:duration>395</itunes:duration>
+  <itunes:episode>4</itunes:episode>
+  <itunes:episodeType>full</itunes:episodeType>
+  <itunes:explicit>false</itunes:explicit>
+  <itunes:image href="https://creedysolutions.com/assets/shop-talk-ep04.jpg"/>
+  <itunes:summary>The lesson ends and the paper doesn&#x27;t make any sound. Build the progression in the lesson, loop it over a pad, send it home on the phone. One chart for nine instruments, Nashville numbers for beginners, chords from the YouTube lesson, PDFs for the folder, and no account or ads on a kid&#x27;s phone.</itunes:summary>
+</item>
+</channel>
+</rss>
