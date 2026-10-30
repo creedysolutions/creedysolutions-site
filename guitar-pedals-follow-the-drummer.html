@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-itunes-app" content="app-id=6816780499">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delay pedals that follow the drummer: mic the kit, Scarlett MIDI out, no more tap tempo | Creedy Solutions</title>
+<meta name="description" content="A guitar player's setup for ditching the tap-tempo stomp: a mic by the drums into a Scarlett 4i4, the Scarlett's MIDI out into Helix, HX Stomp, Timeline or a Boss DD-500, and DrumClock on the music stand sending clock on the drummer's time.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Delay pedals that follow the drummer, with no tap tempo">
+<meta property="og:description" content="Mic by the kit, Scarlett 4i4 into the iPad, MIDI out to the pedalboard. DrumClock sends clock on the drummer's time, so dotted eighths land and your foot stays on the floor.">
+<meta property="og:url" content="https://creedysolutions.com/guitar-pedals-follow-the-drummer">
+<meta property="og:image" content="https://creedysolutions.com/assets/drumclock-og.png?v=2">
+<link rel="canonical" href="https://creedysolutions.com/guitar-pedals-follow-the-drummer">
+<link rel="icon" type="image/png" href="assets/drumclock-icon-128.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Which Focusrite Scarlett has a MIDI out?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In the 4th generation, the Scarlett 4i4, 16i16, 18i16 and 18i20 have 5-pin MIDI In and Out. The Scarlett Solo and 2i2 do not. The 3rd generation 4i4 and up had MIDI as well." } },
+    { "@type": "Question", "name": "Can a guitar delay pedal follow a live drummer without a click track?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, if the pedal accepts MIDI clock. A beat-tracking app like DrumClock listens to the drums through a mic and audio interface, then sends MIDI clock out of the interface's MIDI port into the pedal. Delays set to a note value follow the drummer instead of your last tap." } },
+    { "@type": "Question", "name": "Does DrumClock work with an audio interface on iPad?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. When a class-compliant USB interface is plugged into the iPad it becomes the iPad's microphone, so DrumClock hears the drums through it, and the interface's MIDI port shows up as an output DrumClock can send clock to." } }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #07070a; --bg2: #0d0b0a; --panel: #141114; --line: #2a221e;
+    --ink: #f3efea; --ink-soft: #b3a79e; --dim: #7a706a;
+    --accent: #ff6a1f; --accent-2: #ff8a3d; --soft: #ffb35c;
+    --green: #3ddb7a; --amber: #ffcc33; --red: #f54545;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  @media (max-width: 760px) { nav { gap: 12px; padding: 16px 0; } nav .links { margin-left: 0; flex-basis: 100%; } }
+
+  header { background: radial-gradient(85% 130% at 72% 8%, #2a1408 0%, #140b06 45%, var(--bg) 100%); }
+  .hero { padding: 64px 0 72px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 50px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; margin: 14px 0 18px; max-width: 640px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 560px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; border-radius: 12px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #111; box-shadow: 0 0 34px rgba(255,106,31,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  .soonpill { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(61,219,122,.12); border-radius: 6px; padding: 4px 9px; }
+  .shot { flex: 0 0 300px; max-width: 300px; margin: 0 auto; }
+  .shot img { width: 100%; border-radius: 34px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(255,106,31,.18); display: block; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 680px; margin-bottom: 34px; font-size: 17px; }
+  .lead b { color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card .n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #111;
+    font-weight: 800; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 14px; }
+
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: stretch; }
+  .flow .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; text-align: center; }
+  .flow .step b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .flow .step span { font-size: 13.5px; color: var(--ink-soft); }
+  .flow .step .ico { font-size: 30px; margin-bottom: 8px; display: block; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; border-radius: 22px; border: 1px solid var(--line); display: block; }
+  .shots figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  .ipadshot img { width: 100%; max-width: 820px; border-radius: 22px; border: 1px solid var(--line); display: block; margin: 0 auto; }
+
+  table.transports { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.transports th, table.transports td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.transports th { color: var(--dim); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+  table.transports td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  table.transports td { color: var(--ink-soft); }
+  .good { color: var(--green); font-weight: 700; }
+  .ok { color: var(--amber); font-weight: 700; }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 800px; }
+  .price .card h3 { font-size: 15px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+  .price .big { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin: 6px 0 4px; }
+  .price .big small { font-size: 15px; color: var(--ink-soft); font-weight: 600; letter-spacing: 0; }
+  .price ul { list-style: none; margin-top: 12px; }
+  .price li { font-size: 14px; color: var(--ink-soft); padding: 4px 0 4px 22px; position: relative; }
+  .price li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .price .card.pro { border-color: rgba(255,106,31,.55); box-shadow: 0 0 40px rgba(255,106,31,.12); }
+
+  .watch { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .watch video { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #000; display: block; }
+  .watch p { font-size: 13.5px; color: var(--ink-soft); margin-top: 8px; }
+
+  .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "+"; color: var(--accent-2); font-weight: 800; margin-right: 10px; }
+  .faq details[open] summary::before { content: "–"; }
+  .faq p { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 760px; }
+
+  .cta { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .cta h2 { font-size: 34px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+  @media (max-width: 640px) { h1 { font-size: 36px; } .sub { font-size: 17px; } }
+</style>
+<style>
+  article { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
+  article h2 { margin-top: 44px; }
+  article h3 { font-size: 18px; margin: 26px 0 6px; }
+  article p, article li { color: var(--ink-soft); font-size: 16.5px; margin-bottom: 14px; }
+  article p b, article li b { color: var(--ink); }
+  article ol, article ul { padding-left: 22px; margin-bottom: 14px; }
+  .note { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin: 22px 0; }
+  .note p { margin: 0; font-size: 15px; }
+</style>
+<link rel="alternate" type="application/rss+xml" title="Creedy Solutions: DrumClock guides" href="/feed.xml">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/drumclock">DrumClock</a>
+        <a href="/shop-talk/">Shop Talk</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<article>
+  <div class="kicker">Guide · for guitar players</div>
+  <h1 style="font-size:40px">Delay pedals that follow the drummer: mic the kit, Scarlett MIDI out, no more tap tempo</h1>
+  <p>I've been the guitar player stomping tap tempo between parts for most of thirty-five years. Four taps on the delay pedal at the top of the song, hope the drummer counts it in at the tempo I tapped, and fix it again before the chorus. The first two bars are always a little wrong, and by the bridge the dotted eighths are smearing against the snare because the drummer pushed and the pedal didn't.</p>
+  <p>Here's the rig that got my foot off that switch. It's three pieces, one cable to the iPad, and nobody in the band has to wear in-ears or play to a click.</p>
+
+  <div class="note"><p><b>The idea:</b> instead of you tapping the tempo into the pedal, a mic by the drums feeds an audio interface, the interface feeds the iPad, and <a href="/drumclock">DrumClock</a> sends MIDI clock back out of the interface into your pedalboard. The pedal follows the drummer. You just play.</p></div>
+
+  <h2>What you need</h2>
+  <ol>
+    <li><b>An audio interface with a 5-pin MIDI out.</b> I use a Focusrite Scarlett. In the current 4th generation that means the <b>4i4</b> or bigger (16i16, 18i16, 18i20). The Solo and the 2i2 have no MIDI jacks, so they can't do this job. A 3rd-gen 4i4 works too. Any class-compliant interface with a MIDI out does the same thing; the Scarlett is just the one that's on every stage already.</li>
+    <li><b>A dynamic mic on a short boom by the kit.</b> Nothing special. An SM57 or whatever's spare, pointed between the kick and the snare, a couple of feet off the floor. A real mic by the drums hears the kick and the snare a lot better than a phone on a music stand by the PA.</li>
+    <li><b>An iPad on your music stand</b> running DrumClock, plugged into the interface with a USB-C cable. The iPad goes where you can see it, because the whole point is watching the ring lock before you play.</li>
+    <li><b>A 5-pin MIDI cable</b> from the Scarlett's MIDI Out to the first pedal that takes clock.</li>
+  </ol>
+
+  <h2>The wiring</h2>
+  <div class="flow">
+    <div class="step"><span class="ico">🥁</span><b>Drums</b><span>Dynamic mic on a boom between kick and snare.</span></div>
+    <div class="step"><span class="ico">🎛️</span><b>Scarlett 4i4</b><span>Mic into input 1. USB-C to the iPad. MIDI Out to the board.</span></div>
+    <div class="step"><span class="ico">📱</span><b>iPad on the stand</b><span>DrumClock listens, shows the ring and BPM, sends clock.</span></div>
+    <div class="step"><span class="ico">🎸</span><b>Pedalboard</b><span>Delay set to a note value, following MIDI clock.</span></div>
+  </div>
+
+  <h2>Setting it up</h2>
+  <h3>1. The interface</h3>
+  <p>Update the Scarlett's firmware on a computer first; Focusrite asks for that before it'll behave on an iPad. Plug the mic into input 1, bring the gain up until the kick is lighting the halo green on the hits and not clipping red. Then plug the USB-C into the iPad. The 4th-gen 4i4 wants more power than some iPads will give it, so if the Scarlett won't light up, use the power supply that came in the box on its DC jack, or go through a powered USB-C hub.</p>
+
+  <h3>2. DrumClock</h3>
+  <p>Open DrumClock. When the interface is plugged in, that's the iPad's microphone as far as iOS is concerned, so DrumClock hears the drums through the Scarlett with nothing to pick. Have the drummer play a bar of time and watch the ring: it should pulse on the beat and the BPM should settle. If it's chasing the hi-hat, move the mic closer to the kick.</p>
+  <p>In <b>Outputs</b>, turn on MIDI clock and point it at the Scarlett's MIDI port, which shows up by name once the cable is in. Leave tap tempo off unless a pedal needs it; clock is the tighter of the two for delays.</p>
+
+  <h3>3. The pedals</h3>
+  <p>Any pedal with a MIDI clock input works. On the ones most of us run:</p>
+  <ul>
+    <li><b>Line 6 Helix, HX Stomp, HX Effects:</b> Global Settings → MIDI/Tempo, set MIDI Clock to receive. Any delay with its time set to a note value follows.</li>
+    <li><b>Strymon Timeline, Volante, BigSky:</b> MIDI clock sync is on by default on most of them; check the MIDI menu if the time knob isn't moving.</li>
+    <li><b>Boss DD-500, DD-200, RV-500:</b> set MIDI Sync to Auto or MIDI in the system menu.</li>
+    <li><b>Eventide H9, TimeFactor:</b> set the clock source to MIDI in the system settings.</li>
+  </ul>
+  <p>Chain the MIDI Thru from the first pedal into the next one and the whole board follows. If a pedal only has tap tempo and no clock, DrumClock can send a tap message on every beat instead; see the <a href="/sync-delays-to-drummer">delays-and-arps guide</a> for that.</p>
+
+  <h2>What it feels like on the gig</h2>
+  <p>The drummer counts the song in on the sticks and the tempo is set before beat one, so the first downbeat is right. When the drummer pushes the chorus, the repeats push with him. On a drum break or a rubato bridge the last tempo holds until the drums come back, and it picks the drummer up again when he does.</p>
+  <p>Two things I lean on: <b>presets</b>, one per song in set order, so the clock has a starting tempo and only follows the drummer inside eight BPM of it, which means a big fill doesn't throw it; and the <b>ring on the stand</b>, because after thirty-five years of tapping I wanted to see it lock, not trust it.</p>
+
+  <h2>Where it gets harder</h2>
+  <ul>
+    <li><b>Brushes and a quiet jazz kit:</b> less transient for the mic to grab. Get the mic closer to the snare.</li>
+    <li><b>A loud PA next to the kit:</b> the mic hears the bass rig. Point it away from the subs and tighten the gain.</li>
+    <li><b>Placement:</b> this is most of it. Between kick and snare, close, off the floor.</li>
+  </ul>
+
+  <h2>Try it at rehearsal first</h2>
+  <p>Honestly, start with just the iPad on the stand, no interface, no cable, and watch the ring for one rehearsal. The thing that sold me was looking down and seeing the number move with the drummer. Then add the mic and the Scarlett and run clock into the board the next week.</p>
+  <p>DrumClock is free to try for 14 days with everything on, then the free tier keeps tempo detection, presets and 10 minutes of MIDI output a day. Pro is $19.99 a year or $49.99 once. Audio is analysed on the device and never recorded or uploaded.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="https://apps.apple.com/app/id6816780499">Download on the App Store</a>
+    <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.creedysolutions.drumclock">Get it on Google Play</a>
+  </div>
+  <p style="margin-top:28px">More: <a href="/midi-clock-from-live-drums">MIDI clock from live drums</a> · <a href="/sync-delays-to-drummer">Sync delays and arps to a drummer</a> · <a href="/play-without-a-click-track">Playing without a click</a>. I talk through this whole rig on <a href="/shop-talk/">Shop Talk</a>, episode 5.</p>
+  <p style="font-size:13px;color:var(--dim)">Scarlett is a trademark of Focusrite Audio Engineering. Helix is a trademark of Line 6, Strymon of Damage Control Engineering, Boss of Roland Corporation, Eventide of Eventide Inc. DrumClock is independent and not affiliated with any of them. Check your pedal's manual for its MIDI clock setting; menus move between firmware versions.</p>
+</article>
+
+<section style="padding-top:0"><div class="wrap"><p class="lead">Need a number right now? The <a href="/delay-time-calculator">tap tempo and delay time calculator</a> turns any BPM into milliseconds.</p></div></section>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="/">Home</a>
+    <a href="/drumclock">DrumClock</a>
+    <a href="/drumclock-privacy">DrumClock privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chartless@creedysolutions.com">chartless@creedysolutions.com</a></span>
+  </div>
+</footer>
+</body>
+</html>
