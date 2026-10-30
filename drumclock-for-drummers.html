@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-itunes-app" content="app-id=6816780499">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DrumClock from the drum throne: where the phone goes, the count-off, and what the drummer gets | Creedy Solutions</title>
+<meta name="description" content="A drummer's guide to DrumClock: it follows you, it doesn't grade you. Phone placement in the cage or on a stand, the stick count-off, Hold for breaks, presets as a guard rail, and the honest list of what brushes and a quiet kit do to it.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DrumClock from the drum throne">
+<meta property="og:description" content="It follows you, it doesn't grade you. Where the phone goes, the stick count-off, Hold for breaks, and what the drummer gets out of the band's gear finally listening.">
+<meta property="og:url" content="https://creedysolutions.com/drumclock-for-drummers">
+<meta property="og:image" content="https://creedysolutions.com/assets/drumclock-og.png?v=2">
+<link rel="canonical" href="https://creedysolutions.com/drumclock-for-drummers">
+<link rel="icon" type="image/png" href="assets/drumclock-icon-128.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Does DrumClock make the drummer play to a click?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. It works the other way around. DrumClock listens to the kick and snare and sends the drummer's tempo to the band's delays, arps and sequencers as MIDI clock or tap tempo. The drummer plays with feel and the gear follows." } },
+    { "@type": "Question", "name": "Where should the phone go on a drum kit?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Low in the cage on a clamp near the kick is best. Without a cage, a stand beside the hi-hat away from the bass amp works. On a mic'd stage, feed the kick and snare mics through an audio interface instead of using the phone's mic." } },
+    { "@type": "Question", "name": "How does DrumClock know the tempo before the song starts?",
+      "acceptedAnswer": { "@type": "Answer", "text": "From the stick count-off. Three or four evenly spaced stick clicks set the tempo, so the clock is running at the drummer's count before beat one." } }
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #07070a; --bg2: #0d0b0a; --panel: #141114; --line: #2a221e;
+    --ink: #f3efea; --ink-soft: #b3a79e; --dim: #7a706a;
+    --accent: #ff6a1f; --accent-2: #ff8a3d; --soft: #ffb35c;
+    --green: #3ddb7a; --amber: #ffcc33; --red: #f54545;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  @media (max-width: 760px) { nav { gap: 12px; padding: 16px 0; } nav .links { margin-left: 0; flex-basis: 100%; } }
+
+  header { background: radial-gradient(85% 130% at 72% 8%, #2a1408 0%, #140b06 45%, var(--bg) 100%); }
+  .hero { padding: 64px 0 72px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 50px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.08; margin: 14px 0 18px; max-width: 640px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 560px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn { display: inline-block; border-radius: 12px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #111; box-shadow: 0 0 34px rgba(255,106,31,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  .soonpill { font-size: 11px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(61,219,122,.12); border-radius: 6px; padding: 4px 9px; }
+  .shot { flex: 0 0 300px; max-width: 300px; margin: 0 auto; }
+  .shot img { width: 100%; border-radius: 34px; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(255,106,31,.18); display: block; }
+
+  section { padding: 64px 0; }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 680px; margin-bottom: 34px; font-size: 17px; }
+  .lead b { color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card .n { display: inline-flex; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #111;
+    font-weight: 800; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 14px; }
+
+  .flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: stretch; }
+  .flow .step { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; text-align: center; }
+  .flow .step b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .flow .step span { font-size: 13.5px; color: var(--ink-soft); }
+  .flow .step .ico { font-size: 30px; margin-bottom: 8px; display: block; }
+
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .shots figure { margin: 0; }
+  .shots img { width: 100%; border-radius: 22px; border: 1px solid var(--line); display: block; }
+  .shots figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  .ipadshot img { width: 100%; max-width: 820px; border-radius: 22px; border: 1px solid var(--line); display: block; margin: 0 auto; }
+
+  table.transports { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  table.transports th, table.transports td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.transports th { color: var(--dim); font-weight: 700; font-size: 12px; letter-spacing: .6px; text-transform: uppercase; }
+  table.transports td:first-child { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  table.transports td { color: var(--ink-soft); }
+  .good { color: var(--green); font-weight: 700; }
+  .ok { color: var(--amber); font-weight: 700; }
+
+  .price { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 800px; }
+  .price .card h3 { font-size: 15px; color: var(--dim); text-transform: uppercase; letter-spacing: .8px; }
+  .price .big { font-size: 38px; font-weight: 800; letter-spacing: -1px; margin: 6px 0 4px; }
+  .price .big small { font-size: 15px; color: var(--ink-soft); font-weight: 600; letter-spacing: 0; }
+  .price ul { list-style: none; margin-top: 12px; }
+  .price li { font-size: 14px; color: var(--ink-soft); padding: 4px 0 4px 22px; position: relative; }
+  .price li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .price .card.pro { border-color: rgba(255,106,31,.55); box-shadow: 0 0 40px rgba(255,106,31,.12); }
+
+  .watch { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .watch video { width: 100%; border-radius: 16px; border: 1px solid var(--line); background: #000; display: block; }
+  .watch p { font-size: 13.5px; color: var(--ink-soft); margin-top: 8px; }
+
+  .faq details { border-top: 1px solid var(--line); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; list-style: none; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::before { content: "+"; color: var(--accent-2); font-weight: 800; margin-right: 10px; }
+  .faq details[open] summary::before { content: "–"; }
+  .faq p { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 760px; }
+
+  .cta { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .cta h2 { font-size: 34px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+  @media (max-width: 640px) { h1 { font-size: 36px; } .sub { font-size: 17px; } }
+</style>
+<style>
+  article { max-width: 760px; margin: 0 auto; padding: 8px 24px 64px; }
+  article h2 { margin-top: 44px; }
+  article h3 { font-size: 18px; margin: 26px 0 6px; }
+  article p, article li { color: var(--ink-soft); font-size: 16.5px; margin-bottom: 14px; }
+  article p b, article li b { color: var(--ink); }
+  article ol, article ul { padding-left: 22px; margin-bottom: 14px; }
+  .note { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin: 22px 0; }
+  .note p { margin: 0; font-size: 15px; }
+</style>
+<link rel="alternate" type="application/rss+xml" title="Creedy Solutions: DrumClock guides" href="/feed.xml">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/drumclock">DrumClock</a>
+        <a href="/shop-talk/">Shop Talk</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<article>
+  <div class="kicker">Guide · for drummers</div>
+  <h1 style="font-size:40px">DrumClock from the drum throne: where the phone goes, the count-off, and what you get out of it</h1>
+  <p>First, who's writing this: I'm not a drummer. I'm the guitar player who has stood six feet from one for thirty-five years, so everything here about feel is what I've watched, not what I've felt. The drummers I've handed this to pushed back on the same thing, so let's start there.</p>
+
+  <h2>It follows you. It doesn't grade you.</h2>
+  <p>A click points at you. You follow it, and if you push the chorus, you're wrong. DrumClock points the other way. It listens to the kick and snare, works out your tempo, and sends that tempo to whatever in the band needs one: the keys player's delays and arps, the guitar player's dotted eighths, a sequencer, Ableton. When you push the chorus, their gear pushes with you. Nobody's wrong, because you're the reference.</p>
+  <div class="note"><p><b>The short version:</b> the band's effects stop fighting you and start agreeing with you, and nobody has to put you in in-ears to make that happen.</p></div>
+
+  <h2>What it listens for</h2>
+  <p>Mostly the kick and the snare. They have a shape, a fast hit that decays, and the cymbals are a wash it can look past. The current version follows hit to hit, so if you lean into a chorus the clock is there on the next beat. There's a Smooth setting in Outputs if a band wants it to ease instead; Precise is the default because the drummers who tried it said they wanted it exactly where they were.</p>
+
+  <h2>Where the phone goes</h2>
+  <ul>
+    <li><b>In the cage:</b> best. A clamp low near the kick. It hears the kick first and the PA is mostly behind it.</li>
+    <li><b>No cage:</b> a music stand beside the hi-hat, pointed at the kit, with the bass amp not pointed at it.</li>
+    <li><b>Mic'd stage:</b> skip the phone mic. Put the kick and snare through a USB audio interface into the phone or iPad and it hears what the board hears. The <a href="/guitar-pedals-follow-the-drummer">Scarlett guide</a> covers that wiring.</li>
+    <li><b>iPad on a stand:</b> my favourite. A big ring that pulses on the beat, the number next to it, and a view that's just a ball going side to side, so you can see it from the throne without reading anything. Most drummers look at it for one song and then stop looking, which is the right outcome.</li>
+  </ul>
+
+  <h2>The count-off is yours</h2>
+  <p>Click the sticks three or four times, the way you already do. DrumClock takes the tempo from the sticks, so by beat one the clock is already running at your count and the keys player's delay lands on the first downbeat. Nobody tapped anything.</p>
+
+  <h2>Breaks and rubato</h2>
+  <p>When you stop, it holds the last tempo until you come back in, then picks you up again. For a rubato bridge, put it on Hold on purpose and let it sit until the band is back on the grid. The first version chased the pad during a break and that was a bad night, so this got fixed early.</p>
+
+  <h2>Presets are a guard rail, not a leash</h2>
+  <p>Build the set list in the app so every song has a starting tempo. Two things happen. The band can see the song's tempo before you count it, which ends the "was that too fast" conversation. And the app uses that number as an anchor: it follows you inside about eight BPM of it, so a big fill or a double-time hat doesn't throw it into another tempo. Page through the set with a Bluetooth foot switch or keyboard; on iPad the space bar and arrow keys do it.</p>
+
+  <h2>The hard cases, honestly</h2>
+  <ul>
+    <li><b>Brushes:</b> hard. There isn't much of a hit to grab. Try it, don't count on it.</li>
+    <li><b>Quiet jazz kit, tiny kick:</b> works if the phone is close. Get it nearer the snare.</li>
+    <li><b>Cajon:</b> the slap is a clean transient, so it generally tracks well. Place it close.</li>
+    <li><b>Loud stage, subs by the kit:</b> placement. Closer to the kick than anything else, gain down until the kick is the biggest thing it hears, or go through the kick mic and an interface.</li>
+  </ul>
+
+  <h2>What the drummer actually gets</h2>
+  <p>The keys player gets delays on the beat and the guitar player gets repeats on the beat, so what's in it for the person being listened to? Nobody asks you to wear in-ears and play to a click so the rest of the band's gear works. You play the room the way the room needs it, push when it needs pushing, sit back on the bridge, and the effects come with you. And the band stops blaming the drummer for the delay being off, because the delay is on the drummer now, by definition.</p>
+
+  <h2>Try it for one rehearsal</h2>
+  <p>Put it in the cage, don't tell the band what it is, and look down at the ball a couple of times. See if the number is where you thought you were. DrumClock runs on iPhone, iPad and Android, and on Android it keeps listening and sending MIDI in the background, so a phone in the cage can just sit there. Free to try for 14 days with everything on; after that the free tier keeps tempo detection, presets and 10 minutes of MIDI output a day. Pro is $19.99 a year or $49.99 once. Audio is analysed on the device and never recorded or uploaded.</p>
+  <div class="cta-row">
+    <a class="btn primary" href="https://apps.apple.com/app/id6816780499">Download on the App Store</a>
+    <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.creedysolutions.drumclock">Get it on Google Play</a>
+  </div>
+  <p style="margin-top:28px">More: <a href="/play-without-a-click-track">Playing without a click</a> · <a href="/midi-clock-from-live-drums">MIDI clock from live drums</a> · <a href="/guitar-pedals-follow-the-drummer">The guitar player's pedalboard rig</a>. Want to see it from the throne? <a href="https://youtu.be/219nut_T7SM">The drummer training is eleven minutes on YouTube.</a></p>
+</article>
+
+<section style="padding-top:0"><div class="wrap"><p class="lead">Need a number right now? The <a href="/delay-time-calculator">tap tempo and delay time calculator</a> turns any BPM into milliseconds.</p></div></section>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="/">Home</a>
+    <a href="/drumclock">DrumClock</a>
+    <a href="/drumclock-privacy">DrumClock privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chartless@creedysolutions.com">chartless@creedysolutions.com</a></span>
+  </div>
+</footer>
+</body>
+</html>
