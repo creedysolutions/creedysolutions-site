@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magellan — Best-Practices Analyzer for Salesforce (coming soon) | Creedy Solutions</title>
+<title>Magellan — Best-Practices Analyzer for Salesforce | Creedy Solutions</title>
 <meta name="description" content="Magellan is a Chrome side panel that lints any Apex class, trigger, Flow, or LWC the moment you click it in Setup — 40+ PMD-grade rules, ranked by severity — then maps your whole org's code health as a 3D world. No CI pipeline, no login, no config. Read-only. Your code never leaves your browser.">
 <meta property="og:title" content="Magellan — Best-Practices Analyzer for Salesforce">
 <meta property="og:description" content="Click a component in Setup. Get a ranked list of best-practice findings — SOQL in loops, missing sharing, hardcoded IDs, empty catches — right there. Then see your org's health as a globe. Read-only, private, from Creedy Solutions.">
 <meta property="og:url" content="https://creedysolutions.com/magellan">
-<meta property="og:image" content="https://creedysolutions.com/assets/magellan-globe.png">
+<meta property="og:image" content="https://creedysolutions.com/assets/magellan-globe.jpg">
 <link rel="canonical" href="https://creedysolutions.com/magellan">
 <link rel="icon" type="image/png" href="assets/magellan-icon-128.png?v=compass">
 <script type="application/ld+json">
@@ -135,6 +135,16 @@
   .types span { font-size: 12.5px; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
 
   .contact { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .price-row { display: flex; gap: 18px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+  .price { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 26px 30px; width: 300px; }
+  .price.hot { border-color: var(--accent); }
+  .price h3 { font-size: 15px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--ink-soft); }
+  .price .amt { font-size: 34px; font-weight: 800; margin: 8px 0 2px; }
+  .price .per { color: var(--dim); font-size: 13px; }
+  .price ul { list-style: none; margin: 14px 0 18px; }
+  .price li { color: var(--ink-soft); font-size: 14px; padding: 4px 0; }
+  .buy-note { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); }
+  .install-note { margin-top: 14px; font-size: 13.5px; color: var(--dim); }
   .contact .lead { margin: 10px auto 22px; }
 
   footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
@@ -165,7 +175,7 @@
     <div class="hero">
       <div class="copy">
         <div class="mark" aria-hidden="true"></div>
-        <div class="kicker">Best-Practices Analyzer for Salesforce <span class="soon">Coming soon</span></div>
+        <div class="kicker">Best-Practices Analyzer for Salesforce</div>
         <h1>Magellan <small>PMD-grade code review, the moment you click a component.</small></h1>
         <p class="sub">A Chrome side panel that lives next to Setup. Click any Apex class, trigger,
           Flow, or LWC and Magellan hands you a <b>ranked list of best-practice findings</b> —
@@ -177,10 +187,12 @@
           <span class="v v-info">INFO · SYSTEM.DEBUG</span><span class="v v-clean">CLEAN</span>
         </div>
         <div class="cta-row">
-          <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Magellan%20early%20access">Tell me when it ships</a>
+          <a class="btn primary" href="https://chromewebstore.google.com/detail/mgmnjabokeemfihecmhfbkpebcpombfl">Add to Chrome — free</a>
+          <a class="btn ghost" href="#pricing">Go PRO — $29</a>
           <a class="btn ghost" href="#panel">See the side panel</a>
           <a class="btn ghost" href="#universe">Explore the globe</a>
         </div>
+        <div class="install-note">Free on the Chrome Web Store. Try PRO free for 7 days, no card and no email, then $29 once.</div>
       </div>
       <figure class="shot hero-shot">
         <img src="assets/magellan-panel.png" alt="Magellan side panel: AccountBatchSvc analyzed — 2 critical, 4 warning findings ranked, each with a line number, an explanation and a fix" width="840" height="1720">
@@ -234,8 +246,8 @@
     <p class="lead">One button scans every Apex class, trigger, active Flow, and LWC in the org
       and hands you the tech-debt map a lead or an auditor actually wants.</p>
     <figure class="shot">
-      <img src="assets/magellan-atlas.png" alt="Magellan Atlas: org-wide dashboard with severity counts, type and severity filters, a ranked cross-org findings list, a What's on fire card, worst offenders and top rules fired" width="1400" height="900" loading="lazy">
-      <figcaption>Every finding across the org, filterable — with worst offenders, top rules fired, and what's on fire right now.</figcaption>
+      <img src="assets/magellan-atlas.jpg" alt="Magellan Atlas: org-wide dashboard with severity counts and the components affected, findings grouped by component and expanded to show each finding with its line, a What's on fire card, and worst offenders" width="1280" height="800" loading="lazy">
+      <figcaption>Every finding across the org, grouped by component, worst first. Open one to see its findings, with what's on fire right now alongside.</figcaption>
     </figure>
     <div class="grid three">
       <div class="card">
@@ -268,37 +280,39 @@
 
 <section id="universe">
   <div class="wrap">
-    <h2>Explore your org as a world.</h2>
+    <h2>3D Code Circumnavigation: your org as a world.</h2>
     <p class="lead">Magellan circumnavigated the globe. So does this: your org's code health as a
-      3D world map you spin, zoom, and fly through.</p>
+      moonlit 3D world you spin, zoom, and fly down into.</p>
     <figure class="shot">
-      <img src="assets/magellan-globe.png" alt="Magellan Universe: a 3D globe where continents are component types coloured by code health, hexagon tiles are components, flames mark failing jobs, and two satellites named Marco and Polo orbit" width="1400" height="840" loading="lazy">
-      <figcaption>Continents are your Apex, Triggers, Flows and LWC — coloured by weighted health. Flames are jobs failing right now.</figcaption>
+      <img src="assets/magellan-globe.jpg" alt="Magellan's 3D globe: carved continents for Apex, Flows, LWC and Triggers covered in glowing torches, amber for info, orange for warning, red for critical, with managed-package islands in the ocean" width="1280" height="800" loading="lazy">
+      <figcaption>Every component is a torch. The hotter it burns, the worse it is, and anything failing right now burns brightest.</figcaption>
     </figure>
     <div class="two">
       <div class="copy">
         <p>Text first, 3D second: the globe is how you <i>find</i> the problem; the side panel is
           how you read it.</p>
         <ul>
-          <li><b>Continents are component types</b>, sized by how much code lives there and
-            coloured by weighted overall health — lush green through arid tan to scorched rust.
-            One critical class can't paint five hundred clean ones red.</li>
-          <li><b>Hex tiles are components</b>, clustered into severity districts — the critical
-            city, the warning city — with the worst offenders at each city's centre. Tile size is
-            the finding count.</li>
-          <li><b>Managed packages are an archipelago</b>: one island per installed package,
-            neutral gray because vendor code isn't linted — until something in it burns.</li>
+          <li><b>Continents are component types</b>, carved landmasses sized by how much code
+            lives there, with ridges, valleys and rivers. Zoom in and each continent splits into
+            parcels, one per component.</li>
+          <li><b>Every component is a torch.</b> Cyan for clean, amber, orange and red as the
+            findings get worse. Severity is geography: critical, warning, info and clean each
+            hold their own region of the continent.</li>
+          <li><b>Managed packages are islands</b>, sized by how many classes they hold, so a big
+            package reads as real territory without ever dwarfing your own code.</li>
           <li><b>Trade routes are dependencies.</b> Focus a component and its routes light up:
             cyan for what it uses, ember for what depends on it. Load-bearing debt, visible.</li>
-          <li><b>Flames are live failures.</b> The terrain says <i>could burn</i>; the fire says
-            <i>is burning</i> — hotter and faster the more recent and frequent.</li>
-          <li><b>Voyage mode</b> sails port to port through your worst offenders. Marco and Polo
-            keep orbit overhead.</li>
+          <li><b>Live failures heat the torch.</b> A component that failed last night burns
+            bigger, faster and toward magenta, and the ground around it ripples. The org's
+            genuinely worst spot is always the most alive.</li>
+          <li><b>Fly it like a map.</b> Drag to move, scroll to zoom where you point, and
+            right-drag to turn and tilt the view. Voyage mode sails port to port through your worst
+            offenders.</li>
         </ul>
       </div>
       <figure class="shot">
-        <img src="assets/magellan-globe.png" alt="The Magellan globe from orbit" width="1400" height="840" loading="lazy">
-        <figcaption>Search any component and the camera pulls back, spins the planet, and dives onto its tile.</figcaption>
+        <img src="assets/magellan-hotspot.jpg" alt="Close up on a burning component: its torch and light pool on the terrain, cyan and ember trade routes to its dependencies, and a card listing its findings and recent failures" width="1280" height="800" loading="lazy">
+        <figcaption>Search any component and the camera pulls back, spins the planet, and dives onto its torch, with its trade routes lit.</figcaption>
       </figure>
     </div>
   </div>
@@ -336,6 +350,46 @@
   </div>
 </section>
 
+<section class="alt" id="pricing">
+  <div class="wrap">
+    <h2>Free to use. PRO when you want the whole org.</h2>
+    <p class="lead">The side panel is free, for good. PRO adds the org-wide view: one key, one payment, no subscription.</p>
+    <div class="price-row">
+      <div class="price">
+        <h3>Free</h3><div class="amt">$0</div><div class="per">forever</div>
+        <ul><li>Findings for any Apex class, trigger, Flow or LWC</li><li>40+ rules, ranked by severity</li>
+          <li>Search any component from the panel</li><li>Live-failure banner</li><li>Setup deep links</li></ul>
+      </div>
+      <div class="price hot">
+        <h3>PRO</h3><div class="amt">$29</div><div class="per">one-time, yours for good</div>
+        <ul><li>Everything in Free</li><li>Export findings (Markdown, PDF report)</li>
+          <li>Scan org: every component, grouped and ranked, with CSV/JSON export</li>
+          <li>3D Code Circumnavigation</li>
+          <li><b>7-day free trial</b>, no card and no email: start it from the PRO chip in Magellan's panel</li></ul>
+        <!-- TODO at launch: set href to the Lemon Squeezy checkout link for Magellan PRO (product 1491917) -->
+        <a class="btn primary" id="buyBtn" href="#pricing">Buy PRO — $29</a>
+        <p class="buy-note" id="buySoon" hidden>Checkout opens shortly. Meanwhile the <b>7-day free trial</b> needs no card at all.</p>
+      </div>
+      <script>
+        // The Buy button follows the license server's live-switch for Magellan,
+        // so it can't take a card before checkout is open.
+        fetch("https://license.creedysolutions.com/status?product=magellan")
+          .then(r => r.json())
+          .then(s => {
+            if (s.checkoutLive) return;
+            const b = document.getElementById("buyBtn");
+            b.textContent = "Checkout opening soon";
+            b.style.opacity = ".55";
+            b.style.pointerEvents = "none";
+            b.removeAttribute("href");
+            document.getElementById("buySoon").hidden = false;
+          })
+          .catch(() => {});
+      </script>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
     <h2>Read-only isn't a setting. It's the product.</h2>
@@ -345,8 +399,10 @@
         <li><b>The rules run in the browser.</b> The engine is pure client-side code — it can't
           make a network call even if it wanted to. The org-wide scan is exactly the moment other
           tools upload your whole codebase to a cloud; Magellan doesn't.</li>
-        <li><b>No servers, no accounts.</b> The only calls are from your browser to your own
-          org's APIs, using the session you already have.</li>
+        <li><b>No accounts, and nothing about your org on our servers.</b> Every metadata call goes
+          from your browser to your own org's APIs, using the session you already have. The only
+          other call is to our license server when you start a PRO trial or activate a key, and it
+          carries just the key and a random install ID.</li>
         <li><b>No telemetry.</b> We don't know when you install it, open it, or what orgs you point it at.</li>
         <li><b>Nothing installed in your org.</b> No connected app, no OAuth, no package.</li>
       </ul>
@@ -357,11 +413,10 @@
 
 <section class="contact" id="contact">
   <div class="wrap">
-    <h2>Magellan is coming soon.</h2>
-    <p class="lead">Chrome Web Store listing is on the way. Want in early, or a heads-up when it
-      lands? A short email is enough — how big your org is, what your review process looks
-      like today, and which rules you'd want to see first.</p>
-    <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Magellan%20early%20access">chris@creedysolutions.com</a>
+    <h2>Questions, ideas, or a rule you want?</h2>
+    <p class="lead">Help with a license key, a finding that looks wrong, or a rule you'd like
+      Magellan to catch: a short email is enough, and I read every one.</p>
+    <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Magellan">chris@creedysolutions.com</a>
   </div>
 </section>
 
