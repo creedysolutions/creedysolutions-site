@@ -36,7 +36,7 @@
 <div class="wrap">
   <a class="back" href="/magellan">← Magellan</a>
   <h1>Privacy Policy</h1>
-  <div class="meta"><b>Magellan — Best-Practices Analyzer for Salesforce</b> · Effective date: August 2026 ·
+  <div class="meta"><b>Magellan — Best-Practices Analyzer for Salesforce</b> · Effective date: November 2026 ·
     Contact: <a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></div>
 
   <p>Magellan is a Google Chrome extension that helps Salesforce administrators and
@@ -48,7 +48,9 @@
   <div class="short"><b>Short version:</b> Magellan does not collect any personal data.
   Magellan does not transmit your Salesforce org's code or metadata to any server operated
   by us, or to any third party. The rules engine runs entirely inside your browser; every
-  network request goes from your browser directly to your own Salesforce org's APIs.
+  Salesforce request goes from your browser directly to your own Salesforce org's APIs.
+  The only other request Magellan ever makes is to our license server, and only when you
+  start a PRO trial or activate a PRO key.
   Magellan only ever reads — it never writes to any org. All caches are stored locally
   on your device.</div>
 
@@ -109,7 +111,8 @@
       Salesforce org — no connected app, no OAuth, no package.</li>
     <li>Magellan has <b>no analytics, telemetry, or tracking</b>. We do not know when you
       install, open, or use the extension, which orgs you point it at, or what it finds,
-      and we do not want to.</li>
+      and we do not want to. (The license server sees a PRO activation or trial start, as
+      described below. It never learns which org you use or what Magellan found.)</li>
     <li>Magellan has <b>no advertising</b>. We do not sell or transfer data to third
       parties.</li>
     <li>Magellan does <b>not fetch or execute remote code</b>. All JavaScript, including
@@ -118,16 +121,31 @@
   </ul>
 
   <h2>Third-party services</h2>
-  <p>Magellan makes network requests to exactly one kind of destination: <b>your own
-  Salesforce org's domains</b> (<code>*.salesforce.com</code>, <code>*.force.com</code>,
-  <code>*.salesforce-setup.com</code>). It contacts no server operated by us, and no
-  other third party. Documentation links in findings (to PMD, Salesforce Help, and
-  similar public sites) open only if you click them.</p>
+  <p>Magellan makes network requests to two destinations, and no others:</p>
+  <ol>
+    <li><b>Your own Salesforce org's domains</b> (<code>*.salesforce.com</code>,
+      <code>*.force.com</code>, <code>*.salesforce-setup.com</code>), for the read-only
+      metadata reads described above.</li>
+    <li><b>Our license server</b> (<code>license.creedysolutions.com</code>), only when you
+      start the free PRO trial, activate a PRO license key, or when an activated key renews
+      (about once a day while you're online). The request carries the license key you
+      typed (or nothing, for a trial), a random install identifier that Magellan generated
+      locally (it is not derived from your machine, browser profile, or any Salesforce
+      org), and the product name. Magellan also asks the same server whether checkout is
+      open, which sends nothing about you. No Salesforce data, cookies, org IDs, or metadata
+      are ever sent to the license server. If you only use the free side panel, Magellan
+      never contacts it.</li>
+  </ol>
+  <p>Payment itself is handled entirely by our merchant of record (Lemon Squeezy) on
+  their own pages. Magellan never sees your payment details. Documentation links in
+  findings (to PMD, Salesforce Help, and similar public sites) open only if you click
+  them.</p>
 
   <h2>Chrome permission usage</h2>
   <ul>
     <li><code>sidePanel</code> — draws Magellan's findings UI as a side panel.</li>
-    <li><code>storage</code> — stores your settings locally.</li>
+    <li><code>storage</code> — stores your settings locally, and, if you use PRO, the
+      license key, install identifier and signed license token on this browser.</li>
     <li><code>cookies</code> — reads the Salesforce session cookies, as described above,
       to authenticate read-only API requests as you against your own org.</li>
     <li><code>tabs</code> — knows which Salesforce tab you are looking at, so the panel
