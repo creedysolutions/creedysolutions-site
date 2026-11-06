@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Polo — Org Compare for Salesforce (coming soon) | Creedy Solutions</title>
+<title>Polo — Org Compare for Salesforce | Creedy Solutions</title>
 <meta name="description" content="Polo is a Chrome side panel that tells you whether a Salesforce component is the same, different or missing in another org, and maps every difference between two orgs on one timeline. No OAuth, no connected apps, no installed packages; compare any two orgs. Read-only. Your metadata never leaves your browser.">
 <meta property="og:title" content="Polo — Org Compare for Salesforce">
 <meta property="og:description" content="Click a component in Setup and see if it's the same, different or missing in another org. Or map every difference between two orgs at once. Read-only, private, from Creedy Solutions.">
@@ -19,6 +19,7 @@
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Chrome",
   "url": "https://creedysolutions.com/polo",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "description": "Salesforce org compare in a Chrome side panel: same, different or missing for any component, an Org drift map of every difference between two orgs, recent changes by who made them, and a watchlist. Read-only; metadata never leaves the browser.",
   "author": { "@type": "Organization", "name": "Creedy Solutions LLC", "url": "https://creedysolutions.com" }
 }
@@ -146,6 +147,15 @@
   footer .right { margin-left: auto; }
 
   .shot.wide { margin: 0 0 22px; }
+  .price-row { display: flex; gap: 18px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+  .price { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 26px 30px; width: 300px; }
+  .price.hot { border-color: var(--accent); }
+  .price h3 { font-size: 15px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--ink-soft); }
+  .price .amt { font-size: 34px; font-weight: 800; margin: 8px 0 2px; }
+  .price .per { color: var(--dim); font-size: 13px; }
+  .price ul { list-style: none; margin: 14px 0 18px; }
+  .price li { color: var(--ink-soft); font-size: 14px; padding: 4px 0; }
+  .buy-note { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); }
   .two.flip { grid-template-columns: 1fr 1.2fr; }
   .depths .card h3 small { font-size: 12px; font-weight: 700; color: var(--dim); margin-left: 6px; }
   @media (max-width: 760px) { .two.flip { grid-template-columns: 1fr; } }
@@ -172,7 +182,7 @@
     <div class="hero">
       <div class="copy">
         <img class="mark" src="assets/polo-icon-512.png" alt="" width="58" height="58">
-        <div class="kicker">Org Compare for Salesforce <span class="soon">Coming soon</span></div>
+        <div class="kicker">Org Compare for Salesforce</div>
         <h1>Polo <small>Same, different or missing. Between any two orgs.</small></h1>
         <p class="sub">A Chrome side panel that lives next to Setup. Click a component and
           Polo tells you whether it's <b>the same, different or missing</b> in the org you're
@@ -185,9 +195,10 @@
           <span class="v v-miss">NOT IN PROD</span><span class="v v-extra">ONLY IN UAT</span>
         </div>
         <div class="cta-row">
-          <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Polo%20early%20access">Tell me when it ships</a>
+          <a class="btn primary" href="https://chromewebstore.google.com/detail/ahjpkajdfbepokddeakemobkafeaebmi">Add to Chrome — free</a>
           <a class="btn ghost" href="#panel">See the side panel</a>
           <a class="btn ghost" href="#drift">See Org drift</a>
+          <a class="btn ghost" href="#pricing">Pricing</a>
         </div>
       </div>
       <figure class="shot hero-shot">
@@ -401,13 +412,56 @@
   </div>
 </section>
 
+<section class="alt" id="pricing">
+  <div class="wrap">
+    <h2>Free to compare. PRO when you want the whole org.</h2>
+    <p class="lead">The side panel is free, for good. PRO adds the org-wide view: one key, one payment, no subscription.</p>
+    <div class="price-row">
+      <div class="price">
+        <h3>Free</h3><div class="amt">$0</div><div class="per">forever</div>
+        <ul><li>Compare any component between two orgs</li><li>Changes in plain sentences, full diff</li>
+          <li>Who changed it, in each org</li><li>Field access, permission sets, flow versions</li><li>Copy for ticket</li></ul>
+        <a class="btn ghost" href="https://chromewebstore.google.com/detail/ahjpkajdfbepokddeakemobkafeaebmi">Add to Chrome</a>
+      </div>
+      <div class="price hot">
+        <h3>PRO</h3><div class="amt">$49</div><div class="per">one-time, yours for good</div>
+        <ul><li>Everything in Free</li><li>The Org drift map, Quick, Full or Everything</li>
+          <li>Recent changes with package.xml export</li><li>Watchlist, daily re-check, release report</li>
+          <li><b>7-day free trial</b>, no card and no email: start it from the PRO chip in Polo's panel</li></ul>
+        <a class="btn primary buy" data-product="polo" href="https://creedysolutions.lemonsqueezy.com/checkout/buy/ea2819ed-cb8e-4dbb-8c2b-69d34aa64b57">Buy PRO — $49</a>
+        <p class="buy-note" hidden>Checkout opens shortly. Meanwhile the <b>7-day free trial</b> needs no card at all.</p>
+      </div>
+      <div class="price">
+        <h3>The Explorers Kit</h3><div class="amt">$79</div><div class="per">one-time · Marco, Polo, and Magellan</div>
+        <ul><li>One key unlocks PRO in all three</li><li><a href="https://marco.creedysolutions.com">Marco</a>: where used and impact</li>
+          <li>Polo: org compare and drift</li><li><a href="/magellan">Magellan</a>: best-practice findings</li><li>$107 bought separately</li></ul>
+        <a class="btn ghost buy" data-product="bundle" href="https://creedysolutions.lemonsqueezy.com/checkout/buy/26f8d7a4-0077-4c21-a514-dec266e2041d">Buy the kit — $79</a>
+        <p class="buy-note" hidden>Checkout opens shortly.</p>
+      </div>
+    </div>
+    <script>
+      // Each Buy button follows the license server's live switch for its product,
+      // so it can't take a card before checkout is open.
+      document.querySelectorAll("a.buy").forEach((b) => {
+        fetch("https://license.creedysolutions.com/status?product=" + b.dataset.product)
+          .then((r) => r.json())
+          .then((s) => {
+            if (s.checkoutLive) return;
+            b.textContent = "Checkout opening soon";
+            b.style.opacity = ".55"; b.style.pointerEvents = "none"; b.removeAttribute("href");
+            b.nextElementSibling.hidden = false;
+          })
+          .catch(() => {});
+      });
+    </script>
+  </div>
+</section>
+
 <section class="contact" id="contact">
   <div class="wrap">
-    <h2>Polo is coming soon.</h2>
-    <p class="lead">The Chrome Web Store listing is on the way. Want in early, or a heads-up
-      when it lands? A short email is enough: how many orgs, what your release process
-      looks like, and what you'd want to see side by side first.</p>
-    <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Polo%20early%20access">chris@creedysolutions.com</a>
+    <h2>Questions or ideas?</h2>
+    <p class="lead">How many orgs you compare, what your release process looks like, what you'd want Polo to do next: a short email is enough.</p>
+    <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Polo">chris@creedysolutions.com</a>
   </div>
 </section>
 
