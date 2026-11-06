@@ -46,7 +46,8 @@
 
   <div class="short"><b>Short version:</b> Polo does not collect any personal data.
   Polo does not transmit your Salesforce orgs' metadata to any server operated by us,
-  or to any third party. All queries run inside your browser, from your browser
+  or to any third party. The only thing it ever sends us is a Polo PRO license check
+  (your license key, a random install id and the product name). All queries run inside your browser, from your browser
   directly to your own Salesforce orgs' APIs. Polo only ever reads — it never writes
   to any org. All caches are stored locally on your device.</div>
 
@@ -86,8 +87,8 @@
   <ul>
     <li><b>IndexedDB (in your browser)</b> — cached component metadata, saved
       Org drift scans, and verdict caches, so repeat comparisons are instant. Stored per Salesforce org ID. Nothing here is synced across devices.</li>
-    <li><b><code>chrome.storage.local</code> (in your browser)</b> — your settings and
-      your watchlist, such as which components you are tracking, the compare target per
+    <li><b><code>chrome.storage.local</code> (in your browser)</b> — your settings, your
+      Polo PRO license key and entitlement token, and your watchlist, such as which components you are tracking, the compare target per
       org, the theme, and whether you've seen the first-run tour.</li>
   </ul>
   <p>Nothing Polo writes leaves your device.</p>
@@ -107,10 +108,20 @@
   </ul>
 
   <h2>Third-party services</h2>
-  <p>Polo makes network requests to exactly one kind of destination: <b>your own
-  Salesforce orgs' domains</b> (<code>*.salesforce.com</code>, <code>*.force.com</code>,
-  <code>*.salesforce-setup.com</code>). It contacts no server operated by us, and no
-  other third party.</p>
+  <p>Polo makes network requests to two kinds of destination:</p>
+  <ul>
+    <li><b>Your own Salesforce orgs' domains</b> (<code>*.salesforce.com</code>,
+      <code>*.force.com</code>, <code>*.salesforce-setup.com</code>), for everything
+      described above.</li>
+    <li><b>Our license server</b> (<code>license.creedysolutions.com</code>), only for
+      Polo PRO: when you start the free trial, activate a key, or Polo renews an active
+      key's entitlement (about once a day while you're online). It receives your license
+      key (none for a trial), a random install id that Polo generates on first use, and
+      the product name. It never receives Salesforce data, org names, metadata, or
+      anything about what you compare. License purchases are handled by Lemon Squeezy,
+      under its own privacy policy.</li>
+  </ul>
+  <p>Polo contacts no other server and no other third party.</p>
 
   <h2>Chrome permission usage</h2>
   <ul>
