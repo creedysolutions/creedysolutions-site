@@ -67,6 +67,7 @@
   .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
   .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
   .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  img.mark { display: block; width: 58px; height: 58px; border-radius: 13px; box-shadow: 0 0 40px rgba(76,195,255,.35); margin-bottom: 18px; }
   .mark { width: 58px; height: 58px; border-radius: 15px; background: var(--brand);
     position: relative; flex: none; box-shadow: 0 0 40px rgba(109,94,242,.45); margin-bottom: 18px; }
   .mark::before { content: ""; position: absolute; left: 15px; top: 15px; width: 28px; height: 28px;
@@ -170,7 +171,7 @@
     </nav>
     <div class="hero">
       <div class="copy">
-        <div class="mark" aria-hidden="true"></div>
+        <img class="mark" src="assets/polo-icon-512.png" alt="" width="58" height="58">
         <div class="kicker">Org Compare for Salesforce <span class="soon">Coming soon</span></div>
         <h1>Polo <small>Same, different or missing. Between any two orgs.</small></h1>
         <p class="sub">A Chrome side panel that lives next to Setup. Click a component and
