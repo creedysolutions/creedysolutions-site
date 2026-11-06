@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Polo — Org Compare for Salesforce (coming soon) | Creedy Solutions</title>
-<meta name="description" content="Polo is a Chrome side panel that tells you whether a Salesforce component is identical, different, or missing in your other orgs — with change history, a pipeline matrix, and a watchlist. No login or connected app; compare any two orgs. Read-only. Your metadata never leaves your browser.">
+<meta name="description" content="Polo is a Chrome side panel that tells you whether a Salesforce component is the same, different or missing in another org, and maps every difference between two orgs on one timeline. No OAuth, no connected apps, no installed packages; compare any two orgs. Read-only. Your metadata never leaves your browser.">
 <meta property="og:title" content="Polo — Org Compare for Salesforce">
-<meta property="og:description" content="Click a component in Setup. See if it's the same, different, or missing in every other org you're logged into. Read-only, private, from Creedy Solutions.">
+<meta property="og:description" content="Click a component in Setup and see if it's the same, different or missing in another org. Or map every difference between two orgs at once. Read-only, private, from Creedy Solutions.">
 <meta property="og:url" content="https://creedysolutions.com/polo">
-<meta property="og:image" content="https://creedysolutions.com/assets/polo-compare.png">
+<meta property="og:image" content="https://creedysolutions.com/assets/polo-drift.jpg">
 <link rel="canonical" href="https://creedysolutions.com/polo">
 <link rel="icon" type="image/png" href="assets/polo-icon-128.png">
 <script type="application/ld+json">
@@ -19,7 +19,7 @@
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Chrome",
   "url": "https://creedysolutions.com/polo",
-  "description": "Cross-org Salesforce metadata compare in a Chrome side panel: verdicts per org, Tattle Trail change history, pipeline matrix, watchlist, and a 3D Explore view. Read-only; metadata never leaves the browser.",
+  "description": "Salesforce org compare in a Chrome side panel: same, different or missing for any component, an Org drift map of every difference between two orgs, recent changes by who made them, and a watchlist. Read-only; metadata never leaves the browser.",
   "author": { "@type": "Organization", "name": "Creedy Solutions LLC", "url": "https://creedysolutions.com" }
 }
 </script>
@@ -144,6 +144,10 @@
   footer a { color: var(--dim); }
   footer .right { margin-left: auto; }
 
+  .shot.wide { margin: 0 0 22px; }
+  .two.flip { grid-template-columns: 1fr 1.2fr; }
+  .depths .card h3 small { font-size: 12px; font-weight: 700; color: var(--dim); margin-left: 6px; }
+  @media (max-width: 760px) { .two.flip { grid-template-columns: 1fr; } }
   @media (max-width: 760px) { h1 { font-size: 34px; } .sub { font-size: 17px; } .two { grid-template-columns: 1fr; }
     .hero-shot { flex-basis: 100%; max-width: 420px; } }
 </style>
@@ -168,25 +172,26 @@
       <div class="copy">
         <div class="mark" aria-hidden="true"></div>
         <div class="kicker">Org Compare for Salesforce <span class="soon">Coming soon</span></div>
-        <h1>Polo <small>Same, different, or missing — in every org, at a glance.</small></h1>
+        <h1>Polo <small>Same, different or missing. Between any two orgs.</small></h1>
         <p class="sub">A Chrome side panel that lives next to Setup. Click a component and
-          Polo tells you whether it's <b>identical, different, or missing</b> in every
-          other org you're logged into — then shows you <b>who changed it, and when</b>.
-          No login, no connected app: <b>if you're signed into the org in Chrome, Polo
-          can see it.</b> Read-only, and your metadata never leaves your browser.</p>
+          Polo tells you whether it's <b>the same, different or missing</b> in the org you're
+          comparing against, what changed, and <b>who changed it</b>. Open the <b>Org drift</b>
+          map and you get every difference between the two orgs at once.
+          No OAuth, no connected apps, no new passkeys: <b>if you're signed into the org in
+          Chrome, Polo can see it.</b> Read-only, and your metadata never leaves your browser.</p>
         <div class="verdicts" aria-hidden="true">
-          <span class="v v-same">SAME</span><span class="v v-diff">DIFFERS — 3 CHANGES</span>
-          <span class="v v-miss">MISSING IN PROD</span><span class="v v-extra">ONLY IN UAT</span>
+          <span class="v v-same">SAME</span><span class="v v-diff">DIFFERENT · 3 CHANGES</span>
+          <span class="v v-miss">NOT IN PROD</span><span class="v v-extra">ONLY IN UAT</span>
         </div>
         <div class="cta-row">
           <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Polo%20early%20access">Tell me when it ships</a>
           <a class="btn ghost" href="#panel">See the side panel</a>
-          <a class="btn ghost" href="#explore">Explore in 3D</a>
+          <a class="btn ghost" href="#drift">See Org drift</a>
         </div>
       </div>
       <figure class="shot hero-shot">
-        <img src="assets/polo-compare.png" alt="Polo side panel: Deal_Stage__c compared across three orgs — verdict chips per org, DIFFERS with 3 changes spelled out as sentences" width="1040" height="1960">
-        <figcaption>The Compare tab: verdict first, changes as sentences, who touched it last.</figcaption>
+        <img src="assets/polo-panel.png" alt="Polo side panel: Deal_Stage__c compared between production and UAT. A glowing branch shows UAT changed it, with 3 changes spelled out as sentences and who changed it in each org" width="920" height="1960">
+        <figcaption>One component, one answer: verdict first, changes as sentences, who touched it last.</figcaption>
       </figure>
     </div>
   </div>
@@ -194,89 +199,157 @@
 
 <section id="panel">
   <div class="wrap">
-    <h2>The side panel is the product.</h2>
-    <p class="lead">Three tabs do the everyday work. Open Polo next to Setup and it follows
-      whatever you click — no copy-pasting API names, no second window.</p>
-    <div class="grid three">
-      <div class="card shotcard">
-        <figure><img src="assets/polo-compare.png" alt="Compare tab" width="1040" height="1960" loading="lazy"></figure>
-        <span class="tag t-acc">COMPARE</span>
-        <h3>Same, different, or missing — per org</h3>
-        <p>Focus a field, flow, class, rule, layout, or page and Polo compares it against
-          <b>every org you're logged into</b>. One chip per org; tap it for the detail. Every
-          change reads as a plain sentence — <i>“required: false → true”</i>, <i>“picklist
-          value missing in target — Negotiating”</i> — with a full diff one click away.
-          The <b>History</b> tab merges audit trail, flow versions, and Polo's own snapshots
-          into a who-changed-what timeline for both orgs.</p>
+    <h2>One component, one answer.</h2>
+    <p class="lead">Open Polo next to Setup and it follows whatever you click. No copy-pasting
+      API names, no second window, no two Setup tabs side by side and squinting.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="tag t-acc">VERDICT</span>
+        <h3>The line answers first</h3>
+        <p>A straight line means the two orgs match. A branch means one of them moved, and it
+          shows you which one and when. Every change reads as a plain sentence:
+          <i>“required: false → true”</i>, <i>“picklist value missing in target: Negotiating”</i>,
+          with the full diff one click away.</p>
       </div>
-      <div class="card shotcard">
-        <figure><img src="assets/polo-pipeline.png" alt="Pipeline tab" width="1040" height="1960" loading="lazy"></figure>
-        <span class="tag t-lav">PIPELINE</span>
-        <h3>Your whole release path in one grid</h3>
-        <p>Dev → UAT → Prod (or whatever your path is): components down, orgs across,
-          each cell <b>same / differs / missing / extra</b> against a baseline you choose.
-          Feed it your watchlist for a release check, or point it at an object for a
-          full inventory sweep — fields, rules, layouts, triggers, actions. Click a
-          cell to land in Compare with that org selected.</p>
+      <div class="card">
+        <span class="tag t-gold">WHO</span>
+        <h3>Who touched it last, in each org</h3>
+        <p>One line per org with the person and the date. <b>Full history</b> merges the Setup
+          Audit Trail and flow versions into one timeline for both orgs, live from Salesforce.</p>
       </div>
-      <div class="card shotcard">
-        <figure><img src="assets/polo-watch.png" alt="Watch tab" width="1040" height="1960" loading="lazy"></figure>
-        <span class="tag t-green">WATCH</span>
-        <h3>Pin what's in flight, know when it drifts</h3>
-        <p>Watch anything from Compare. Grouped by source org with a verdict badge per
-          row. <b>+ dependencies</b> pulls in everything a component needs (recursively).
-          <b>Re-check all</b> refreshes verdicts; turn on the daily re-check and Polo
-          badges its toolbar icon when something drifts. Export a <b>package.xml</b>
-          per org, a print-ready release report, or the whole list as JSON.</p>
+      <div class="card">
+        <span class="tag t-cyan">DEEPER</span>
+        <h3>Field access, permission sets, flow versions</h3>
+        <p><b>Field access</b> shows which profiles and permission sets can read or edit a field
+          in each org: the “works in sandbox, broken in prod” answer a metadata diff can't give.
+          Compare a permission set's access, scan a whole object, or diff two versions of a flow.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-green">HAND-OFF</span>
+        <h3>Something to attach to the ticket</h3>
+        <p><b>Copy for ticket</b> puts the facts on your clipboard for Jira, Slack or the PR:
+          what differs, where, who changed it last. <b>Report</b> opens a print-ready page of the
+          diff and history.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="alt" id="handoff">
+<section class="alt" id="drift">
   <div class="wrap">
-    <h2>From “it's different” to “here's the deploy.”</h2>
-    <p class="lead">Polo won't deploy for you — that's the point — but it hands you
-      everything the person who does will need.</p>
+    <h2>Org drift: every difference, on one line.</h2>
+    <p class="lead">Pick two orgs and Polo lists both, compares everything they share, and draws
+      the result. Everything that matches is one glowing line. Every component that drifted
+      branches off on the day it changed and runs to today: above the line if the target org
+      moved, below if the source did.</p>
+    <figure class="shot wide">
+      <img src="assets/polo-drift.jpg" alt="Polo's Org drift map between UAT and DEVA: one glowing line with a branch for each of 37 drifted components, labelled by name, with counts of changed, only-in and not-in components on each side" width="3200" height="1800" loading="lazy">
+      <figcaption>Sample data. Above the line, DEVA moved. Below, UAT did. Red never made it to the target.</figcaption>
+    </figure>
+    <div class="two flip">
+      <figure class="shot">
+        <img src="assets/polo-drift-card.jpg" alt="A drift card for Segment__c on Lead: changed in DEVA by Priya Nair after UAT last touched it, with four differences side by side: Required, Length, Picklist values and Help text" width="3200" height="1800" loading="lazy">
+        <figcaption>Click a branch and it opens: both orgs' values, side by side.</figcaption>
+      </figure>
+      <div class="copy">
+        <ul>
+          <li><b>Dive into any branch.</b> The card shows both orgs' values side by side, who
+            changed it in each org, and its history. Arrow keys step through the rest.</li>
+          <li><b>Together, by type or by object.</b> One line for everything, a line per metadata
+            type, or a line per object: everything that drifted on Quote, Opportunity, your
+            custom objects.</li>
+          <li><b>No noise you didn't ask for.</b> Managed packages and untouched sandbox copies
+            are skipped by default, one click brings them back.</li>
+          <li><b>Opens instantly the second time.</b> Scans are saved in your browser. Reopen the
+            map and Polo re-checks only what moved since. It even starts the scan in the
+            background when you open the side panel.</li>
+        </ul>
+      </div>
+    </div>
+    <figure class="shot wide" style="margin-top:34px">
+      <img src="assets/polo-orgpicker.png" alt="The org picker on the Org drift page: compare UAT against DEVA, QA or production, with production marked in red" width="2024" height="570" loading="lazy">
+      <figcaption>Change either org right on the map. Production is marked, so you always know which one you're looking at.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="depth">
+  <div class="wrap">
+    <h2>Quick, Full or Everything. You pick the depth.</h2>
+    <p class="lead">Real orgs have thousands of components. Speed matters,
+      and so does knowing what you're looking at. One switch decides how hard Polo looks.</p>
+    <div class="grid three depths">
+      <div class="card">
+        <span class="tag t-green">QUICK</span>
+        <h3>Seconds, not minutes</h3>
+        <p>A few bulk queries per type. Exact for Apex, Visualforce, Lightning components and
+          custom labels. It compares content, <b>never deploy dates</b>, so a pipeline that
+          re-deploys the same code doesn't light up the map. What Quick can't settle, it says
+          so instead of guessing.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-acc">FULL</span>
+        <h3>The whole story</h3>
+        <p>Reads every changed component's full definition: fields, flows, layouts, rules, pages
+          and the rest. Slower, and it's the one to run before a release.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-lav">EVERYTHING</span>
+        <h3>About 50 more types</h3>
+        <p>Full, plus what only the Metadata API can read: sharing rules, approval processes,
+          org settings, translations, Agentforce. It needs “Modify Metadata” on your user, so
+          it's opt-in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="changes">
+  <div class="wrap">
+    <h2>Recent changes: who changed what, and did it make it?</h2>
+    <p class="lead">Every component changed in an org since a date you pick, grouped by type or by
+      person, and checked live against the next org in your pipeline.</p>
+    <figure class="shot wide">
+      <img src="assets/polo-changes.jpg" alt="Polo's Recent changes page: 4 components changed in SIT since Oct 22 by 2 people, compared with DEVA, grouped by type, with an Export package.xml button" width="3200" height="1800" loading="lazy">
+      <figcaption>Sample data. Tick what's ready and export a package.xml for it.</figcaption>
+    </figure>
     <div class="grid three">
       <div class="card">
         <span class="tag t-acc">PACKAGE.XML</span>
-        <h3>A manifest per source org, one click</h3>
-        <p>Every watchlist group has a <b>package.xml ↓</b> button. Polo writes a
-          Metadata API manifest for exactly those components — fields as
-          <code>Object.Field__c</code>, layouts as <code>Object-Layout</code>, Apex and
-          flows bare — and shows you the retrieve command to run:</p>
-        <p><code>sf project retrieve start -x acme-package.xml -o acme</code></p>
-        <p>Types the Metadata API can't round-trip cleanly get a note instead of a
-          silent gap. Retrieve from source, deploy to target, with your normal tooling
-          and your normal approvals.</p>
+        <h3>A manifest, one click</h3>
+        <p>Tick the changes that are ready and Polo writes a Metadata API manifest for exactly
+          those components. Retrieve from source, deploy to target, with your normal tooling and
+          your normal approvals.</p>
       </div>
       <div class="card">
-        <span class="tag t-green">EXPORT / IMPORT</span>
+        <span class="tag t-green">WATCH</span>
+        <h3>Pin what's in flight</h3>
+        <p>Add anything to the watchlist and re-check it in one click. Turn on the daily
+          re-check and Polo badges its toolbar icon when something drifts. The map can show just
+          your watchlist, too.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-gold">FILES</span>
         <h3>Your watchlist is a file</h3>
-        <p><b>Export ↓</b> saves the whole watchlist — every component, its source and
-          target org, and the last verdict — as <code>polo-watchlist.json</code>.
-          <b>Import ↑</b> restores it on another machine, or hands it to a teammate:
-          same list, same org pairing, verdict badges intact, no re-check needed.
-          Imports merge, they don't overwrite.</p>
-        <p>Use it as the release manifest for a sprint, a shared checklist between
-          admin and dev, or just insurance against a fresh browser profile.</p>
+        <p><b>Export ↓</b> saves it as <code>polo-watchlist.json</code>, <b>Import ↑</b>
+          restores it on another machine or hands it to a teammate. <b>Release report ↗</b>
+          turns it into a print-ready go/no-go table, action-needed rows first.</p>
       </div>
-      <div class="card">
-        <span class="tag t-gold">REPORTS</span>
-        <h3>Something to attach to the ticket</h3>
-        <p><b>Release report ↗</b> turns the watchlist into a print-ready go/no-go
-          table, action-needed rows first. On any single compare, <b>Report</b> opens a
-          paper-style page of the diff and history, and <b>Copy for ticket</b> puts a
-          Markdown summary on your clipboard for Jira, Slack, or the PR description.</p>
-      </div>
+    </div>
+    <div class="types">
+      <span>Custom &amp; standard fields</span><span>Validation rules</span><span>Flows</span>
+      <span>Apex classes &amp; triggers</span><span>Page layouts</span><span>Lightning pages</span>
+      <span>Record types</span><span>Quick actions</span><span>Buttons &amp; links</span><span>Visualforce</span><span>LWC &amp; Aura</span>
+      <span>Email templates</span><span>Custom labels</span><span>Permission sets</span><span>Tabs, apps, list views</span>
+      <span>Workflow &amp; approvals</span><span>Sharing rules</span><span>Custom metadata</span><span>Static resources</span>
+      <span>Org settings</span><span>OmniStudio</span><span>Agentforce</span><span>…and more</span>
     </div>
   </div>
 </section>
 
 <section id="anyorgs">
   <div class="wrap">
-    <h2>No login. No connected app. Any two orgs.</h2>
+    <h2>No OAuth, no connected apps, no new passkeys. Any two orgs.</h2>
     <p class="lead">Polo rides on the Salesforce sessions you already have in Chrome. That
       turns out to matter more than it sounds.</p>
     <div class="grid three">
@@ -284,7 +357,7 @@
         <span class="tag t-cyan">SIGN IN LIKE ALWAYS</span>
         <h3>Nothing to install in the org</h3>
         <p>No connected app, no OAuth dance, no package, no API user to provision. Log into
-          Salesforce in Chrome the way you already do — every org you're signed into shows
+          Salesforce in Chrome the way you already do and every org you're signed into shows
           up in Polo's org picker.</p>
       </div>
       <div class="card">
@@ -292,101 +365,14 @@
         <h3>They don't have to be a sandbox and its prod</h3>
         <p>Polo matches components by <b>API name</b>, never by ID, so the two orgs don't
           need to be related at all. Two customers on different stacks, an old org and
-          the one replacing it, a client's prod against your reference org — if you can
+          the one replacing it, a client's prod against your reference org: if you can
           log into both, you can compare them.</p>
       </div>
       <div class="card">
         <span class="tag t-green">READ-ONLY, LOCAL</span>
         <h3>Look, don't touch</h3>
-        <p>Polo only ever reads. Metadata is fetched from your browser straight to your
-          orgs and stays there — no servers, no accounts, no telemetry.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="alt" id="features">
-  <div class="wrap">
-    <h2>The question it answers: “is this the same in prod?”</h2>
-    <p class="lead">Polo is for admins, architects, and release managers who are tired of
-      opening two Setup tabs side by side and squinting.</p>
-    <div class="grid">
-      <div class="card">
-        <span class="tag t-acc">COMPARE</span>
-        <h3>One click, every org</h3>
-        <p>Focus a field, flow, class, rule, layout, or page in Setup. Polo compares it
-          against <b>every org you're logged into</b> and shows a verdict chip per org —
-          tap one for the exact differences, in sentences, not raw XML.</p>
-      </div>
-      <div class="card">
-        <span class="tag t-gold">TATTLE TRAIL</span>
-        <h3>Who changed it, and where first</h3>
-        <p>Setup Audit Trail, flow versions, and Polo's own snapshots merged into one
-          history per org. It's <b>deployment-aware</b>: prod changing after sandbox is
-          normal; prod changing <i>on its own</i> is a red banner.</p>
-      </div>
-      <div class="card">
-        <span class="tag t-lav">PIPELINE</span>
-        <h3>The whole pipeline in one matrix</h3>
-        <p>Components × orgs versus a baseline: same, differs, missing, extra. Watchlist
-          scope for your release, or object scope for a full inventory sweep.</p>
-      </div>
-      <div class="card">
-        <span class="tag t-green">WATCHLIST</span>
-        <h3>Watch it, re-check it, ship it</h3>
-        <p>Pin what's in flight. One-click dependency scan pulls in everything it needs.
-          Daily re-check with a badge when something drifts. Export a <b>package.xml</b>
-          or a print-ready release report.</p>
-      </div>
-      <div class="card">
-        <span class="tag t-cyan">DEEPER</span>
-        <h3>Object scans, FLS, perm sets</h3>
-        <p>Scan a whole object across orgs. Diff one field's read/edit across every
-          profile and permission set. Compare a permission set's CRUD grid. Flow
-          version-to-version diff, even inside one org.</p>
-      </div>
-      <div class="card">
-        <span class="tag t-red">EXPLORE IN 3D</span>
-        <h3>Spin the disc, dive into time</h3>
-        <p>Every difference on a spinnable disc grouped by type. Click the front card
-          and it becomes the top of a <b>history deck</b> — scroll into the past until
-          you hit the version that <b>matches</b> your target org.</p>
-      </div>
-    </div>
-    <div class="types">
-      <span>Custom &amp; standard fields</span><span>Validation rules</span><span>Flows</span>
-      <span>Apex classes &amp; triggers</span><span>Page layouts</span><span>Lightning pages</span>
-      <span>Record types</span><span>Quick actions</span><span>Visualforce</span><span>LWC &amp; Aura</span>
-      <span>Email templates</span><span>Duplicate &amp; matching rules</span><span>Custom labels</span>
-      <span>Permission sets</span><span>Tabs, apps, list views</span><span>Named credentials</span><span>…and more</span>
-    </div>
-  </div>
-</section>
-
-<section id="explore">
-  <div class="wrap">
-    <h2>Explore in 3D</h2>
-    <p class="lead">When the list gets long, spin it. Every difference on one disc, grouped by type.</p>
-    <figure class="shot">
-      <img src="assets/polo-explore.png" alt="Polo's Explore in 3D view: a spinnable disc of every difference between two orgs, cards grouped and glowing by metadata type" width="1400" height="840" loading="lazy">
-      <figcaption>Every difference on one disc. Glow is the metadata type; gold and red edges are the verdict.</figcaption>
-    </figure>
-    <div class="two">
-      <figure class="shot">
-        <img src="assets/polo-topdown.png" alt="Polo's 3D disc viewed from directly above, showing every component's metadata type as a colored glow" width="1400" height="840">
-        <figcaption>Tilt to look straight down and the disc becomes a type map.</figcaption>
-      </figure>
-      <div class="copy">
-        <p>Text first, 3D second: names and verdicts are always readable, the space is
-          just how you move through them.</p>
-        <ul>
-          <li><b>Glow is the metadata type.</b> Look down on the disc and you see the
-            shape of your release — how much is fields, how much is Apex, how much is flow.</li>
-          <li><b>Edges are the verdict.</b> Gold differs, red missing — the missing pill pulses.</li>
-          <li><b>Filters are the key.</b> Toggle severity and type chips; the disc rebuilds.</li>
-          <li><b>Dive into history.</b> The front card is the top of a deck of snapshots.
-            Scroll and it slides away, revealing the past — the green one matches prod.</li>
-        </ul>
+        <p>Polo only ever reads. Metadata goes from your orgs straight to your browser and
+          stays there: no servers, no accounts, no telemetry.</p>
       </div>
     </div>
   </div>
@@ -398,11 +384,14 @@
     <div class="privacy-box">
       <h3>Polo never writes to an org, and your metadata never leaves your browser.</h3>
       <ul>
-        <li><b>No deploys, ever.</b> Polo emits a <code>package.xml</code> and a ready-to-run
-          <code>sf</code> command — <i>you</i> run the retrieve or deploy. Polo's own network
-          layer is hard-wired to GET.</li>
+        <li><b>No deploys, ever.</b> Polo writes a <code>package.xml</code>, <i>you</i> run the
+          retrieve or deploy. Its network layer is hard-wired to read. The one exception is the
+          Metadata API's list and read calls, which Salesforce only offers as POST requests;
+          Polo can't send any other kind.</li>
         <li><b>No servers, no accounts.</b> The only calls are from your browser to your own
           orgs' APIs, using the sessions you already have.</li>
+        <li><b>No secrets in your clipboard.</b> Connected app keys and secrets are dropped
+          before anything is saved, compared or copied.</li>
         <li><b>No telemetry.</b> We don't know when you install it, open it, or what orgs you point it at.</li>
         <li><b>Nothing installed in your org.</b> No connected app, no OAuth, no package.</li>
       </ul>
@@ -414,8 +403,8 @@
 <section class="contact" id="contact">
   <div class="wrap">
     <h2>Polo is coming soon.</h2>
-    <p class="lead">Chrome Web Store listing is on the way. Want in early, or a heads-up
-      when it lands? A short email is enough — how many orgs, what your release process
+    <p class="lead">The Chrome Web Store listing is on the way. Want in early, or a heads-up
+      when it lands? A short email is enough: how many orgs, what your release process
       looks like, and what you'd want to see side by side first.</p>
     <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Polo%20early%20access">chris@creedysolutions.com</a>
   </div>
