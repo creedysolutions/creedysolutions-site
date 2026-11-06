@@ -7,7 +7,7 @@
 <language>en-us</language>
 <copyright>© 2026 Creedy Solutions LLC</copyright>
 <atom:link href="https://creedysolutions.com/podcast.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Thu, 29 Oct 2026 15:55:27 +0000</lastBuildDate>
+<lastBuildDate>Sat, 31 Oct 2026 15:29:47 +0000</lastBuildDate>
 <itunes:author>Chris Reedy</itunes:author>
 <itunes:owner><itunes:name>Chris Reedy</itunes:name><itunes:email>chris@creedysolutions.com</itunes:email></itunes:owner>
 <itunes:image href="https://creedysolutions.com/assets/shop-talk-art.png"/>
@@ -91,6 +91,25 @@ Chartless: https://chartless.creedysolutions.com</description>
   <itunes:explicit>false</itunes:explicit>
   <itunes:image href="https://creedysolutions.com/assets/shop-talk-ep04.jpg"/>
   <itunes:summary>The lesson ends and the paper doesn&#x27;t make any sound. Build the progression in the lesson, loop it over a pad, send it home on the phone. One chart for nine instruments, Nashville numbers for beginners, chords from the YouTube lesson, PDFs for the folder, and no account or ads on a kid&#x27;s phone.</itunes:summary>
+</item>
+<item>
+  <title>5. Done tapping: DrumClock for the guitar player with a delay pedal and no click</title>
+  <link>https://creedysolutions.com/shop-talk/ep05</link>
+  <guid isPermaLink="false">creedysolutions-shop-talk-ep05</guid>
+  <pubDate>Thu, 05 Nov 2026 09:00:00 -0600</pubDate>
+  <description>Chris has stomped a tap tempo button between parts for twenty years. Now the iPad sits on his music stand where he can watch the ring lock, a mic on a boom by the kick runs into a Scarlett, and the Scarlett&#x27;s MIDI out runs into his pedals, so the delay lands on the drummer&#x27;s time from the first downbeat. Count-off, the plus or minus eight BPM anchor, set lists on a foot switch, what it gets wrong, and what it costs.
+
+0:00 Shop Talk · 0:35 Why would a guitar player care · 1:36 The thing on the stand · 3:11 What the pedals do with it · 4:10 Keeping it honest · 5:13 What it gets wrong · 5:41 Price and where · 6:05 Last word
+
+Transcript and chapters: https://creedysolutions.com/shop-talk/ep05
+DrumClock: https://creedysolutions.com/drumclock</description>
+  <enclosure url="https://creedysolutions.com/media/shop-talk-ep05.mp3" length="8075015" type="audio/mpeg"/>
+  <itunes:duration>403</itunes:duration>
+  <itunes:episode>5</itunes:episode>
+  <itunes:episodeType>full</itunes:episodeType>
+  <itunes:explicit>false</itunes:explicit>
+  <itunes:image href="https://creedysolutions.com/assets/shop-talk-ep05.jpg"/>
+  <itunes:summary>Chris has stomped a tap tempo button between parts for twenty years. Now the iPad sits on his music stand where he can watch the ring lock, a mic on a boom by the kick runs into a Scarlett, and the Scarlett&#x27;s MIDI out runs into his pedals, so the delay lands on the drummer&#x27;s time from the first downbeat. Count-off, the plus or minus eight BPM anchor, set lists on a foot switch, what it gets wrong, and what it costs.</itunes:summary>
 </item>
 </channel>
 </rss>
