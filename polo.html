@@ -158,6 +158,9 @@
   .buy-note { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); }
   .two.flip { grid-template-columns: 1fr 1.2fr; }
   .depths .card h3 small { font-size: 12px; font-weight: 700; color: var(--dim); margin-left: 6px; }
+  .reels { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .reels video { width: 100%; aspect-ratio: 9/16; border-radius: 14px; border: 1px solid var(--line); background: #000; display: block; }
+  .reels p { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
   @media (max-width: 760px) { .two.flip { grid-template-columns: 1fr; } }
   @media (max-width: 760px) { h1 { font-size: 34px; } .sub { font-size: 17px; } .two { grid-template-columns: 1fr; }
     .hero-shot { flex-basis: 100%; max-width: 420px; } }
@@ -209,6 +212,22 @@
     </div>
   </div>
 </header>
+
+<section id="watch">
+  <div class="wrap">
+    <h2>Polo in 60 seconds.</h2>
+    <p class="lead">Six short looks, each under half a minute. Tap one to play.</p>
+    <!-- Full walkthrough goes here once it's on YouTube (remix to the D-major music first): copy the #watch iframe block from magellan.html. -->
+    <div class="reels">
+      <div><video controls preload="none" playsinline poster="/media/polo-reel-p1.jpg" src="/media/polo-reel-p1.mp4"></video><p>Is it the same in prod?</p></div>
+      <div><video controls preload="none" playsinline poster="/media/polo-reel-p2.jpg" src="/media/polo-reel-p2.mp4"></video><p>The Org drift map</p></div>
+      <div><video controls preload="none" playsinline poster="/media/polo-reel-p3.jpg" src="/media/polo-reel-p3.mp4"></video><p>Dive into any branch</p></div>
+      <div><video controls preload="none" playsinline poster="/media/polo-reel-p4.jpg" src="/media/polo-reel-p4.mp4"></video><p>Quick, Full or Everything</p></div>
+      <div><video controls preload="none" playsinline poster="/media/polo-reel-p5.jpg" src="/media/polo-reel-p5.mp4"></video><p>Recent changes to package.xml</p></div>
+      <div><video controls preload="none" playsinline poster="/media/polo-reel-p6.jpg" src="/media/polo-reel-p6.mp4"></video><p>Watchlist to release report</p></div>
+    </div>
+  </div>
+</section>
 
 <section id="panel">
   <div class="wrap">

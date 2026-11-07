@@ -151,6 +151,10 @@
   footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
   footer a { color: var(--dim); }
   footer .right { margin-left: auto; }
+  .reels { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 220px)); justify-content: center; gap: 14px; max-width: 880px; margin: 34px auto 0; }
+  .reels video { width: 100%; aspect-ratio: 9/16; border-radius: 14px; border: 1px solid var(--line); background: #000; display: block; }
+  .reels p { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
+  .reels-h { max-width: 880px; margin: 40px auto 0; font-size: 20px; }
 
   @media (max-width: 760px) { h1 { font-size: 34px; } .sub { font-size: 17px; } .two { grid-template-columns: 1fr; }
     .hero-shot { flex-basis: 100%; max-width: 420px; } }
@@ -206,6 +210,12 @@
   <div class="wrap">
     <h2>Watch Magellan work.</h2>
     <div style="aspect-ratio:16/9;margin:22px auto 0;max-width:880px"><iframe style="width:100%;height:100%;border:0;border-radius:14px" src="https://www.youtube.com/embed/0Lox1lNx4bo" title="Magellan: the walkthrough" allowfullscreen loading="lazy"></iframe></div>
+    <h3 class="reels-h">Magellan in 60 seconds</h3>
+    <div class="reels" style="margin-top:14px">
+      <div><video controls preload="none" playsinline poster="/media/magellan-reel-findings.jpg" src="/media/magellan-reel-findings.mp4"></video><p>Findings ranked, critical first</p></div>
+      <div><video controls preload="none" playsinline poster="/media/magellan-reel-not-just-apex.jpg" src="/media/magellan-reel-not-just-apex.mp4"></video><p>Not just Apex: Flows, LWCs, triggers</p></div>
+      <div><video controls preload="none" playsinline poster="/media/magellan-reel-failing-in-prod.jpg" src="/media/magellan-reel-failing-in-prod.mp4"></video><p>Risky and failing in production</p></div>
+    </div>
   </div>
 </section>
 
