@@ -8,7 +8,7 @@
 <meta property="og:title" content="Steps — Document My Clicks for Salesforce">
 <meta property="og:description" content="Click through a task in Salesforce once and get a step-by-step guide with screenshots. Field values masked by default. No account, no cloud, from Creedy Solutions.">
 <meta property="og:url" content="https://creedysolutions.com/steps">
-<meta property="og:image" content="https://creedysolutions.com/assets/og-image.png">
+<meta property="og:image" content="https://creedysolutions.com/assets/steps-og.png">
 <link rel="canonical" href="https://creedysolutions.com/steps">
 <link rel="icon" type="image/png" href="assets/steps-icon-128.png">
 <script type="application/ld+json">
@@ -81,6 +81,13 @@
   .shotcard h3, .shotcard p { padding: 0 22px; }
   .shotcard p { padding-bottom: 22px; }
   .shotcard p i { color: var(--ink); font-style: italic; }
+  .shotcard figure a { display: block; }
+  .trailer { margin: 0 auto; max-width: 880px; }
+  .trailer video { display: block; width: 100%; height: auto; aspect-ratio: 16/9; border-radius: 16px; border: 1px solid var(--line);
+    background: #000; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+  .trailer p { font-size: 13px; color: var(--dim); margin-top: 10px; text-align: center; }
+  #record figure.shot { margin: 0 0 34px; }
+  #record figure.shot.after { margin: 34px auto 0; max-width: 760px; }
   .kicker .soon { font-size: 10px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
     background: rgba(123,227,163,.12); border-radius: 5px; padding: 3px 8px; margin-left: 10px; vertical-align: 2px; }
   .verdicts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
@@ -188,21 +195,41 @@
         </div>
         <div class="cta-row">
           <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Steps%20early%20access">Tell me when it ships</a>
+          <a class="btn ghost" href="#watch">Watch the trailer</a>
           <a class="btn ghost" href="#record">See how it records</a>
           <a class="btn ghost" href="#editor">See the page editor</a>
           <a class="btn ghost" href="#pricing">Pricing</a>
         </div>
         <div class="install-note">Coming soon to the Chrome Web Store. Free to record and export. PRO will be $19 once.</div>
       </div>
+      <figure class="shot hero-shot">
+        <img src="assets/steps-panel.webp" alt="The Steps side panel while recording: step 1, Open the account and click Edit, with its picture and field values covered by striped masks; step 2, Click Phone and type the new number" width="720" height="1280">
+        <figcaption>The side panel while you record: each click lands as a numbered step with its picture.</figcaption>
+      </figure>
     </div>
   </div>
 </header>
+
+<section class="alt" id="watch">
+  <div class="wrap">
+    <h2>Steps in 39 seconds.</h2>
+    <p class="lead">One click-through, start to finished guide.</p>
+    <div class="trailer">
+      <video controls preload="none" playsinline poster="/media/steps-trailer-16x9.jpg" src="/media/steps-trailer-16x9.mp4" width="1920" height="1080" aria-label="Steps trailer: every click becomes a step"></video>
+      <p>On a phone? <a href="/media/steps-trailer-9x16.mp4">Watch the vertical cut</a>.</p>
+    </div>
+  </div>
+</section>
 
 <section id="record">
   <div class="wrap">
     <h2>Click through it once.</h2>
     <p class="lead">Open Steps next to Salesforce, press record, and do the task the way you
       always do. The guide writes itself while you click.</p>
+    <figure class="shot">
+      <img src="assets/steps-recording.webp" alt="A sample account record page with the Steps side panel beside it, recording: step 1, Open the account and click Edit, already has its picture" width="2040" height="1148" loading="lazy">
+      <figcaption>A sample record page with Steps recording beside it. The names and values are invented.</figcaption>
+    </figure>
     <div class="grid three">
       <div class="card">
         <span class="tag t-acc">EVERY CLICK, NUMBERED</span>
@@ -225,6 +252,10 @@
           masks wherever you want more covered.</p>
       </div>
     </div>
+    <figure class="shot after">
+      <img src="assets/steps-masked-step.webp" alt="One step's picture as an export carries it: every field value covered by a striped mask, and a ring marking the Edit button that was clicked" width="1600" height="1280" loading="lazy">
+      <figcaption>One step's picture, as the export carries it: field values covered, the click marked.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -234,19 +265,22 @@
     <p class="lead">Lay the steps out on pages, draw on the pictures, and export the format
       the reader wants.</p>
     <div class="grid three">
-      <div class="card">
+      <div class="card shotcard">
+        <figure><a href="assets/steps-editor-pages.webp"><img src="assets/steps-editor-pages.webp" alt="The page editor with four steps arranged on one slide and the 1, 2 and 4 steps layouts beside it" width="1740" height="876" loading="lazy"></a></figure>
         <span class="tag t-lav">PAGES</span>
         <h3>1, 2 or 4 steps per page</h3>
         <p>Arrange steps on pages sized as a <b>slide</b>, <b>Letter</b> or <b>A4</b>, with
           1, 2 or 4 steps on each.</p>
       </div>
-      <div class="card">
+      <div class="card shotcard">
+        <figure><a href="assets/steps-editor-draw.webp"><img src="assets/steps-editor-draw.webp" alt="The page editor with a highlighter stroke and a pen arrow drawn on a step, and the tools dock below" width="1740" height="876" loading="lazy"></a></figure>
         <span class="tag t-cyan">DRAWING TOOLS</span>
         <h3>Highlighter, pen and eraser</h3>
         <p>Point at the thing that matters with a highlighter or a pen, rub it out with the
           eraser, and add your own masks. Undo when you change your mind.</p>
       </div>
-      <div class="card">
+      <div class="card shotcard">
+        <figure><a href="assets/steps-editor-export.webp"><img src="assets/steps-editor-export.webp" alt="The export sheet: PowerPoint, PDF, HTML and Markdown, with a preview of the slides" width="1740" height="876" loading="lazy"></a></figure>
         <span class="tag t-gold">EXPORTS</span>
         <h3>PowerPoint, PDF, HTML and Markdown</h3>
         <p>HTML and Markdown are in the free version. PRO adds PowerPoint and PDF, laid out
