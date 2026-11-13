@@ -7,7 +7,7 @@
 <language>en-us</language>
 <copyright>© 2026 Creedy Solutions LLC</copyright>
 <atom:link href="https://creedysolutions.com/podcast.xml" rel="self" type="application/rss+xml"/>
-<lastBuildDate>Sat, 31 Oct 2026 15:29:47 +0000</lastBuildDate>
+<lastBuildDate>Fri, 13 Nov 2026 21:05:35 +0000</lastBuildDate>
 <itunes:author>Chris Reedy</itunes:author>
 <itunes:owner><itunes:name>Chris Reedy</itunes:name><itunes:email>chris@creedysolutions.com</itunes:email></itunes:owner>
 <itunes:image href="https://creedysolutions.com/assets/shop-talk-art.png"/>
@@ -42,12 +42,12 @@ DrumClock: https://creedysolutions.com/drumclock</description>
   <pubDate>Thu, 29 Oct 2026 09:30:00 -0500</pubDate>
   <description>The set lands Thursday night, two songs you&#x27;ve never played, one chart in the wrong key. Chartless listens to the actual recording, in a browser tab or through the mic, and shows the chords live, in key, on the beat, then reads the whole song into bars. Chris answers the skeptic questions: why chord apps are a little wrong and how Simple mode fixes that for worship and folk, why there is no AI in the app, the other four tabs, why a guitar with every needle dead center still sounds sour and what Magical tuning does about it, where it runs, and who it is not for.
 
-0:00 Shop Talk · 1:02 Setlist dropped Thursday · 1:30 Live chords · 2:17 Simple mode · 3:11 Why no AI · 3:39 The other four tabs · 4:00 Magical tuning · 5:08 Where it runs · 5:41 Price · 5:54 No song left behind
+0:00 Shop Talk · 1:02 Setlist dropped Thursday · 1:30 Live chords · 2:17 Simple mode · 3:11 Why no AI · 3:39 The other four tabs · 4:00 Magical tuning · 4:58 Where it runs · 5:31 Price · 5:44 No song left behind
 
 Transcript and chapters: https://creedysolutions.com/shop-talk/ep02
 Chartless: https://chartless.creedysolutions.com</description>
-  <enclosure url="https://creedysolutions.com/media/shop-talk-ep02.mp3" length="7714003" type="audio/mpeg"/>
-  <itunes:duration>385</itunes:duration>
+  <enclosure url="https://creedysolutions.com/media/shop-talk-ep02.mp3" length="7510770" type="audio/mpeg"/>
+  <itunes:duration>375</itunes:duration>
   <itunes:episode>2</itunes:episode>
   <itunes:episodeType>full</itunes:episodeType>
   <itunes:explicit>false</itunes:explicit>
@@ -65,8 +65,8 @@ Chartless: https://chartless.creedysolutions.com</description>
 
 Transcript and chapters: https://creedysolutions.com/shop-talk/ep03
 Chartless: https://chartless.creedysolutions.com</description>
-  <enclosure url="https://creedysolutions.com/media/shop-talk-ep03.mp3" length="8525366" type="audio/mpeg"/>
-  <itunes:duration>426</itunes:duration>
+  <enclosure url="https://creedysolutions.com/media/shop-talk-ep03.mp3" length="8517529" type="audio/mpeg"/>
+  <itunes:duration>425</itunes:duration>
   <itunes:episode>3</itunes:episode>
   <itunes:episodeType>full</itunes:episodeType>
   <itunes:explicit>false</itunes:explicit>
