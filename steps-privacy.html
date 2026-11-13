@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Steps — Document My Clicks for Salesforce</title>
+<meta name="description" content="Steps collects no personal data and transmits nothing about your Salesforce org, pages or pictures anywhere. Recording, masking and exporting all happen in your browser. No account, no cloud, no Salesforce API calls.">
+<link rel="canonical" href="https://creedysolutions.com/steps-privacy">
+<link rel="icon" type="image/png" href="assets/steps-icon-128.png">
+<style>
+  :root { --bg: #05060e; --panel: #10142a; --line: #232946; --ink: #e8ebf5;
+    --ink-soft: #9aa4bd; --dim: #6b7590; --accent-2: #8b7bff; --green: #7be3a3; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+  .back { font-size: 14px; }
+  h1 { font-size: 34px; font-weight: 800; letter-spacing: -.5px; margin: 18px 0 4px; }
+  .meta { color: var(--dim); font-size: 14px; margin-bottom: 30px; }
+  .short { background: var(--panel); border: 1px solid #2c5a3f; border-radius: 14px;
+    padding: 22px 26px; margin: 26px 0 8px; }
+  .short b { color: var(--green); }
+  h2 { font-size: 21px; font-weight: 700; margin: 38px 0 10px; }
+  p, li { color: var(--ink-soft); }
+  p b, li b { color: var(--ink); }
+  ul, ol { padding-left: 22px; margin: 10px 0; }
+  li { margin: 7px 0; }
+  code { background: var(--panel); border: 1px solid var(--line); border-radius: 5px;
+    padding: 1px 6px; font-size: 14px; color: var(--ink); }
+</style>
+<link rel="alternate" type="application/rss+xml" title="Creedy Solutions: DrumClock guides" href="/feed.xml">
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/steps">← Steps</a>
+  <h1>Privacy Policy</h1>
+  <div class="meta"><b>Steps — Document My Clicks for Salesforce</b> · Effective date: November 2026 ·
+    Contact: <a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></div>
+
+  <p>Steps is a Google Chrome extension from CREEDY SOLUTIONS, LLC that helps Salesforce
+  administrators, trainers, and developers document a task: you click through it once and
+  Steps records each click as a numbered step with a picture before the click and a picture
+  of the result, which you can arrange, mark up, and export as a guide.</p>
+
+  <div class="short"><b>Short version:</b> Steps does not collect any personal data.
+  Steps does not transmit anything about your Salesforce org, the pages you record, or the
+  pictures it takes to any server operated by us, or to any third party. Recording, masking,
+  editing, and exporting all happen inside your browser. Steps makes no Salesforce API
+  calls and installs nothing in your org.
+  The only server Steps ever contacts is our license server, and only if you activate a
+  PRO key. The free version never contacts any server.
+  Pictures live in the extension's memory until you export them, and are gone when the
+  panel closes.</div>
+
+  <h2>What Steps reads, and from where</h2>
+  <ul>
+    <li><b>The Salesforce page you are recording</b> — while you record, Steps looks at the
+      page in your tab to see what you clicked (so it can write the caption from that
+      element's label, such as "Click Save" or "Open Stage") and to find field values (so it
+      can cover them in the pictures). This happens in the page, in your browser.</li>
+    <li><b>Pictures of the tab</b> — a picture before each click and a picture of the
+      result, taken with Chrome's own screenshot function. Field values are covered in
+      every picture by default, so record data does not end up in what you export.</li>
+  </ul>
+  <p>Steps does not read your Salesforce session cookies, and it does not call the
+  Salesforce REST, Tooling, or Metadata APIs. It never queries your org.</p>
+
+  <h2>Where the work happens</h2>
+  <p><b>In your browser, and only there.</b> Recording, captions, masks, the page editor,
+  the drawing tools, and every export (HTML, Markdown, PowerPoint, PDF) are client-side
+  code bundled with the extension. There is no account and no cloud service behind
+  Steps.</p>
+
+  <h2>What Steps can change in your org</h2>
+  <p><b>Nothing.</b> Steps watches the clicks you make yourself. It does not click,
+  type, save, or submit anything on your behalf, and it has no code path that writes to any
+  org, sandbox or production.</p>
+
+  <h2>What Steps stores, and where</h2>
+  <ul>
+    <li><b>The extension's memory (in your browser)</b> — the steps and pictures of the
+      recording you are working on. They are held in memory only, until you export them,
+      and are gone when the panel closes.</li>
+    <li><b><code>chrome.storage.local</code> (in your browser)</b> — your settings, and,
+      if you use PRO, the license key, install identifier and signed license token.
+      Nothing else. No steps and no pictures are stored here.</li>
+  </ul>
+  <p>Nothing Steps writes leaves your device. Exports (HTML, Markdown, PowerPoint, PDF)
+  are files handed to <b>you</b>, saved wherever you choose.</p>
+
+  <h2>What Steps does NOT do</h2>
+  <ul>
+    <li>Steps has <b>no user accounts</b>. You never create an account with us and
+      never provide us with a username or password. Nothing is installed in your
+      Salesforce org — no connected app, no OAuth, no package.</li>
+    <li>Steps has <b>no analytics, telemetry, or tracking</b>. We do not know when you
+      install, open, or use the extension, which orgs you use it with, or what you
+      record, and we do not want to. (The license server sees a PRO activation,
+      as described below. It never learns which org you use or what you recorded.)</li>
+    <li>Steps has <b>no advertising</b>. We do not sell or transfer data to third
+      parties.</li>
+    <li>Steps does <b>not fetch or execute remote code</b>. All JavaScript ships with
+      the extension and is reviewed by the Chrome Web Store.</li>
+  </ul>
+
+  <h2>Third-party services</h2>
+  <p>Steps makes network requests to one destination, and no others:</p>
+  <ol>
+    <li><b>Our license server</b> (<code>license.creedysolutions.com</code>), only when you
+      activate a PRO license key, or when an activated key renews
+      (about once a day while you're online). The request carries the license key you
+      typed, a random install identifier that Steps generated
+      locally (it is not derived from your machine, browser profile, or any Salesforce
+      org), and the product name. If you never enter a key, Steps makes
+      no network request at all. No Salesforce data, cookies, org IDs, pages, captions, or
+      pictures are ever sent to the license server.</li>
+  </ol>
+  <p>Payment itself is handled entirely by our merchant of record (Lemon Squeezy) on
+  their own pages. Steps never sees your payment details.</p>
+
+  <h2>Chrome permission usage</h2>
+  <ul>
+    <li><code>sidePanel</code> — draws Steps' recorder and editor as a side panel.</li>
+    <li><code>storage</code> — stores your settings locally, and, if you use PRO, the
+      license key, install identifier and signed license token on this browser. Settings
+      and the license only.</li>
+    <li><code>activeTab</code> — lets Steps take the screenshot of the tab you are on
+      after you click its toolbar button.</li>
+    <li><code>contextMenus</code> — adds "Record this tab with Steps" to the right-click
+      menu on Salesforce pages.</li>
+    <li><b>Host permissions</b> — <code>*.salesforce.com</code>,
+      <code>*.force.com</code>, <code>*.salesforce-setup.com</code> — access to Salesforce
+      pages, to see what was clicked and to cover field values.</li>
+    <li><b>Optional: all sites</b> — requested only if you turn on <b>"Keep recording
+      across Salesforce pages and tabs"</b>. Chrome allows an extension to take a
+      screenshot without a click on its toolbar button only when it holds this
+      permission. Even then, Steps records Salesforce pages only. If you never turn the
+      setting on, Steps never asks for it.</li>
+  </ul>
+
+  <h2>Trademarks</h2>
+  <p>Salesforce is a trademark of Salesforce, Inc. Steps is an independent product and is
+  not affiliated with, endorsed by, or sponsored by Salesforce, Inc.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy materially changes, we will update the effective date at the top and
+  note the change in the Steps release notes.</p>
+
+  <h2>Contact</h2>
+  <p>Questions: <a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></p>
+</div>
+</body>
+</html>

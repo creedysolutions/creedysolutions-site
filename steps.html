@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steps — Document My Clicks for Salesforce (coming soon) | Creedy Solutions</title>
+<meta name="description" content="Steps is a Chrome side panel that turns a click-through in Salesforce into a step-by-step guide with screenshots. Each click becomes a numbered step with a picture before and after. Field values are masked by default. Export HTML, Markdown, PowerPoint or PDF. Nothing leaves your browser.">
+<meta property="og:title" content="Steps — Document My Clicks for Salesforce">
+<meta property="og:description" content="Click through a task in Salesforce once and get a step-by-step guide with screenshots. Field values masked by default. No account, no cloud, from Creedy Solutions.">
+<meta property="og:url" content="https://creedysolutions.com/steps">
+<meta property="og:image" content="https://creedysolutions.com/assets/og-image.png">
+<link rel="canonical" href="https://creedysolutions.com/steps">
+<link rel="icon" type="image/png" href="assets/steps-icon-128.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Steps — Document My Clicks for Salesforce",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Chrome",
+  "url": "https://creedysolutions.com/steps",
+  "description": "A Chrome side panel that records each click in Salesforce as a numbered step with a picture before the click and a picture of the result. Field values are masked by default. Exports HTML, Markdown, PowerPoint and PDF. Nothing leaves the browser.",
+  "author": { "@type": "Organization", "name": "Creedy Solutions LLC", "url": "https://creedysolutions.com" }
+}
+</script>
+<style>
+  :root {
+    --bg: #05060e; --bg2: #0a0d1c; --panel: #10142a; --line: #232946;
+    --ink: #e8ebf5; --ink-soft: #9aa4bd; --dim: #6b7590;
+    --accent: #6d5ef2; --accent-2: #8b7bff; --brand: #4338ca;
+    --green: #7be3a3; --gold: #f0b95c; --cyan: #79d2e6; --lav: #a99df7; --red: #ff8a80; --neon: #1ef0ff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+
+  nav { display: flex; align-items: center; gap: 22px; padding: 20px 0; flex-wrap: wrap; }
+  .logo { font-weight: 800; font-size: 17px; letter-spacing: -.3px; color: var(--ink); }
+  .logo b { color: var(--accent-2); }
+  nav .links { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px 20px;
+    font-size: 14px; font-weight: 600; }
+  nav .links a { color: var(--ink-soft); white-space: nowrap; }
+  @media (max-width: 760px) {
+    nav { gap: 12px; padding: 16px 0; }
+    nav .links { margin-left: 0; flex-basis: 100%; }
+  }
+  nav .links a:hover { color: var(--ink); text-decoration: none; }
+  nav .links .soon { font-size: 9px; font-weight: 800; letter-spacing: .5px;
+    text-transform: uppercase; color: var(--green); background: rgba(123,227,163,.12);
+    border-radius: 4px; padding: 2px 5px; vertical-align: 2px; }
+
+  header { background: radial-gradient(85% 130% at 75% 10%, #121736 0%, var(--bg2) 55%, var(--bg) 100%); }
+  .hero { padding: 64px 0 40px; display: flex; gap: 34px; align-items: center; flex-wrap: wrap; }
+  .hero .copy { flex: 1; min-width: 300px; }
+  .kicker { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-2); }
+  h1 { font-size: 46px; font-weight: 800; letter-spacing: -1px; line-height: 1.12; margin: 14px 0 18px; }
+  h1 small { display: block; font-size: 22px; font-weight: 700; color: var(--ink-soft); letter-spacing: -.3px; margin-top: 4px; }
+  .sub { font-size: 19px; color: var(--ink-soft); max-width: 640px; }
+  .sub b { color: var(--ink); }
+  .cta-row { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { display: inline-block; border-radius: 10px; padding: 13px 22px; font-weight: 700; font-size: 15px; }
+  .btn.primary { background: var(--accent); color: #fff; box-shadow: 0 0 34px rgba(109,94,242,.35); }
+  .btn.primary:hover { background: var(--accent-2); text-decoration: none; }
+  .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent-2); text-decoration: none; }
+  /* Steps mark: the extension icon on the brand tile (sibling of Marco/Polo/Magellan). Placeholder until the final icon lands. */
+  .mark { width: 58px; height: 58px; border-radius: 15px; background: var(--brand);
+    position: relative; flex: none; box-shadow: 0 0 40px rgba(109,94,242,.35); margin-bottom: 18px;
+    background-image: url(assets/steps-icon-128.png); background-size: cover; }
+  .hero-shot { flex: 0 0 300px; max-width: 300px; margin: 0; }
+  .grid.three { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .shotcard { padding: 0; overflow: hidden; }
+  .shotcard figure { margin: 0; border-bottom: 1px solid var(--line); background: #0a0c16;
+    max-height: 300px; overflow: hidden; }
+  .shotcard figure img { display: block; width: 100%; height: auto; }
+  .shotcard .tag { margin: 18px 22px 0; }
+  .shotcard h3, .shotcard p { padding: 0 22px; }
+  .shotcard p { padding-bottom: 22px; }
+  .shotcard p i { color: var(--ink); font-style: italic; }
+  .kicker .soon { font-size: 10px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--green);
+    background: rgba(123,227,163,.12); border-radius: 5px; padding: 3px 8px; margin-left: 10px; vertical-align: 2px; }
+  .verdicts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+  .v { font-size: 12px; font-weight: 800; letter-spacing: .5px; border-radius: 999px; padding: 5px 12px; }
+  .v-step { background: rgba(109,94,242,.16); color: var(--accent-2); }
+  .v-mask { background: rgba(123,227,163,.12); color: var(--green); }
+  .legal { margin-top: 18px; font-size: 13px; color: var(--dim); }
+
+  figure.shot { margin: 0 0 56px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+    background: var(--panel); box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+  figure.shot img { display: block; width: 100%; height: auto; }
+  figure.shot figcaption { font-size: 13px; color: var(--dim); padding: 10px 16px; border-top: 1px solid var(--line); }
+
+  section { padding: 64px 0; }
+  section.alt { background: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  h2 { font-size: 30px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .lead { color: var(--ink-soft); max-width: 640px; margin-bottom: 34px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .card p { font-size: 14.5px; color: var(--ink-soft); }
+  .card p b { color: var(--ink); }
+  .card code { font: 12.5px/1.5 ui-monospace, Menlo, monospace; color: var(--ink);
+    background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; }
+  .card p + p { margin-top: 10px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .5px;
+    border-radius: 5px; padding: 2px 8px; margin-bottom: 12px; }
+  .t-gold { background: rgba(240,185,92,.12); color: var(--gold); }
+  .t-lav { background: rgba(169,157,247,.14); color: var(--lav); }
+  .t-acc { background: rgba(109,94,242,.16); color: var(--accent-2); }
+  .t-green { background: rgba(123,227,163,.12); color: var(--green); }
+  .t-cyan { background: rgba(121,210,230,.12); color: var(--cyan); }
+  .t-red { background: rgba(255,138,128,.14); color: var(--red); }
+
+  .two { display: grid; grid-template-columns: 1.2fr 1fr; gap: 34px; align-items: center; }
+  .two figure.shot { margin: 0; }
+  .two .copy p { color: var(--ink-soft); margin-bottom: 12px; }
+  .two .copy p b { color: var(--ink); }
+  .two ul { color: var(--ink-soft); padding-left: 18px; }
+  .two li { margin-bottom: 8px; }
+  .two li b { color: var(--ink); }
+
+  .privacy-box { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 28px 30px; max-width: 760px; }
+  .privacy-box h3 { font-size: 19px; font-weight: 800; margin-bottom: 12px; }
+  .privacy-box ul { padding-left: 18px; color: var(--ink-soft); }
+  .privacy-box li { margin-bottom: 8px; }
+  .privacy-box li b { color: var(--ink); }
+
+  .types { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .types span { font-size: 12.5px; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
+
+  .contact { text-align: center; background: var(--bg2); border-top: 1px solid var(--line); }
+  .price-row { display: flex; gap: 18px; justify-content: center; margin-top: 10px; flex-wrap: wrap; }
+  .price { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 26px 30px; width: 300px; }
+  .price.hot { border-color: var(--accent); }
+  .price h3 { font-size: 15px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--ink-soft); }
+  .price .amt { font-size: 34px; font-weight: 800; margin: 8px 0 2px; }
+  .price .per { color: var(--dim); font-size: 13px; }
+  .price ul { list-style: none; margin: 14px 0 18px; }
+  .price li { color: var(--ink-soft); font-size: 14px; padding: 4px 0; }
+  .buy-note { margin-top: 10px; font-size: 12.5px; color: var(--ink-soft); }
+  .install-note { margin-top: 14px; font-size: 13.5px; color: var(--dim); }
+  .contact .lead { margin: 10px auto 22px; }
+
+  footer { border-top: 1px solid var(--line); padding: 26px 0; font-size: 13px; color: var(--dim); }
+  footer .wrap { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer a { color: var(--dim); }
+  footer .right { margin-left: auto; }
+
+  @media (max-width: 760px) { h1 { font-size: 34px; } .sub { font-size: 17px; } .two { grid-template-columns: 1fr; }
+    .hero-shot { flex-basis: 100%; max-width: 420px; } }
+</style>
+<link rel="alternate" type="application/rss+xml" title="Creedy Solutions: DrumClock guides" href="/feed.xml">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="/">Creedy <b>Solutions</b></a>
+      <span class="links">
+        <a href="/#services">Services</a>
+        <a href="https://marco.creedysolutions.com">Marco</a>
+        <a href="/polo">Polo</a>
+        <a href="/magellan">Magellan</a>
+        <a href="/steps" style="color:var(--ink)">Steps</a>
+        <a href="https://chartless.creedysolutions.com">Chartless</a>
+        <a href="/#contact">Contact</a>
+      </span>
+    </nav>
+    <div class="hero">
+      <div class="copy">
+        <div class="mark" aria-hidden="true"></div>
+        <div class="kicker">Document My Clicks for Salesforce <span class="soon">Coming soon</span></div>
+        <h1>Steps <small>Click through it once. Get the guide.</small></h1>
+        <p class="sub">A Chrome side panel that lives next to Salesforce. Click through a task
+          once and Steps hands you a <b>step-by-step guide with screenshots</b>: every click
+          a numbered step, with a picture before the click and a picture of the result.
+          <b>Field values are covered in every picture by default</b>, so record data does
+          not end up in training material. Nothing leaves your browser.</p>
+        <div class="verdicts" aria-hidden="true">
+          <span class="v v-step">STEP · OPEN STAGE</span><span class="v v-step">STEP · CLICK SAVE</span>
+          <span class="v v-mask">FIELD VALUES MASKED</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Steps%20early%20access">Tell me when it ships</a>
+          <a class="btn ghost" href="#record">See how it records</a>
+          <a class="btn ghost" href="#editor">See the page editor</a>
+          <a class="btn ghost" href="#pricing">Pricing</a>
+        </div>
+        <div class="install-note">Coming soon to the Chrome Web Store. Free to record and export. PRO will be $19 once.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="record">
+  <div class="wrap">
+    <h2>Click through it once.</h2>
+    <p class="lead">Open Steps next to Salesforce, press record, and do the task the way you
+      always do. The guide writes itself while you click.</p>
+    <div class="grid three">
+      <div class="card">
+        <span class="tag t-acc">EVERY CLICK, NUMBERED</span>
+        <h3>Before and after, for each step</h3>
+        <p>Steps records each click as a numbered step with <b>a picture before the click</b>
+          and <b>a picture of the result</b>. The reader sees what to click and what should
+          happen next.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-gold">CAPTIONS WRITTEN FOR YOU</span>
+        <h3>The label is the caption</h3>
+        <p>The caption comes from the label of what you clicked: <i>Click Save</i>,
+          <i>Open Stage</i>. No typing up what you just did.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-green">MASKED BY DEFAULT</span>
+        <h3>Record data stays out of the pictures</h3>
+        <p>Field values are covered in every picture by default, so customer names, amounts
+          and the rest of your record data do not end up in training material. Add your own
+          masks wherever you want more covered.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="editor">
+  <div class="wrap">
+    <h2>The page editor: arrange it, mark it up, hand it over.</h2>
+    <p class="lead">Lay the steps out on pages, draw on the pictures, and export the format
+      the reader wants.</p>
+    <div class="grid three">
+      <div class="card">
+        <span class="tag t-lav">PAGES</span>
+        <h3>1, 2 or 4 steps per page</h3>
+        <p>Arrange steps on pages sized as a <b>slide</b>, <b>Letter</b> or <b>A4</b>, with
+          1, 2 or 4 steps on each.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-cyan">DRAWING TOOLS</span>
+        <h3>Highlighter, pen and eraser</h3>
+        <p>Point at the thing that matters with a highlighter or a pen, rub it out with the
+          eraser, and add your own masks. Undo when you change your mind.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-gold">EXPORTS</span>
+        <h3>PowerPoint, PDF, HTML and Markdown</h3>
+        <p>HTML and Markdown are in the free version. PRO adds PowerPoint and PDF, laid out
+          the way you arranged the pages.</p>
+      </div>
+    </div>
+    <div class="types">
+      <span>Numbered steps</span><span>Before and after pictures</span><span>Captions from labels</span>
+      <span>Masks</span><span>Slide, Letter, A4</span><span>PowerPoint</span><span>PDF</span><span>HTML</span><span>Markdown</span>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <h2>The fourth in the family.</h2>
+    <p class="lead">Marco finds where it's used. Polo finds what drifted. Magellan finds what's
+      wrong. Steps leaves a trail: every click becomes a marked step someone else can follow.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="tag t-acc">MARCO</span>
+        <h3>Where Used for Salesforce</h3>
+        <p>Everywhere any component is used, as a graph, a list and a 3D universe.</p>
+        <p><a href="https://marco.creedysolutions.com">Meet Marco →</a></p>
+      </div>
+      <div class="card">
+        <span class="tag t-acc">POLO</span>
+        <h3>Org Compare for Salesforce</h3>
+        <p>Same, different, or missing in another org you're logged into.</p>
+        <p><a href="/polo">Meet Polo →</a></p>
+      </div>
+      <div class="card">
+        <span class="tag t-acc">MAGELLAN</span>
+        <h3>Best-Practices Analyzer for Salesforce</h3>
+        <p>Ranked best-practice findings for any Apex class, trigger, Flow or LWC.</p>
+        <p><a href="/magellan">Meet Magellan →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="pricing">
+  <div class="wrap">
+    <h2>Free to record. PRO when you want the pages.</h2>
+    <p class="lead">Recording is free, for good. PRO adds the page editor and the office formats: one key, one payment, no subscription.</p>
+    <div class="price-row">
+      <div class="price">
+        <h3>Free</h3><div class="amt">$0</div><div class="per">forever</div>
+        <ul><li>Record clicks as numbered steps</li><li>Captions written from the label</li>
+          <li>Field values masked by default</li><li>Edit steps and captions</li><li>Export HTML and Markdown</li>
+          <li>A free export carries the first 12 steps and ends with "Made with Steps for Salesforce"</li></ul>
+      </div>
+      <div class="price hot">
+        <h3>PRO</h3><div class="amt">$19</div><div class="per">one-time, yours for good</div>
+        <ul><li>Everything in Free</li><li>The page editor: 1, 2 or 4 steps per page; slide, Letter or A4</li>
+          <li>Highlighter, pen, eraser and your own masks</li>
+          <li>Export PowerPoint and PDF</li>
+          <li>No 12-step limit, and no "Made with Steps" line</li>
+          <li><b>See it first</b>: a walkthrough inside the extension shows what PRO adds</li></ul>
+        <a class="btn primary" id="buyBtn" style="opacity:.55;pointer-events:none" aria-disabled="true">Checkout opening soon</a>
+        <p class="buy-note" id="buySoon">Checkout opens when Steps reaches the Chrome Web Store.</p>
+      </div>
+      <div class="price">
+        <h3>Team packs</h3><div class="amt">$79</div><div class="per">one-time · 5 seats</div>
+        <ul><li>PRO for the whole team</li><li>5 seats: $79</li><li>10 seats: $149</li><li>One payment, no subscription</li></ul>
+        <a class="btn ghost" id="teamBtn" style="opacity:.55;pointer-events:none" aria-disabled="true">Checkout opening soon</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Everything stays in the browser.</h2>
+    <div class="privacy-box">
+      <h3>No account, no cloud, and nothing installed in your org.</h3>
+      <ul>
+        <li><b>Pictures stay in the extension's memory.</b> They live there until you export
+          them, and they are gone when the panel closes. Nothing is uploaded, because there is
+          nowhere to upload it to.</li>
+        <li><b>No Salesforce API calls.</b> Steps looks at the page you are on to see what was
+          clicked and to cover field values. It does not query your org.</li>
+        <li><b>No accounts, and nothing about your org on our servers.</b> The only server Steps
+          ever contacts is our license server. Activating a PRO key
+          carries just the key and a random install ID.</li>
+        <li><b>No analytics.</b> We don't know when you install it, open it, or what you record.</li>
+        <li><b>Nothing installed in your org.</b> No connected app, no OAuth, no package.</li>
+      </ul>
+      <p style="margin-top:16px;font-size:14px;"><a href="/steps-privacy">Read the full privacy policy →</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Steps is coming soon.</h2>
+    <p class="lead">Chrome Web Store listing is on the way. Want in early, or a heads-up when it
+      lands? A short email is enough: what you document today, who reads it, and which format
+      they want it in.</p>
+    <a class="btn primary" href="mailto:chris@creedysolutions.com?subject=Steps%20early%20access">chris@creedysolutions.com</a>
+    <p class="legal">Salesforce is a trademark of Salesforce, Inc. Steps is an independent product and is not affiliated with, endorsed by, or sponsored by Salesforce, Inc.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Creedy Solutions LLC</span>
+    <a href="https://marco.creedysolutions.com">Marco</a>
+    <a href="/polo">Polo</a>
+    <a href="/magellan">Magellan</a>
+    <a href="/steps">Steps</a>
+    <a href="/steps-privacy">Steps privacy</a>
+    <a href="https://chartless.creedysolutions.com">Chartless</a>
+    <span class="right"><a href="mailto:chris@creedysolutions.com">chris@creedysolutions.com</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
