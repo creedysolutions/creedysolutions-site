@@ -341,15 +341,32 @@
           <li>Export PowerPoint and PDF</li>
           <li>No 12-step limit, and no "Made with Steps" line</li>
           <li><b>See it first</b>: a walkthrough inside the extension shows what PRO adds</li></ul>
-        <a class="btn primary" id="buyBtn" style="opacity:.55;pointer-events:none" aria-disabled="true">Checkout opening soon</a>
-        <p class="buy-note" id="buySoon">Checkout opens when Steps reaches the Chrome Web Store.</p>
+        <a class="btn primary buy" id="buyBtn" data-product="steps" href="https://creedysolutions.lemonsqueezy.com/checkout/buy/32df82e8-68c4-47d3-854d-cd2dc897b6c0">Buy PRO — $19</a>
+        <p class="buy-note" id="buySoon" hidden>Checkout opens shortly.</p>
       </div>
       <div class="price">
         <h3>Team packs</h3><div class="amt">$79</div><div class="per">one-time · 5 seats</div>
         <ul><li>PRO for the whole team</li><li>5 seats: $79</li><li>10 seats: $149</li><li>One payment, no subscription</li></ul>
-        <a class="btn ghost" id="teamBtn" style="opacity:.55;pointer-events:none" aria-disabled="true">Checkout opening soon</a>
+        <a class="btn ghost buy" id="teamBtn" data-product="steps" href="https://creedysolutions.lemonsqueezy.com/checkout/buy/32df82e8-68c4-47d3-854d-cd2dc897b6c0">Buy a team pack</a>
+        <p class="buy-note">Pick 5 or 10 seats at checkout.</p>
+        <p class="buy-note" hidden>Checkout opens shortly.</p>
       </div>
     </div>
+    <script>
+      // Each Buy button follows the license server's live switch for its product,
+      // so it can't take a card before checkout is open.
+      document.querySelectorAll("a.buy").forEach((b) => {
+        fetch("https://license.creedysolutions.com/status?product=" + b.dataset.product)
+          .then((r) => r.json())
+          .then((s) => {
+            if (s.checkoutLive) return;
+            b.textContent = "Checkout opening soon";
+            b.style.opacity = ".55"; b.style.pointerEvents = "none"; b.removeAttribute("href");
+            b.parentElement.querySelector(".buy-note[hidden]").hidden = false;
+          })
+          .catch(() => {});
+      });
+    </script>
   </div>
 </section>
 
@@ -399,5 +416,6 @@
   </div>
 </footer>
 
+<script src="/crs-attr.js" defer></script>
 </body>
 </html>
